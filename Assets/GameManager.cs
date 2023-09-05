@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    public static GameManager Instance;
-    public bool EndSession;
+    [HideInInspector] public bool EndSession;
 
     private Vector2 _screenBounds;
     public Vector2 ScreenBounds
@@ -13,16 +12,8 @@ public class GameManager : MonoBehaviour
         get { return _screenBounds; }
     }
     
-    private void Awake()
+    public override void Init()
     {
-        if (Instance != null)
-        {
-            Debug.LogError("Cannot have multiple instances of singleton.");
-            return;
-        }
-
-        Instance = this;
-
         _screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
     }
 

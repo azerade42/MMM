@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInput : MonoBehaviour
+public class PlayerInput : Singleton<PlayerInput>
 {
     private Vector2 screenBounds;
     private float playerWidth;
