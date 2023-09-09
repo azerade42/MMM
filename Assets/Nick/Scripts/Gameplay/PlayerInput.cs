@@ -14,7 +14,6 @@ public class PlayerInput : Singleton<PlayerInput>
     private float elapsedTime;
 
     [Range(-1,1)][SerializeField] float xPosition;
-    public Transform currentScreen;
 
     public void OnMoveMouse(InputAction.CallbackContext context)
     {
@@ -47,7 +46,7 @@ public class PlayerInput : Singleton<PlayerInput>
     // Move the player up and down the screen using the mouse while clamping the player in the screen boundaries
     private void Move(Vector2 mousePos)
     {
-        float newMouseYPos = Mathf.Lerp(-1f, 1f, mousePos.y / Screen.height);
+        float newMouseYPos = Mathf.Lerp(-1f, 1f, (mousePos.y - GameManager.Instance.BottomLeftScreenPos.y) / GameManager.Instance.InsideScreenSize.y);
         playerYPos = newMouseYPos * -screenBounds.y;
         playerYPos = Mathf.Clamp(playerYPos, screenBounds.y + playerHeight, -screenBounds.y - playerHeight);
     }
