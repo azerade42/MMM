@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-1113145296358957950
+--- !u!114 &-8335989646843542273
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,7 +44,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BASE_COLOR_MAP:
-        m_Texture: {fileID: 2800000, guid: d55d3d6b1b451e541b95b2ab88571661, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8c320f33390d59049ab2f4defc1e37d8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EMISSION_COLOR_MAP:
@@ -52,11 +52,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _METALNESS_MAP:
-        m_Texture: {fileID: 2800000, guid: 9b75cdb41221ac943bd91f96c40d100d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2cc6198a823a9ba49b29f38d067f1c30, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NORMAL_MAP:
-        m_Texture: {fileID: 2800000, guid: 1177dbd4f1fcaa14db81c94e12b5fd3b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 926dac5e3538b6d4983a37b16bdd625c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SPECULAR_COLOR_MAP:
@@ -68,7 +68,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SPECULAR_ROUGHNESS_MAP:
-        m_Texture: {fileID: 2800000, guid: 9cf933c3e6b186148b8bbf39af54728c, type: 3}
+        m_Texture: {fileID: 2800000, guid: afc50b30c3e883b4eb05a082216ba476, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
