@@ -16,3 +16,4 @@
 *.renderTexture filter=lfs diff=lfs merge=lfs -text
 *.prefab filter=lfs diff=lfs merge=lfs -text
 *.mp3 filter=lfs diff=lfs merge=lfs -text
+*.playable filter=lfs diff=lfs merge=lfs -text
