@@ -36,11 +36,11 @@ public class PlayerInput : Singleton<PlayerInput>
     private void Update()
     {
         elapsedTime += Time.deltaTime;
-        playerXPos = screenBounds.x * -xPosition + elapsedTime;
-        playerXPos = Mathf.Clamp(playerXPos, screenBounds.x + playerWidth + elapsedTime, -screenBounds.x - playerWidth + elapsedTime);
+        // playerXPos = screenBounds.x * -xPosition + elapsedTime;
+        // playerXPos = Mathf.Clamp(playerXPos, screenBounds.x + playerWidth + elapsedTime, -screenBounds.x - playerWidth + elapsedTime);
         transform.position = playerYPos * Vector3.up + Vector3.right * playerXPos;
 
-        Camera.main.transform.position += Vector3.right * Time.deltaTime;
+        // Camera.main.transform.position += Vector3.right * Time.deltaTime;
     }
 
     // Move the player up and down the screen using the mouse while clamping the player in the screen boundaries

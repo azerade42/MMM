@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
+using TMPro;
 
 public class NoteManager : Singleton<NoteManager>
 {
     private ObjectPool<Note> _pool;
     [SerializeField] private Note _notePrefab;
-    [SerializeField] private int _spawnAmount;
+
+    private float _initalXPos;
 
     private void Start()
     {
@@ -45,13 +47,11 @@ public class NoteManager : Singleton<NoteManager>
     private void SpawnNote()
     {
         Vector2 screenBounds = GameManager.Instance.ScreenBounds;
-        
-        for (int i = 0; i < _spawnAmount; i++)
-        {
-            Note note = _pool.Get();
-            float xPos = Mathf.Abs(screenBounds.x) * 2 + PlayerInput.Instance.transform.position.x;
-            float YPos = -screenBounds.y * 2 * 0.33f * Random.Range(1, 4) + screenBounds.y;
-            note.transform.position = new Vector3(xPos, YPos, 0);
-        }
+        Note note = _pool.Get();
+        TextMeshProUGUI noteTMP = note.gameObject.GetComponent<TextMeshProUGUI>();
+        float noteWidth = noteTMP.GetRenderedValues().x;
+        float xPos = Mathf.Abs(screenBounds.x) * 2 + PlayerInput.Instance.transform.position.x;
+        float YPos = -screenBounds.y * 2 * 0.33f * Random.Range(1, 4) + screenBounds.y;
+        note.transform.position = new Vector3(xPos, YPos, 0);
     }
 }
