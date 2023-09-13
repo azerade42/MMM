@@ -18,3 +18,4 @@
 *.mp3 filter=lfs diff=lfs merge=lfs -text
 *.playable filter=lfs diff=lfs merge=lfs -text
 *.signal filter=lfs diff=lfs merge=lfs -text
+*.vsconfig filter=lfs diff=lfs merge=lfs -text
