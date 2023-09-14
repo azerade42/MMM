@@ -33,3 +33,6 @@
 *.gif filter=lfs diff=lfs merge=lfs -text
 *.mid filter=lfs diff=lfs merge=lfs -text
 *.mp4 filter=lfs diff=lfs merge=lfs -text
+*.exr filter=lfs diff=lfs merge=lfs -text
+*.hdr filter=lfs diff=lfs merge=lfs -text
+*.lighting filter=lfs diff=lfs merge=lfs -text
