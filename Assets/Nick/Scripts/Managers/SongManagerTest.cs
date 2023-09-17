@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SongManager : Singleton<SongManager>
+public class SongManagerTest : Singleton<SongManagerTest>
 {
     [SerializeField] private List<AudioClip> _tracks;
     [SerializeField] private List<float> _BPM;

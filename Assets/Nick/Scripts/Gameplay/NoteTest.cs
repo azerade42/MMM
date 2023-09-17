@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Note : MonoBehaviour
+public class NoteTest : MonoBehaviour
 {
     // parent class stuff
 }

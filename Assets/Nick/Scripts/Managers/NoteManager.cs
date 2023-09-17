@@ -47,7 +47,7 @@ public class NoteManager : Singleton<NoteManager>
         );
 
         _lanesList = CalculateYPosLanes(3);
-        InvokeRepeating(nameof(SpawnNote), 60f/SongManager.Instance.CurrentSongBPM, 60f/SongManager.Instance.CurrentSongBPM);
+        InvokeRepeating(nameof(SpawnNote), 60f/SongManagerTest.Instance.CurrentSongBPM, 60f/SongManagerTest.Instance.CurrentSongBPM);
 
     }
 
