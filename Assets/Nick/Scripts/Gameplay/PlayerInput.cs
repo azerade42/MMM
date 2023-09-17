@@ -11,8 +11,6 @@ public class PlayerInput : Singleton<PlayerInput>
     private float playerXPos;
     private float playerYPos;
 
-    private float elapsedTime;
-
     [Range(-1,1)][SerializeField] float xPosition;
 
     public void OnMoveMouse(InputAction.CallbackContext context)
@@ -23,7 +21,7 @@ public class PlayerInput : Singleton<PlayerInput>
     private void Start()
     {
         // Calculate the boundaries of the screen, height, width of player sprite
-        screenBounds = GameManager.Instance.ScreenBounds;
+        screenBounds = ScreenManager.Instance.ScreenBounds;
         playerHeight = transform.GetComponent<SpriteRenderer>().bounds.size.y / 2;
         playerWidth = transform.GetComponent<SpriteRenderer>().bounds.size.x / 2;
 
@@ -35,18 +33,13 @@ public class PlayerInput : Singleton<PlayerInput>
     // Have the camera and player constantly move right while staying in bounds
     private void Update()
     {
-        elapsedTime += Time.deltaTime;
-        playerXPos = screenBounds.x * -xPosition + elapsedTime;
-        playerXPos = Mathf.Clamp(playerXPos, screenBounds.x + playerWidth + elapsedTime, -screenBounds.x - playerWidth + elapsedTime);
         transform.position = playerYPos * Vector3.up + Vector3.right * playerXPos;
-
-        Camera.main.transform.position += Vector3.right * Time.deltaTime;
     }
 
     // Move the player up and down the screen using the mouse while clamping the player in the screen boundaries
     private void Move(Vector2 mousePos)
     {
-        float newMouseYPos = Mathf.Lerp(-1f, 1f, (mousePos.y - GameManager.Instance.BottomLeftScreenPos.y) / GameManager.Instance.InsideScreenSize.y);
+        float newMouseYPos = Mathf.Lerp(-1f, 1f, (mousePos.y - ScreenManager.Instance.BottomLeftScreenPos.y) / ScreenManager.Instance.InsideScreenSize.y);
         playerYPos = newMouseYPos * -screenBounds.y;
         playerYPos = Mathf.Clamp(playerYPos, screenBounds.y + playerHeight, -screenBounds.y - playerHeight);
     }
