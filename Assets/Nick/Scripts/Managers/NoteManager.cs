@@ -122,7 +122,7 @@ public class NoteManager : Singleton<NoteManager>
             float YPos = Mathf.Abs(screenBounds.y) * 2 * (_lanesList[i] / malwareCanvas.rect.height);
             note.transform.position = new Vector3(xPos, YPos, 0);
             
-            print(LastNoteWidth);
+            //print(LastNoteWidth);
         }
     }
 }

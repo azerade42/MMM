@@ -1,0 +1,712 @@
+fileFormatVersion: 2
+guid: b1aa79267d8d09946ad84465bf4fda8b
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: viridian_sprite_sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3602
+        width: 914
+        height: 758
+      alignment: 9
+      pivot: {x: 0.68606144, y: 0.46014678}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d55013a3c1a6d04c8c4df83065c8259
+      internalID: -975116678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: viridian_sprite_sheet_2
+      rect:
+        serializedVersion: 2
+        x: 927
+        y: 3602
+        width: 860
+        height: 758
+      alignment: 9
+      pivot: {x: 0.65679944, y: 0.4584349}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87a5f2c2f3fde724da406ad8b7aa7e7c
+      internalID: 578174117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: viridian_sprite_sheet_5
+      rect:
+        serializedVersion: 2
+        x: 1931
+        y: 3598
+        width: 910
+        height: 762
+      alignment: 9
+      pivot: {x: 0.6760946, y: 0.4625007}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca0e40f4e3289b941bcf23e314acba16
+      internalID: -418938386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: viridian_sprite_sheet_8
+      rect:
+        serializedVersion: 2
+        x: 2931
+        y: 3599
+        width: 795
+        height: 646
+      alignment: 9
+      pivot: {x: 0.6311877, y: 0.5302712}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcc7478a47e0de54d875ec578b922be8
+      internalID: 2049859442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: viridian_sprite_sheet_15
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 2753
+        width: 990
+        height: 846
+      alignment: 9
+      pivot: {x: 0.5905709, y: 0.43990186}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11bb8f53e504da94a97864a78ea5f979
+      internalID: -273887631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: viridian_sprite_sheet_17
+      rect:
+        serializedVersion: 2
+        x: 1059
+        y: 2753
+        width: 1004
+        height: 804
+      alignment: 9
+      pivot: {x: 0.5864085, y: 0.43944705}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c1220057b7574447ac22dc4b3410a9e
+      internalID: 2118032031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: viridian_sprite_sheet_19
+      rect:
+        serializedVersion: 2
+        x: 2059
+        y: 2755
+        width: 907
+        height: 804
+      alignment: 9
+      pivot: {x: 0.5493089, y: 0.4177738}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f71ee240ccf59344d9248d31e77a29b5
+      internalID: -837558488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: viridian_sprite_sheet_21
+      rect:
+        serializedVersion: 2
+        x: 2973
+        y: 2745
+        width: 797
+        height: 814
+      alignment: 9
+      pivot: {x: 0.61575145, y: 0.44893563}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6941794203b0b3e42a00053b34243782
+      internalID: 430381479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: viridian_sprite_sheet_26
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 1672
+        width: 792
+        height: 1018
+      alignment: 9
+      pivot: {x: 0.5906281, y: 0.37269312}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ded3d648fc95ce41a78ce42c7b0c1fa
+      internalID: -814966831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: viridian_sprite_sheet_27
+      rect:
+        serializedVersion: 2
+        x: 1055
+        y: 1672
+        width: 786
+        height: 984
+      alignment: 9
+      pivot: {x: 0.5837098, y: 0.38045123}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 844c347b13078a441bd74518c41da83a
+      internalID: -1352405464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: viridian_sprite_sheet_28
+      rect:
+        serializedVersion: 2
+        x: 2052
+        y: 1666
+        width: 798
+        height: 1017
+      alignment: 9
+      pivot: {x: 0.5916381, y: 0.3793014}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd4080c75c4f4d4448e0a086cd30ec7f
+      internalID: 648224194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: viridian_sprite_sheet_29
+      rect:
+        serializedVersion: 2
+        x: 2984
+        y: 1770
+        width: 767
+        height: 766
+      alignment: 9
+      pivot: {x: 0.48447973, y: 0.4941722}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6d52c0676e85794081d210ae347a0ec
+      internalID: 850654195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: viridian_sprite_sheet_31
+      rect:
+        serializedVersion: 2
+        x: 3849
+        y: 1777
+        width: 817
+        height: 769
+      alignment: 9
+      pivot: {x: 0.51618797, y: 0.49140048}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4e35de7e6cf94f46ba81de29e85b850
+      internalID: -1869781414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: viridian_sprite_sheet_39
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 836
+        width: 805
+        height: 770
+      alignment: 9
+      pivot: {x: 0.5056146, y: 0.48369554}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cd61756599652f48bd4c65bd240359c
+      internalID: -220455525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: viridian_sprite_sheet_40
+      rect:
+        serializedVersion: 2
+        x: 3534
+        y: 1524
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbe0bb3f60b05264093578d03e0dba9e
+      internalID: 1425908050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: viridian_sprite_sheet_41
+      rect:
+        serializedVersion: 2
+        x: 3869
+        y: 925
+        width: 894
+        height: 578
+      alignment: 9
+      pivot: {x: 0.50099784, y: 0.48302865}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 006c9ea2ce2a6da499a3662b2c4e2132
+      internalID: 575731555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: viridian_sprite_sheet_43
+      rect:
+        serializedVersion: 2
+        x: 918
+        y: 910
+        width: 906
+        height: 541
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc9080a5bd369034f8ac4d250d96fb2f
+      internalID: 1506004497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: viridian_sprite_sheet_44
+      rect:
+        serializedVersion: 2
+        x: 1972
+        y: 907
+        width: 892
+        height: 560
+      alignment: 9
+      pivot: {x: 0.5005351, y: 0.48976746}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8df473c1acbd934aad90d9e24f8eaeb
+      internalID: -968212654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: viridian_sprite_sheet_45
+      rect:
+        serializedVersion: 2
+        x: 2926
+        y: 904
+        width: 902
+        height: 576
+      alignment: 9
+      pivot: {x: 0.5, y: 0.49209574}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6227a0a5b8489d40bb928d653c6483a
+      internalID: -551354823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: viridian_sprite_sheet_46
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 721
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4f7b91c9a4f14149b221fff40be5c34
+      internalID: -1618795601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: viridian_sprite_sheet_47
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 45
+        width: 795
+        height: 697
+      alignment: 9
+      pivot: {x: 0.54846084, y: 0.48347804}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab9265e0a2125224e9b8698eccfe5ba8
+      internalID: 480006242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: viridian_sprite_sheet_48
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 53
+        width: 494
+        height: 660
+      alignment: 9
+      pivot: {x: 0.5992586, y: 0.56228757}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc40445f77b34d14992737ad779032c5
+      internalID: -114262300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: viridian_sprite_sheet_52
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 187
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48a6be1296df7d2438663d064d78b97f
+      internalID: 723734310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: viridian_sprite_sheet_1
+      rect:
+        serializedVersion: 2
+        x: 3887
+        y: 3585
+        width: 835
+        height: 695
+      alignment: 9
+      pivot: {x: 0.62167734, y: 0.53272855}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1e4dc9ce7096904b91fdd5983590ca2
+      internalID: 343628038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: b72ed616737807747bb8e310bf7960c9
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      viridian_sprite_sheet_0: -975116678
+      viridian_sprite_sheet_1: 343628038
+      viridian_sprite_sheet_10: -1673113400
+      viridian_sprite_sheet_11: -1784941389
+      viridian_sprite_sheet_12: -421168279
+      viridian_sprite_sheet_13: 395958297
+      viridian_sprite_sheet_14: 1740271837
+      viridian_sprite_sheet_15: -273887631
+      viridian_sprite_sheet_16: 495778021
+      viridian_sprite_sheet_17: 2118032031
+      viridian_sprite_sheet_18: -712236218
+      viridian_sprite_sheet_19: -837558488
+      viridian_sprite_sheet_2: 578174117
+      viridian_sprite_sheet_20: 1165992912
+      viridian_sprite_sheet_21: 430381479
+      viridian_sprite_sheet_22: -231531281
+      viridian_sprite_sheet_23: -2097206120
+      viridian_sprite_sheet_24: -1562867836
+      viridian_sprite_sheet_25: -1031175530
+      viridian_sprite_sheet_26: -814966831
+      viridian_sprite_sheet_27: -1352405464
+      viridian_sprite_sheet_28: 648224194
+      viridian_sprite_sheet_29: 850654195
+      viridian_sprite_sheet_3: -977589216
+      viridian_sprite_sheet_30: 200370751
+      viridian_sprite_sheet_31: -1869781414
+      viridian_sprite_sheet_32: -1157552830
+      viridian_sprite_sheet_33: 1561873237
+      viridian_sprite_sheet_34: -2132405664
+      viridian_sprite_sheet_35: 1528478849
+      viridian_sprite_sheet_36: -529280816
+      viridian_sprite_sheet_37: 498364450
+      viridian_sprite_sheet_38: -1363512817
+      viridian_sprite_sheet_39: -220455525
+      viridian_sprite_sheet_4: -1579279988
+      viridian_sprite_sheet_40: 1425908050
+      viridian_sprite_sheet_41: 575731555
+      viridian_sprite_sheet_42: 1465192030
+      viridian_sprite_sheet_43: 1506004497
+      viridian_sprite_sheet_44: -968212654
+      viridian_sprite_sheet_45: -551354823
+      viridian_sprite_sheet_46: -1618795601
+      viridian_sprite_sheet_47: 480006242
+      viridian_sprite_sheet_48: -114262300
+      viridian_sprite_sheet_49: -949355870
+      viridian_sprite_sheet_5: -418938386
+      viridian_sprite_sheet_50: 244504054
+      viridian_sprite_sheet_51: -1306175642
+      viridian_sprite_sheet_52: 723734310
+      viridian_sprite_sheet_53: 1226243696
+      viridian_sprite_sheet_54: 610692165
+      viridian_sprite_sheet_6: -551846998
+      viridian_sprite_sheet_7: -1197709907
+      viridian_sprite_sheet_8: 2049859442
+      viridian_sprite_sheet_9: 1924263494
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
