@@ -1,4 +1,4 @@
-﻿using Melanchall.DryWetMidi.Interaction;
+﻿﻿using Melanchall.DryWetMidi.Interaction;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -38,7 +38,7 @@ public class Lane : MonoBehaviour
         {
             if (SongManager.GetAudioSourceTime() >= timeStamps[spawnIndex] - SongManager.Instance.noteTime)
             {
-                var note = Instantiate(notePrefab, Vector2.zero, Quaternion.identity);
+                var note = Instantiate(notePrefab, transform);
                 notes.Add(note.GetComponent<Note>());
                 note.GetComponent<Note>().assignedTime = (float)timeStamps[spawnIndex];
                 spawnIndex++;
