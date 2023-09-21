@@ -12,6 +12,7 @@ public class PlayerInput : Singleton<PlayerInput>
     private float playerXPos;
     private float playerYPos;
     private float lastYPos;
+    private int frameCount;
 
     private Animator _playerAnim;
 
@@ -73,7 +74,13 @@ public class PlayerInput : Singleton<PlayerInput>
         else
             _playerAnim.SetFloat("mouseYPos", 0);
 
-        lastYPos = newMouseYPos;
+        
+        if (++frameCount > 10)
+        {
+            lastYPos = newMouseYPos;
+            frameCount = 0;
+        }
+
     }
 
     private void Slash()
