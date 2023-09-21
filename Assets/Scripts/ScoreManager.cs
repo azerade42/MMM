@@ -14,7 +14,12 @@ public class ScoreManager : MonoBehaviour
         Instance = this;
         comboScore = 0;
     }
-    public static void Hit()
+    public static void PerfectHit()
+    {
+        comboScore += 2;
+        Instance.hitSFX.Play();
+    }
+    public static void GoodHit()
     {
         comboScore += 1;
         Instance.hitSFX.Play();
