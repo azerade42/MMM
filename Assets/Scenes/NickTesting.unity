@@ -1226,11 +1226,12 @@ MonoBehaviour:
   - {fileID: 1402448282}
   songDelayInSeconds: 0
   marginOfError: 0.1
+  marginOfErrorY: 1
   inputDelayInMilliseconds: 0
   fileLocation: Track1.mid
   noteTime: 1
-  noteSpawnX: 9
-  noteTapX: -4.75
+  noteSpawnX: 6
+  noteTapX: -5
 --- !u!1 &295902711
 GameObject:
   m_ObjectHideFlags: 0
@@ -6362,7 +6363,7 @@ GameObject:
   - component: {fileID: 1969427801}
   - component: {fileID: 1969427800}
   m_Layer: 0
-  m_Name: Worm.exe
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

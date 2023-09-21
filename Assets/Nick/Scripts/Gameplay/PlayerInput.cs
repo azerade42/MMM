@@ -14,6 +14,11 @@ public class PlayerInput : Singleton<PlayerInput>
     private float lastYPos;
     private int frameCount;
 
+    public Vector2 PlayerPosition
+    {
+        get { return new Vector2(playerXPos, playerYPos); }
+    }
+
     private Animator _playerAnim;
 
     [Range(-1,1)][SerializeField] float xPosition;
@@ -73,7 +78,6 @@ public class PlayerInput : Singleton<PlayerInput>
             _playerAnim.SetFloat("mouseYPos", -1);
         else
             _playerAnim.SetFloat("mouseYPos", 0);
-
         
         if (++frameCount > 10)
         {

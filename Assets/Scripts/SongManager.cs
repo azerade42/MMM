@@ -13,7 +13,8 @@ public class SongManager : MonoBehaviour
     public AudioSource audioSource;
     public Lane[] lanes;
     public float songDelayInSeconds;
-    public double marginOfError; // in seconds
+    public double marginOfError; // in seconds     // nick: I thought margin of error was distance, not time?
+    public float marginOfErrorY;
 
     public int inputDelayInMilliseconds;
     
@@ -89,10 +90,5 @@ public class SongManager : MonoBehaviour
     public static double GetAudioSourceTime()
     {
         return (double)Instance.audioSource.timeSamples / Instance.audioSource.clip.frequency;
-    }
-
-    void Update()
-    {
-        
     }
 }
