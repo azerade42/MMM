@@ -53,10 +53,17 @@ public class Lane : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
-                if (Math.Abs(audioTime - timeStamp) < marginOfError)
+                if (Math.Abs(audioTime - timeStamp) < marginOfError/4)
                 {
-                    Hit();
-                    print($"Hit on {inputIndex} note");
+                    PerfectHit();
+                    print($"Perfect Hit on {inputIndex} note");
+                    Destroy(notes[inputIndex].gameObject);
+                    inputIndex++;
+                }
+                else if (Math.Abs(audioTime - timeStamp) < marginOfError && Math.Abs(audioTime - timeStamp) > marginOfError/4)
+                {
+                    PerfectHit();
+                    print($"Good Hit on {inputIndex} note");
                     Destroy(notes[inputIndex].gameObject);
                     inputIndex++;
                 }
@@ -74,9 +81,13 @@ public class Lane : MonoBehaviour
         }       
     
     }
-    private void Hit()
+    private void PerfectHit()
     {
-        ScoreManager.Hit();
+        ScoreManager.PerfectHit();
+    }
+    private void GoodHit()
+    {
+        ScoreManager.GoodHit();
     }
     private void Miss()
     {
