@@ -4,10 +4,9 @@ using UnityEngine;
 
 public static class SaveValues
 {
-    public static float musicVolume = 0.2f;
-    public static float sfxVolume = 0.2f;
-    public static float spookyPercent = 0.5f;
+    public static float masterVolume = 0.6f;
+    public static float musicVolume = 1.0f;
+    public static float sfxVolume = 1.0f;
 
     public static bool isFullscreen = true;
-    public static bool isGodMode = false;
 }

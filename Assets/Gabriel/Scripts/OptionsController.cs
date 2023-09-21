@@ -1,18 +1,54 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class OptionsController : MonoBehaviour
 {
+    [SerializeField]
+    private Slider _masterSlider, _musicSlider, _sfxSlider;
+    [SerializeField]
+    private TextMeshProUGUI masterPercent, musicPercent, sfxPercent;
+
+    [SerializeField]
+    private GameObject fullScreenToggle;
+
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        _masterSlider.value = SaveValues.masterVolume;
+        _musicSlider.value = SaveValues.musicVolume;
+        _sfxSlider.value = SaveValues.sfxVolume;
+
+        fullScreenToggle.GetComponent<Toggle>().isOn = SaveValues.isFullscreen;
+    }
+    
+    public void MasterVolume()
+    {
+        masterPercent.text = Mathf.RoundToInt(_masterSlider.value * 100) + "%";
+        //AudioManager.Instance.MasterVolume(_masterSlider.value);
+        SaveValues.masterVolume = _masterSlider.value;
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void MusicVolume()
     {
-        
+        musicPercent.text = Mathf.RoundToInt(_musicSlider.value * 100) + "%";
+        AudioManager.Instance.MusicVolume(_musicSlider.value);
+        SaveValues.musicVolume = _musicSlider.value;
+    }
+    public void SFXVolume()
+    {
+        sfxPercent.text = Mathf.RoundToInt(_sfxSlider.value * 100) + "%";
+        AudioManager.Instance.MusicVolume(_sfxSlider.value);
+        SaveValues.sfxVolume = _sfxSlider.value;
+    }
+
+    public void SetFullScreen(bool isFullscreen)
+    {
+        Screen.fullScreen = isFullscreen;
+        SaveValues.isFullscreen = isFullscreen;
     }
 }
