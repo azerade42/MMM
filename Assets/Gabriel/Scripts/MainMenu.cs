@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        // Change this to looking up scene by name
+        // Change this to add more levels
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

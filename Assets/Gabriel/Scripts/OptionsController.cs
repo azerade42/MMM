@@ -16,7 +16,7 @@ public class OptionsController : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         _masterSlider.value = SaveValues.masterVolume;
         _musicSlider.value = SaveValues.musicVolume;
@@ -41,8 +41,9 @@ public class OptionsController : MonoBehaviour
     }
     public void SFXVolume()
     {
+        
         sfxPercent.text = Mathf.RoundToInt(_sfxSlider.value * 100) + "%";
-        AudioManager.Instance.MusicVolume(_sfxSlider.value);
+        AudioManager.Instance.SFXVolume(_sfxSlider.value); 
         SaveValues.sfxVolume = _sfxSlider.value;
     }
 
