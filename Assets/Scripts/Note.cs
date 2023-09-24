@@ -9,11 +9,12 @@ public class Note : MonoBehaviour
 
     float assignedYPos;
 
+
     public void Init(float assignedYPos)
     {
         this.assignedYPos = assignedYPos;
     }
-    void Start()
+    void OnEnable()
     {
         timeInstantiated = SongManager.GetAudioSourceTime();
     }
@@ -27,12 +28,19 @@ public class Note : MonoBehaviour
         
         if (t > 1)
         {
-            Destroy(gameObject);
+            // Destroy(gameObject);
         }
         else
         {
             transform.localPosition = Vector3.Lerp(Vector3.right * SongManager.Instance.noteSpawnX + Vector3.up * assignedYPos, Vector3.right * SongManager.Instance.noteDespawnX + Vector3.up * assignedYPos, t); 
             GetComponent<SpriteRenderer>().enabled = true;
         }
+    }
+
+    // Reset Position and release Note back into the object pool
+    public void ReleaseNote()
+    {
+        transform.position = Vector3.right * SongManager.Instance.noteSpawnX + Vector3.up * assignedYPos;
+        LaneManager.Instance._notePool.Release(this);
     }
 }

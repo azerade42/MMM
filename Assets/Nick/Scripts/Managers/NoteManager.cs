@@ -9,7 +9,6 @@ public class NoteManager : Singleton<NoteManager>
     private ObjectPool<SafeNote> _safeTextPool;
     private ObjectPool<MalwareNote> _malwareTextPool;
     [SerializeField] private SafeNote _safePrefab;
-    [SerializeField] private MalwareNote _malwarePrefab;
     [SerializeField] private RectTransform malwareCanvas;
 
     private float _initalXPos;
@@ -22,19 +21,20 @@ public class NoteManager : Singleton<NoteManager>
 
     protected override void Init()
     {
-        _lanesList = CalculateYPosLanes(3);
+        // _lanesList = CalculateYPosLanes(3);
 
-        _safeTextPool = new ObjectPool<SafeNote>(() => {
-            return Instantiate(_safePrefab, malwareCanvas.transform);
-        }, note => {
-            note.gameObject.SetActive(true);
-        }, note => {
-            note.gameObject.SetActive(false);
-        }, note => {
-            Destroy(note.gameObject);
-        }, false,
-        50
-        );
+        // _safeTextPool = new ObjectPool<SafeNote>(() => {
+        //     return Instantiate(_safePrefab, malwareCanvas.transform);
+        // }, note => {
+        //     note.gameObject.SetActive(true);
+        // }, note => {
+        //     note.gameObject.SetActive(false);
+        // }, note => {
+        //     Destroy(note.gameObject);
+        // }, false,
+        // 4,
+        // 10
+        // );
 
         // _malwareTextPool = new ObjectPool<MalwareNote>(() => {
         //     return Instantiate(_malwarePrefab, malwareCanvas.transform);
@@ -47,7 +47,7 @@ public class NoteManager : Singleton<NoteManager>
         // }, false,
         // 50
         // );
-        // InvokeRepeating(nameof(SpawnNote), 60f/SongManagerTest.Instance.CurrentSongBPM, 60f/SongManagerTest.Instance.CurrentSongBPM);
+        // InvokeRepeating(nameof(SpawnNote), 60f/130f, 60f/130f);
 
     }
 
@@ -63,10 +63,10 @@ public class NoteManager : Singleton<NoteManager>
         // ActionManager.Instance.DeleteMalwareNote -= ReleaseMalwareNote;
     }
 
-    // private void ReleaseSafeNote(SafeNote note)
-    // {
-    //     _safeTextPool.Release(note);
-    // }
+    private void ReleaseSafeNote(SafeNote note)
+    {
+        _safeTextPool.Release(note);
+    }
 
     // private void ReleaseMalwareNote(MalwareNote note)
     // {
@@ -74,37 +74,37 @@ public class NoteManager : Singleton<NoteManager>
     // }
 
 
-    private List<float> CalculateYPosLanes(int numLanes)
-    {
-        List<float> lanes = new List<float>();
+    // private List<float> CalculateYPosLanes(int numLanes)
+    // {
+    //     List<float> lanes = new List<float>();
 
-        float spacing = malwareCanvas.rect.height / numLanes;
+    //     float spacing = malwareCanvas.rect.height / numLanes;
         
-        for (int i = 0; i < numLanes; i++)
-        {
-            float pos = spacing * 0.5f + spacing * i - malwareCanvas.rect.height * 0.5f;
-            lanes.Add(pos);
-        }
+    //     for (int i = 0; i < numLanes; i++)
+    //     {
+    //         float pos = spacing * 0.5f + spacing * i - malwareCanvas.rect.height * 0.5f;
+    //         lanes.Add(pos);
+    //     }
 
-        return lanes;
-    }
+    //     return lanes;
+    // }
 
     // private void SpawnNote()
     // {
     //     int randomLane = Random.Range(0,_lanesList.Count);
     //     for (int i = 2; i < _lanesList.Count; i++)
     //     {
-    //         Note note;
+    //         SafeNote note;
             
-    //         if (i == randomLane)
-    //         {
-    //             note = _malwareTextPool.Get();
-    //             TextMeshProUGUI noteTMP = note.gameObject.GetComponent<TextMeshProUGUI>();
-    //             // noteTMP.text = "EVIL";
+    //         // if (i == randomLane)
+    //         // {
+    //         //     note = _malwareTextPool.Get();
+    //         //     TextMeshProUGUI noteTMP = note.gameObject.GetComponent<TextMeshProUGUI>();
+    //         //     // noteTMP.text = "EVIL";
                 
-    //             LastNoteWidth = noteTMP.preferredWidth;
-    //         }
-    //         else
+    //         //     LastNoteWidth = noteTMP.preferredWidth;
+    //         // }
+            
     //         {
     //             note = _safeTextPool.Get();
                 

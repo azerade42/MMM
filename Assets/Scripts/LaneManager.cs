@@ -16,14 +16,14 @@ public class LaneManager : Singleton<LaneManager>
     public List<int> timeYIndex = new List<int>();
     Queue<int> noteDeletionIndexQueue = new Queue<int>();
 
-    ObjectPool<Note> _notePool;    
+    public ObjectPool<Note> _notePool;
 
     int spawnIndex = 0;
     int inputIndex = 0;
 
 
-    private bool slashInputPressed;
-    private bool noteQueuedToDelete;
+    //private bool slashInputPressed;
+    //private bool noteQueuedToDelete;
 
     private double audioTime;
 
@@ -31,29 +31,44 @@ public class LaneManager : Singleton<LaneManager>
     // Start is called before the first frame update
     void OnEnable()
     {
-        PlayerInput.OnPlayerSlash += ProcessSlash;
-        PlayerInput.OnSlashPeak += DeleteNote;
+        PlayerInput.OnSlashPeak += DetermineSlashAccuracy;
     }
 
     void OnDisable()
     {
-        PlayerInput.OnPlayerSlash -= ProcessSlash;
-        PlayerInput.OnSlashPeak -= DeleteNote;
+        PlayerInput.OnSlashPeak -= DetermineSlashAccuracy;
     }
 
-    void Awake()
+    protected override void Init()
     {
-        _notePool = new ObjectPool<Note>(() => {
-            return Instantiate(_notePrefab, transform);
-        }, note => {
+        _notePool = new ObjectPool<Note>(CreateNote,
+        note => {
             note.gameObject.SetActive(true);
         }, note => {
             note.gameObject.SetActive(false);
         }, note => {
             Destroy(note.gameObject);
         }, false,
-        5
+        25,
+        50
         );
+
+    }
+
+    private void Start()
+    {
+        CreateNote(24);
+    }
+
+    private Note CreateNote()
+    {
+        return Instantiate(_notePrefab, transform.position + Vector3.right * 20f, Quaternion.identity, transform);
+    }
+
+    private void CreateNote(int amount)
+    {
+        for (int i = 0; i < amount; i++)
+            _notePool.Get();
     }
 
     public void SetTimeStamps(Melanchall.DryWetMidi.Interaction.Note[] array)
@@ -75,7 +90,7 @@ public class LaneManager : Singleton<LaneManager>
                     timeYIndex.Add(2);
                     break;
                 default:
-                    Debug.LogWarning($"Note name {note.NoteName} not accounted for when setting timeStamps.");
+                    Debug.LogError($"Note name {note.NoteName} not accounted for when setting timeStamps.");
                     break;
             }
         }
@@ -100,8 +115,9 @@ public class LaneManager : Singleton<LaneManager>
 
         if (inputIndex < timeStamps.Count)
         {
-            // double timeStamp = timeStamps[inputIndex];
-            // double marginOfError = SongManager.Instance.marginOfError;
+            audioTime = SongManager.GetAudioSourceTime() - (SongManager.Instance.inputDelayInMilliseconds / 1000.0);
+            double timeStamp = timeStamps[inputIndex];
+            double marginOfError = SongManager.Instance.marginOfError;
             // float marginOfErrorY = SongManager.Instance.marginOfErrorY;
 
             // if (slashInputPressed)
@@ -137,22 +153,24 @@ public class LaneManager : Singleton<LaneManager>
             //     }
             // }
 
-            // if (timeStamp + marginOfError <= audioTime)
-            // {
-            //     Miss();
-            //     //print($"Missed {inputIndex} note");
-            //     //print("Miss (did not attempt to hit)");
-            //     //Destroy(notes[inputIndex].gameObject);
-            //     inputIndex++;
-            // }
+            if (timeStamp + marginOfError <= audioTime)
+            {
+                Miss();
+                //print($"Missed {inputIndex} note");
+                print("Miss (did not attempt to hit)");
+                // _notePool.Release(notes[inputIndex]);
+                notes[inputIndex].ReleaseNote();
+                //Destroy(notes[inputIndex].gameObject);
+                inputIndex++;
+            }
         }       
     }
 
-    private void ProcessSlash() => slashInputPressed = true;
+    // private void ProcessSlash() => slashInputPressed = true;
 
-    private void DeleteNote()
+    private void DetermineSlashAccuracy()
     {
-
+        print(timeStamps.Count + " " + timeYIndex.Count);
         if (inputIndex < timeStamps.Count)
         {
             double timeStamp = timeStamps[inputIndex];
@@ -165,7 +183,7 @@ public class LaneManager : Singleton<LaneManager>
             //     slashInputPressed = false;
             Vector2 playerPosition = PlayerInput.Instance.PlayerPosition;
             double xPosDifference = Math.Abs(audioTime - timeStamp);
-            float yPosDifference = Math.Abs(ScreenManager.Instance.InsideLanesYPositions[timeYIndex[spawnIndex]] - playerPosition.y - 1.07f); // -1 to account for the sword's vertical offset
+            float yPosDifference = Math.Abs(ScreenManager.Instance.InsideLanesYPositions[timeYIndex[inputIndex]] - playerPosition.y - 1.07f); // -1 to account for the sword's vertical offset
 
             print($"lane: {gameObject.name} xPosDiff: {xPosDifference} yPosDiff: {yPosDifference}");
 
@@ -193,19 +211,12 @@ public class LaneManager : Singleton<LaneManager>
             }
             
 
-            if (timeStamp + marginOfError <= audioTime)
-            {
-                Miss();
-                //print($"Missed {inputIndex} note");
-                print("Miss (did not attempt to hit)");
-                //Destroy(notes[inputIndex].gameObject);
-                inputIndex++;
-            }
+            
 
             if (noteDeletionIndexQueue.Count > 0)
             {
                 Note noteToRelease = notes[noteDeletionIndexQueue.Dequeue()];
-                _notePool.Release(noteToRelease);
+                noteToRelease.ReleaseNote();
                 inputIndex++;
             }
         }       

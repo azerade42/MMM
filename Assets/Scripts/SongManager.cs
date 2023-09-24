@@ -32,9 +32,13 @@ public class SongManager : MonoBehaviour
 
     public static MidiFile midiFile;
     // Start is called before the first frame update
-    void Start()
+
+    void Awake()
     {
         Instance = this;
+    }
+    void Start()
+    {
         if (Application.streamingAssetsPath.StartsWith("http://") || Application.streamingAssetsPath.StartsWith("https://"))
         {
             // StartCoroutine(ReadFromWebsite());
@@ -84,6 +88,7 @@ public class SongManager : MonoBehaviour
     }
     public void StartSong()
     {
+        print("start song!");
         audioSource.Play();
     }
     public static double GetAudioSourceTime()

@@ -24,16 +24,16 @@ public class SongManagerTest : Singleton<SongManagerTest>
             return;
         }
 
-        _audioSource = GetComponent<AudioSource>();
-        _audioSource.clip = _tracks[0];
-        _audioSource.Play();
+        // _audioSource = GetComponent<AudioSource>();
+        // _audioSource.clip = _tracks[0];
+        // _audioSource.Play();
 
-        _currentBPM = _BPM[0];
+        // _currentBPM = _BPM[0];
         InvokeRepeating(nameof(MoveNotesHalf), 1f, 60f/_currentBPM);
     }
 
     private void MoveNotesHalf()
     {
-        ActionManager.Instance.MoveNotesHalf();
+        ActionManager.Instance.MoveNotesHalf.Invoke();
     }
 }

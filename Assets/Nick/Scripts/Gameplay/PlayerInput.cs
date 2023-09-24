@@ -95,7 +95,7 @@ public class PlayerInput : Singleton<PlayerInput>
     private void Slash()
     {
         StartCoroutine(SlashCooldown(slashCooldown));
-        OnPlayerSlash.Invoke();
+        OnPlayerSlash?.Invoke();
         _playerAnim.SetTrigger("Slash");
         //print("slash");
     }
