@@ -7,20 +7,26 @@ using System.IO;
 using UnityEngine.Networking;
 using System;
 
-public class SongManager : MonoBehaviour
+public class SongManager : Singleton<SongManager>
 {
-    public static SongManager Instance;
-    public AudioSource audioSource;
-    public float songDelayInSeconds;
-    public double marginOfError; // in seconds     // nick: I thought margin of error was distance, not time?
+    [SerializeField] private AudioSource audioSource;
+    [Tooltip("How long to delay the song before it starts")]
+    [SerializeField] private float songDelayInSeconds;
+    [Tooltip("Margin of Error for notes (X in seconds)")]
+    public double marginOfErrorX;
+    [Tooltip("Margin of Error for notes (y in distance)")]
     public float marginOfErrorY;
 
     public int inputDelayInMilliseconds;
-    
 
+    [Tooltip("File path for the MIDI file (in streaming assets)")]
     public string fileLocation;
+    [Tooltip("How long it takes the note to get to its destination (in seconds)")]
     public float noteTime;
+
+    [Tooltip("X Position where the note spawns")]
     public float noteSpawnX;
+    [Tooltip("X Position where the note gets hit")]
     public float noteTapX;
     public float noteDespawnX
     {
@@ -31,12 +37,8 @@ public class SongManager : MonoBehaviour
     }
 
     public static MidiFile midiFile;
-    // Start is called before the first frame update
 
-    void Awake()
-    {
-        Instance = this;
-    }
+    // Start is called before the first frame update
     void Start()
     {
         if (Application.streamingAssetsPath.StartsWith("http://") || Application.streamingAssetsPath.StartsWith("https://"))
@@ -71,11 +73,14 @@ public class SongManager : MonoBehaviour
     //     }
     // }
 
+    // Reads the MIDI file from the project
     private void ReadFromFile()
     {
         midiFile = MidiFile.Read(Application.streamingAssetsPath + "/" + fileLocation);
         GetDataFromMidi();
     }
+
+    // Gets the time stamps from the MIDI file and starts the song
     public void GetDataFromMidi()
     {
         var notes = midiFile.GetNotes();
@@ -88,9 +93,10 @@ public class SongManager : MonoBehaviour
     }
     public void StartSong()
     {
-        print("start song!");
         audioSource.Play();
     }
+
+    // Get the current time in the AudioSource
     public static double GetAudioSourceTime()
     {
         return (double)Instance.audioSource.timeSamples / Instance.audioSource.clip.frequency;

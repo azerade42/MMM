@@ -1173,7 +1173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 417917126}
   songDelayInSeconds: 0
-  marginOfError: 0.15
+  marginOfErrorX: 0.15
   marginOfErrorY: 1
   inputDelayInMilliseconds: 0
   fileLocation: Track1Fix.mid
@@ -1609,7 +1609,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3834e29e541d4534891f1a0456c527c4, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.588
+  m_Volume: 0.363
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4376,11 +4376,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6878f1aa377a43afa028d797839efa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noteRestriction: 9
   _notePrefab: {fileID: 4892034370423235085, guid: 27979e659a2ae8f4384360ffe73e7edd,
     type: 3}
   timeStamps: []
   timeYIndex: 
+  enemyTime: 0.36
 --- !u!1 &1464509178
 GameObject:
   m_ObjectHideFlags: 0
@@ -5097,7 +5097,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1693321366}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ee560cec195235a4caab4e9f48d7d3ec, type: 3}
@@ -5891,7 +5891,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xPosition: -0.702
-  slashCooldown: 0.46
+  slashCooldown: 0.1
 --- !u!114 &1876881169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6359,6 +6359,7 @@ GameObject:
   - component: {fileID: 1969427799}
   - component: {fileID: 1969427801}
   - component: {fileID: 1969427800}
+  - component: {fileID: 1969427802}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -6454,6 +6455,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1969427802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969427798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 082998ac1cb5cbd4b8292d5e2c8c1e15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyOffset: {x: 0.79, y: 0.75, z: 0}
 --- !u!1 &1975400984
 GameObject:
   m_ObjectHideFlags: 0
