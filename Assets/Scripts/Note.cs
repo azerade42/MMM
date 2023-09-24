@@ -6,6 +6,13 @@ public class Note : MonoBehaviour
 {
     double timeInstantiated;
     public float assignedTime;
+
+    float assignedYPos;
+
+    public void Init(float assignedYPos)
+    {
+        this.assignedYPos = assignedYPos;
+    }
     void Start()
     {
         timeInstantiated = SongManager.GetAudioSourceTime();
@@ -24,7 +31,7 @@ public class Note : MonoBehaviour
         }
         else
         {
-            transform.localPosition = Vector3.Lerp(Vector3.right * SongManager.Instance.noteSpawnX, Vector3.right * SongManager.Instance.noteDespawnX, t); 
+            transform.localPosition = Vector3.Lerp(Vector3.right * SongManager.Instance.noteSpawnX + Vector3.up * assignedYPos, Vector3.right * SongManager.Instance.noteDespawnX + Vector3.up * assignedYPos, t); 
             GetComponent<SpriteRenderer>().enabled = true;
         }
     }

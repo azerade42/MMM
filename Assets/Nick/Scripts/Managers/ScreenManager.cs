@@ -39,8 +39,15 @@ public class ScreenManager : Singleton<ScreenManager>
         get { return _bottomLeftScreenPos; }
     }
 
+    private List<float> _insideLanesYPositions;
+
+    public List<float> InsideLanesYPositions
+    {
+        get { return _insideLanesYPositions; }
+    }
+
     
-    public override void Init()
+    protected override void Init()
     {
         float xScreenBounds = _referenceResolution.x;
         float yScreenBounds = _referenceResolution.y;
@@ -53,5 +60,22 @@ public class ScreenManager : Singleton<ScreenManager>
 
         _insideScreenSize.x = bottomRightScreenPos.x - _bottomLeftScreenPos.x;
         _insideScreenSize.y = topLeftScreenPos.y - _bottomLeftScreenPos.y;
+
+        _insideLanesYPositions = CalculateYPosLanes(3);
+    }
+
+    private List<float> CalculateYPosLanes(int numLanes)
+    {
+        List<float> lanes = new List<float>();
+        float yScreenSize = Mathf.Abs(ScreenBounds.y);
+        float spacing = yScreenSize / numLanes;
+        
+        for (int i = 0; i < numLanes; i++)
+        {
+            float pos = spacing * 0.5f + spacing * i - yScreenSize * 0.5f;
+            lanes.Add(pos);
+        }
+
+        return lanes;
     }
 }

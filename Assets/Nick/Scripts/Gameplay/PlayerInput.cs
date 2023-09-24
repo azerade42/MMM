@@ -13,6 +13,7 @@ public class PlayerInput : Singleton<PlayerInput>
     private float playerYPos;
     private float lastYPos;
     private int frameCount;
+    private bool enoughTimeSinceLastSlash = true;
 
     public Vector2 PlayerPosition
     {
@@ -22,6 +23,10 @@ public class PlayerInput : Singleton<PlayerInput>
     private Animator _playerAnim;
 
     [Range(-1,1)][SerializeField] float xPosition;
+    [SerializeField] private float slashCooldown = 1.0f;
+
+    public static Action OnPlayerSlash;
+    public static Action OnSlashPeak;
 
     public void OnMoveMouse(InputAction.CallbackContext context)
     {
@@ -30,7 +35,7 @@ public class PlayerInput : Singleton<PlayerInput>
 
     public void OnMouseClick(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && enoughTimeSinceLastSlash)
             Slash();
     }
 
@@ -89,8 +94,10 @@ public class PlayerInput : Singleton<PlayerInput>
 
     private void Slash()
     {
+        StartCoroutine(SlashCooldown(slashCooldown));
+        OnPlayerSlash.Invoke();
         _playerAnim.SetTrigger("Slash");
-        print("slash");
+        //print("slash");
     }
 
      private void SpinSlash()
@@ -101,4 +108,15 @@ public class PlayerInput : Singleton<PlayerInput>
         print("spinslash");
     }
 
+    private IEnumerator SlashCooldown(float cooldownTime)
+    {
+        enoughTimeSinceLastSlash = false;
+        yield return new WaitForSeconds(cooldownTime);
+        enoughTimeSinceLastSlash = true;
+    }
+
+    public void SlashPeakAnim()
+    {
+        OnSlashPeak.Invoke();
+    }
 }

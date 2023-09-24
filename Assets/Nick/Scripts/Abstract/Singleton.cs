@@ -24,5 +24,5 @@ public abstract class Singleton<T> : MonoBehaviour where T : Singleton<T>
             Init();
         }
 
-        public virtual void Init() { }
+        protected virtual void Init() { }
     }

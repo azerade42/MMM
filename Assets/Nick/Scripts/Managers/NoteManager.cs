@@ -14,14 +14,16 @@ public class NoteManager : Singleton<NoteManager>
 
     private float _initalXPos;
 
-    private List<float> _lanesList;
+    public List<float> _lanesList; // make private later once lane is combined with this
 
     public float LastNoteWidth;
 
     private int _poolInitCount;
 
-    private void Start()
+    protected override void Init()
     {
+        _lanesList = CalculateYPosLanes(3);
+
         _safeTextPool = new ObjectPool<SafeNote>(() => {
             return Instantiate(_safePrefab, malwareCanvas.transform);
         }, note => {
@@ -34,44 +36,42 @@ public class NoteManager : Singleton<NoteManager>
         50
         );
 
-        _malwareTextPool = new ObjectPool<MalwareNote>(() => {
-            return Instantiate(_malwarePrefab, malwareCanvas.transform);
-        }, note => {
-            note.gameObject.SetActive(true);
-        }, note => {
-            note.gameObject.SetActive(false);
-        }, note => {
-            Destroy(note.gameObject);
-        }, false,
-        50
-        );
-
-        _lanesList = CalculateYPosLanes(3);
-        InvokeRepeating(nameof(SpawnNote), 60f/SongManagerTest.Instance.CurrentSongBPM, 60f/SongManagerTest.Instance.CurrentSongBPM);
+        // _malwareTextPool = new ObjectPool<MalwareNote>(() => {
+        //     return Instantiate(_malwarePrefab, malwareCanvas.transform);
+        // }, note => {
+        //     note.gameObject.SetActive(true);
+        // }, note => {
+        //     note.gameObject.SetActive(false);
+        // }, note => {
+        //     Destroy(note.gameObject);
+        // }, false,
+        // 50
+        // );
+        // InvokeRepeating(nameof(SpawnNote), 60f/SongManagerTest.Instance.CurrentSongBPM, 60f/SongManagerTest.Instance.CurrentSongBPM);
 
     }
 
     private void OnEnable()
     {
-        ActionManager.Instance.DeleteSafeNote += ReleaseSafeNote;
-        ActionManager.Instance.DeleteMalwareNote += ReleaseMalwareNote;
+        // ActionManager.Instance.DeleteSafeNote += ReleaseSafeNote;
+        // ActionManager.Instance.DeleteMalwareNote += ReleaseMalwareNote;
     }
 
     private void OnDisable()
     {
-        ActionManager.Instance.DeleteSafeNote -= ReleaseSafeNote;
-        ActionManager.Instance.DeleteMalwareNote -= ReleaseMalwareNote;
+        // ActionManager.Instance.DeleteSafeNote -= ReleaseSafeNote;
+        // ActionManager.Instance.DeleteMalwareNote -= ReleaseMalwareNote;
     }
 
-    private void ReleaseSafeNote(SafeNote note)
-    {
-        _safeTextPool.Release(note);
-    }
+    // private void ReleaseSafeNote(SafeNote note)
+    // {
+    //     _safeTextPool.Release(note);
+    // }
 
-    private void ReleaseMalwareNote(MalwareNote note)
-    {
-        _malwareTextPool.Release(note);
-    }
+    // private void ReleaseMalwareNote(MalwareNote note)
+    // {
+    //     _malwareTextPool.Release(note);
+    // }
 
 
     private List<float> CalculateYPosLanes(int numLanes)
@@ -89,40 +89,40 @@ public class NoteManager : Singleton<NoteManager>
         return lanes;
     }
 
-    private void SpawnNote()
-    {
-        int randomLane = Random.Range(0,_lanesList.Count);
-        for (int i = 2; i < _lanesList.Count; i++)
-        {
-            Note note;
+    // private void SpawnNote()
+    // {
+    //     int randomLane = Random.Range(0,_lanesList.Count);
+    //     for (int i = 2; i < _lanesList.Count; i++)
+    //     {
+    //         Note note;
             
-            if (i == randomLane)
-            {
-                note = _malwareTextPool.Get();
-                TextMeshProUGUI noteTMP = note.gameObject.GetComponent<TextMeshProUGUI>();
-                // noteTMP.text = "EVIL";
+    //         if (i == randomLane)
+    //         {
+    //             note = _malwareTextPool.Get();
+    //             TextMeshProUGUI noteTMP = note.gameObject.GetComponent<TextMeshProUGUI>();
+    //             // noteTMP.text = "EVIL";
                 
-                LastNoteWidth = noteTMP.preferredWidth;
-            }
-            else
-            {
-                note = _safeTextPool.Get();
+    //             LastNoteWidth = noteTMP.preferredWidth;
+    //         }
+    //         else
+    //         {
+    //             note = _safeTextPool.Get();
                 
-                TextMeshProUGUI noteTMP = note.gameObject.GetComponent<TextMeshProUGUI>();
-                // while (noteTMP.preferredWidth < LastNoteWidth)
-                //     noteTMP.text += Random.Range(0,2);
+    //             TextMeshProUGUI noteTMP = note.gameObject.GetComponent<TextMeshProUGUI>();
+    //             // while (noteTMP.preferredWidth < LastNoteWidth)
+    //             //     noteTMP.text += Random.Range(0,2);
                 
-                LastNoteWidth = noteTMP.preferredWidth;
+    //             LastNoteWidth = noteTMP.preferredWidth;
                 
-            }
-            //Note note = _safeTextPool.Get();
-            Vector2 screenBounds = ScreenManager.Instance.ScreenBounds;
+    //         }
+    //         //Note note = _safeTextPool.Get();
+    //         Vector2 screenBounds = ScreenManager.Instance.ScreenBounds;
             
-            float xPos = Mathf.Abs(screenBounds.x) * 2 + PlayerInput.Instance.transform.position.x + 0.175f;
-            float YPos = Mathf.Abs(screenBounds.y) * 2 * (_lanesList[i] / malwareCanvas.rect.height);
-            note.transform.position = new Vector3(xPos, YPos, 0);
+    //         float xPos = Mathf.Abs(screenBounds.x) * 2 + PlayerInput.Instance.transform.position.x + 0.175f;
+    //         float YPos = Mathf.Abs(screenBounds.y) * 2 * (_lanesList[i] / malwareCanvas.rect.height);
+    //         note.transform.position = new Vector3(xPos, YPos, 0);
             
-            //print(LastNoteWidth);
-        }
-    }
+    //         //print(LastNoteWidth);
+    //     }
+    // }
 }
