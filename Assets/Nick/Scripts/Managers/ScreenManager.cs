@@ -46,7 +46,12 @@ public class ScreenManager : Singleton<ScreenManager>
         get { return _insideLanesYPositions; }
     }
 
-    
+    private Vector2 _outsideScreenBounds;
+    public Vector2 OutsideScreenBounds
+    {
+        get { return _outsideScreenBounds; }
+    }
+
     protected override void Init()
     {
         float xScreenBounds = _referenceResolution.x;
@@ -62,6 +67,7 @@ public class ScreenManager : Singleton<ScreenManager>
         _insideScreenSize.y = topLeftScreenPos.y - _bottomLeftScreenPos.y;
 
         _insideLanesYPositions = CalculateYPosLanes(3);
+        _outsideScreenBounds = CalculateOutsideScreenBounds();
     }
 
     private List<float> CalculateYPosLanes(int numLanes)
@@ -78,4 +84,12 @@ public class ScreenManager : Singleton<ScreenManager>
 
         return lanes;
     }
+
+    private Vector2 CalculateOutsideScreenBounds()
+    {
+        float outsideX = _bottomRightScreen.position.x - _bottomLeftScreen.position.x;
+        float outsideY = _topLeftScreen.position.y - _bottomLeftScreen.position.y;
+        return new Vector2(outsideX, outsideY);
+    }
+    
 }
