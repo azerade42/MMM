@@ -33,6 +33,9 @@ public class LaneManager : Singleton<LaneManager>
     [SerializeField] float enemyTime;
 
     public static Action<Vector3> NoteSpawned;
+    public static Action HitPerfect;
+    public static Action HitGood;
+    public static Action HitMiss;
 
 
     // Subscribe to static actions
@@ -194,6 +197,7 @@ public class LaneManager : Singleton<LaneManager>
             else
             {
                 //print($"Miss on {gameObject.name} lane with {Math.Abs(audioTime - timeStamp)} delay");
+                Miss();
                 print("Miss (bad timing)");
                 //Destroy(notes[inputIndex].gameObject);
             }
@@ -212,13 +216,16 @@ public class LaneManager : Singleton<LaneManager>
     private void PerfectHit()
     {
         ScoreManager.PerfectHit();
+        HitPerfect?.Invoke();
     }
     private void GoodHit()
     {
         ScoreManager.GoodHit();
+        HitGood?.Invoke();
     }
     private void Miss()
     {
         ScoreManager.Miss();
+        HitMiss?.Invoke();
     }
 }
