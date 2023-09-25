@@ -12,5 +12,5 @@ public enum PopupType
 public class PopupSO : ScriptableObject
 {
     public PopupType type;
-    public RenderTexture texture;
+    public Texture texture;
 }

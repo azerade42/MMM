@@ -22,24 +22,24 @@ public class PopupManager : MonoBehaviour
     private void Awake()
     {
         _widescreenPopupPool = new ObjectPool<RectTransform>(() => {
-            return Instantiate(_widescreenWindowPrefab, _desktop.transform);
+            return Instantiate(_widescreenWindowPrefab, _desktop.transform, false);
             }, popup => {
                 popup.gameObject.SetActive(true);
             }, popup => {
                 popup.gameObject.SetActive(false);
             }, popup => {
                 Destroy(popup);
-            }, false, 10, 100);
+            }, false, 10, 25);
         
         _squarePopupPool = new ObjectPool<RectTransform>(() => {
-            return Instantiate(_squareWindowPrefab, _desktop.transform);
+            return Instantiate(_squareWindowPrefab, _desktop.transform, false);
             }, popup => {
                 popup.gameObject.SetActive(true);
             }, popup => {
                 popup.gameObject.SetActive(false);
             }, popup => {
                 Destroy(popup);
-            }, false, 10, 100);
+            }, false, 10, 25);
     }
 
     private void SpawnPopup(Vector3 position)
@@ -71,11 +71,13 @@ public class PopupManager : MonoBehaviour
                 popup = _squarePopupPool.Get();
                 popup.GetComponentInChildren<RawImage>().texture = randomPopup.texture;
                 popup.gameObject.transform.position = ChooseRandomPopupPosition(0f, 0f);
+                popup.localPosition = new Vector3(popup.localPosition.x, popup.localPosition.y, 0);
                 break;
             case PopupType.WidescreenVideo:
                 popup = _widescreenPopupPool.Get();
                 popup.GetComponentInChildren<RawImage>().texture = randomPopup.texture;
-                popup.gameObject.transform.position = ChooseRandomPopupPosition(16f/10f, 9f/10f);
+                popup.gameObject.transform.position = ChooseRandomPopupPosition(0f, 0f);
+                popup.localPosition = new Vector3(popup.localPosition.x, popup.localPosition.y, 0);
                 break;
         }
     }
@@ -83,7 +85,6 @@ public class PopupManager : MonoBehaviour
     private Vector3 ChooseRandomPopupPosition(float length, float height)
     {
         Vector2 outsideBounds = ScreenManager.Instance.OutsideScreenBounds;
-        print(outsideBounds);
         float randomXPos = UnityEngine.Random.Range(-outsideBounds.x / 2 - length / 2, outsideBounds.x / 2 - length / 2);
         float randomYPos = UnityEngine.Random.Range(-outsideBounds.y / 2 - height / 2, outsideBounds.y / 2 - height / 2);
         
