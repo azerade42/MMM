@@ -16,5 +16,11 @@ public class Window : MonoBehaviour
     public void Close()
     {
         gameObject.SetActive(false);
+
+    }
+
+    public void DeactivateInput()
+    {
+        PlayerInput.Instance.DisableInput();
     }
 }
