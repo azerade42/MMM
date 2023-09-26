@@ -6942,8 +6942,10 @@ MonoBehaviour:
   musicSounds:
   - name: MenuMusic
     clip: {fileID: 8300000, guid: d9e6f24cce539fb4fa784a115fcd31ad, type: 3}
+  - name: Level1Music
+    clip: {fileID: 8300000, guid: 3834e29e541d4534891f1a0456c527c4, type: 3}
   sfxSounds: []
-  masterSource: {fileID: 0}
+  masterSource: {fileID: 114562624}
   musicSource: {fileID: 1842589781}
   sfxSource: {fileID: 780459702}
 --- !u!4 &1253010013

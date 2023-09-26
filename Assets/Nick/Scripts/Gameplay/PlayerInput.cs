@@ -36,14 +36,26 @@ public class PlayerInput : Singleton<PlayerInput>
     {
         // why not just use static variable in gamemanager class?
         GameManager.GameOver += () => gameOver = true;
-        // pause manager.pause += () => paused = true;
-        // pause manager.unpause += () => paused = false;
+        GameManager.Pause += PauseInput;
+        GameManager.UnPause += UnPauseInput;
     }
     private void OnDisable()
     {
         GameManager.GameOver -= () => gameOver = true;
-        // pause manager.pause += () => paused = true;
-        // pause manager.unpause += () => paused = false;
+        GameManager.Pause -= PauseInput;
+        GameManager.UnPause -= UnPauseInput;
+    }
+
+    private void PauseInput()
+    {
+        inputDisabled = true;
+        paused = true;
+    }
+
+    private void UnPauseInput()
+    {
+        inputDisabled = false;
+        paused = false;
     }
     
     public void OnMoveMouse(InputAction.CallbackContext context)

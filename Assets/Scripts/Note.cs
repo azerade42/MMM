@@ -9,28 +9,29 @@ public class Note : MonoBehaviour
 
     float assignedYPos;
 
-    bool gameOver;
+    //bool gameOver;
 
 
     public void Init(float assignedYPos)
     {
         this.assignedYPos = assignedYPos;
     }
+    
     void OnEnable()
     {
         timeInstantiated = SongManager.GetAudioSourceTime();
-        GameManager.GameOver += () => gameOver = true;
+        ///GameManager.GameOver += () => gameOver = true;
     }
 
     private void OnDisable()
     {
-        GameManager.GameOver -= () => gameOver = true;
+        //GameManager.GameOver -= () => gameOver = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gameOver) return;
+        //if (gameOver) return;
         if (!SongManager.songPlaying) return;
 
         double timeSinceInstantiated = SongManager.GetAudioSourceTime() - timeInstantiated;
