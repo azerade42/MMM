@@ -7154,10 +7154,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSounds:
   - name: MenuMusic
-    clip: {fileID: 8300000, guid: d9e6f24cce539fb4fa784a115fcd31ad, type: 3}
+    clip: {fileID: 8300000, guid: 7494be88750627d429096dc2e6c261eb, type: 3}
   - name: Level1Music
     clip: {fileID: 8300000, guid: 3834e29e541d4534891f1a0456c527c4, type: 3}
-  sfxSounds: []
+  sfxSounds:
+  - name: SlashSword
+    clip: {fileID: 8300000, guid: 27bf7bf5d13e6074d8362db6d98ce99b, type: 3}
+  - name: HitNotePerfect
+    clip: {fileID: 8300000, guid: 668f331f9549b9c43ac8aed803375f6f, type: 3}
+  - name: HitNoteGood
+    clip: {fileID: 8300000, guid: 48c7701c14e642041a8ee8bbefb9623f, type: 3}
+  - name: MissNote
+    clip: {fileID: 8300000, guid: b94ce2fc5d0fbc64db183e54532517dc, type: 3}
   masterSource: {fileID: 114562624}
   musicSource: {fileID: 1842589781}
   sfxSource: {fileID: 780459702}

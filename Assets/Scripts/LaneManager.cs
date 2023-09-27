@@ -158,6 +158,7 @@ public class LaneManager : Singleton<LaneManager>
                 notes[inputIndex].ReleaseNote();
                 //Destroy(notes[inputIndex].gameObject);
                 inputIndex++;
+                AudioManager.Instance.PlaySFX("MissNote");
             }
         }       
     }
@@ -200,6 +201,7 @@ public class LaneManager : Singleton<LaneManager>
                 PerfectHit();
                 // print($"Perfect Hit on {inputIndex} note");
                 print("Perfect");
+                AudioManager.Instance.PlaySFX("HitNotePerfect");
                 noteDeletionIndexQueue.Enqueue(inputIndex);
                 
             }
@@ -208,6 +210,7 @@ public class LaneManager : Singleton<LaneManager>
             {
                 GoodHit();
                 print("Good");
+                AudioManager.Instance.PlaySFX("HitNoteGood");
                 // print($"Good Hit on {inputIndex} note");
                 
                 noteDeletionIndexQueue.Enqueue(inputIndex);
@@ -218,6 +221,7 @@ public class LaneManager : Singleton<LaneManager>
                 //print($"Miss on {gameObject.name} lane with {Math.Abs(audioTime - timeStamp)} delay");
                 Miss();
                 print("Miss (bad timing)");
+                AudioManager.Instance.PlaySFX("MissNote");
                 //Destroy(notes[inputIndex].gameObject);
             }
 

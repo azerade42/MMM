@@ -65,6 +65,7 @@ public class PlayerInput : Singleton<PlayerInput>
     }
 
     public void DisableInput() => inputDisabled = true;
+    public void EnableInput() => inputDisabled = false;
 
     public void OnMouseClick(InputAction.CallbackContext context)
     {
@@ -132,6 +133,7 @@ public class PlayerInput : Singleton<PlayerInput>
         StartCoroutine(SlashCooldown(slashCooldown));
         
         OnPlayerSlash?.Invoke();
+        //AudioManager.Instance.PlaySFX("SlashSword");
         _playerAnim.SetTrigger("Slash");
         //print("slash");
     }

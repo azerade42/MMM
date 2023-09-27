@@ -712,6 +712,69 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &70641470 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5759742504923586601, guid: ab077b145e05ddf4a805e23c35a947f5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1068755120}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &70641471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70641470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9392346aaed4100439aeda8e30bbaab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &70641472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70641470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 70641471}
+          m_TargetAssemblyTypeName: Window, Assembly-CSharp
+          m_MethodName: DeactivateInput
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 70641471}
+          m_TargetAssemblyTypeName: Window, Assembly-CSharp
+          m_MethodName: ReactivateInput
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &83932711
 GameObject:
   m_ObjectHideFlags: 0
@@ -4224,7 +4287,15 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5759742504923586601, guid: ab077b145e05ddf4a805e23c35a947f5,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 70641472}
+    - targetCorrespondingSourceObject: {fileID: 5759742504923586601, guid: ab077b145e05ddf4a805e23c35a947f5,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 70641471}
   m_SourcePrefab: {fileID: 100100000, guid: ab077b145e05ddf4a805e23c35a947f5, type: 3}
 --- !u!1 &1123253914
 GameObject:
@@ -8431,11 +8502,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SquareVideoPopupWindow
       objectReference: {fileID: 0}
-    - target: {fileID: 5490163815474848197, guid: 6a5a962ef9538784e87315f6d0ca9195,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8670,11 +8736,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 101413935}
     m_Modifications:
-    - target: {fileID: 1837072992752797313, guid: cd9e3e1f58ec15345a5c22368bbba655,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4267078422963424029, guid: cd9e3e1f58ec15345a5c22368bbba655,
         type: 3}
       propertyPath: m_Pivot.x
@@ -8780,46 +8841,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8728339848579249913, guid: cd9e3e1f58ec15345a5c22368bbba655,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 0a2e253a78464424bbe4a310f3df548c,
-        type: 3}
-    - target: {fileID: 8728339848579249913, guid: cd9e3e1f58ec15345a5c22368bbba655,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8728339848579249913, guid: cd9e3e1f58ec15345a5c22368bbba655,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8728339848579249913, guid: cd9e3e1f58ec15345a5c22368bbba655,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8728339848579249913, guid: cd9e3e1f58ec15345a5c22368bbba655,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8728339848579249913, guid: cd9e3e1f58ec15345a5c22368bbba655,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8985456930598251728, guid: cd9e3e1f58ec15345a5c22368bbba655,
         type: 3}
       propertyPath: m_Name
       value: WidescreenPopupWindow
-      objectReference: {fileID: 0}
-    - target: {fileID: 8985456930598251728, guid: cd9e3e1f58ec15345a5c22368bbba655,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

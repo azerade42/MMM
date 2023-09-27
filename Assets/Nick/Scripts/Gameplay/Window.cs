@@ -23,4 +23,9 @@ public class Window : MonoBehaviour
     {
         PlayerInput.Instance.DisableInput();
     }
+
+    public void ReactivateInput()
+    {
+        PlayerInput.Instance.EnableInput();
+    }
 }
