@@ -27,7 +27,6 @@ public class Enemy : MonoBehaviour
 
     private void MoveToNoteSpawn(Vector3 position)
     {
-        print("count!");
         StartCoroutine(MoveEnemyToPosition(position, 0.05f));
         _animator.SetTrigger("Attack");
     }

@@ -15,6 +15,10 @@ public class PlayerInput : Singleton<PlayerInput>
     private int frameCount;
     private bool enoughTimeSinceLastSlash = true;
 
+    private bool inputDisabled;
+    private bool gameOver;
+    private bool paused;
+
     public Vector2 PlayerPosition
     {
         get { return new Vector2(playerXPos, playerYPos); }
@@ -28,20 +32,51 @@ public class PlayerInput : Singleton<PlayerInput>
     public static Action OnPlayerSlash;
     public static Action OnSlashPeak;
 
+    private void OnEnable()
+    {
+        // why not just use static variable in gamemanager class?
+        GameManager.GameOver += () => gameOver = true;
+        GameManager.Pause += PauseInput;
+        GameManager.UnPause += UnPauseInput;
+    }
+    private void OnDisable()
+    {
+        GameManager.GameOver -= () => gameOver = true;
+        GameManager.Pause -= PauseInput;
+        GameManager.UnPause -= UnPauseInput;
+    }
+
+    private void PauseInput()
+    {
+        inputDisabled = true;
+        paused = true;
+    }
+
+    private void UnPauseInput()
+    {
+        inputDisabled = false;
+        paused = false;
+    }
+    
     public void OnMoveMouse(InputAction.CallbackContext context)
     {
-        Move(context.ReadValue<Vector2>());
+        if (!inputDisabled)
+            Move(context.ReadValue<Vector2>());
     }
+
+    public void DisableInput() => inputDisabled = true;
 
     public void OnMouseClick(InputAction.CallbackContext context)
     {
-        if (context.performed && enoughTimeSinceLastSlash)
+        if (context.performed && enoughTimeSinceLastSlash && !inputDisabled)
             Slash();
+        if (context.canceled && !gameOver && !paused)
+            inputDisabled = false;
     }
 
     public void OnMouseClickAndHold(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !inputDisabled)
             SpinSlash();
         if (context.canceled)
         {
@@ -95,6 +130,7 @@ public class PlayerInput : Singleton<PlayerInput>
     private void Slash()
     {
         StartCoroutine(SlashCooldown(slashCooldown));
+        
         OnPlayerSlash?.Invoke();
         _playerAnim.SetTrigger("Slash");
         //print("slash");

@@ -9,7 +9,7 @@ using System;
 
 public class SongManager : Singleton<SongManager>
 {
-    [SerializeField] private AudioSource audioSource;
+    private AudioSource audioSource;
     [Tooltip("How long to delay the song before it starts")]
     [SerializeField] private float songDelayInSeconds;
     [Tooltip("Margin of Error for notes (X in seconds)")]
@@ -36,11 +36,15 @@ public class SongManager : Singleton<SongManager>
         }
     }
 
+    public static bool songPlaying;
+
     public static MidiFile midiFile;
 
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = AudioManager.Instance.musicSource;
+        audioSource.Stop();
         if (Application.streamingAssetsPath.StartsWith("http://") || Application.streamingAssetsPath.StartsWith("https://"))
         {
             // StartCoroutine(ReadFromWebsite());
@@ -93,7 +97,8 @@ public class SongManager : Singleton<SongManager>
     }
     public void StartSong()
     {
-        audioSource.Play();
+        AudioManager.Instance.PlayMusic("Level1Music");
+        songPlaying = true;
     }
 
     // Get the current time in the AudioSource

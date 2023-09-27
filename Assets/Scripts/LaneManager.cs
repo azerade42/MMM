@@ -37,6 +37,8 @@ public class LaneManager : Singleton<LaneManager>
     public static Action HitGood;
     public static Action HitMiss;
 
+    private bool noteSpawnCooldownComplete = true;
+
 
     // Subscribe to static actions
     void OnEnable()
@@ -61,8 +63,8 @@ public class LaneManager : Singleton<LaneManager>
         }, note => {
             Destroy(note.gameObject);
         }, false,
-        25,
-        50
+        10,
+        20
         );
 
     }
@@ -70,13 +72,15 @@ public class LaneManager : Singleton<LaneManager>
     // Called before the first frame of Update()
     private void Start()
     {
-        CreateNote(24);
+        CreateNote(5);
     }
 
     // Overloaded method for instantiating each individual note
     private Note CreateNote()
     {
-        return Instantiate(_notePrefab, transform.position + Vector3.right * SongManager.Instance.noteSpawnX, Quaternion.identity, transform);
+        Note note = Instantiate(_notePrefab, transform.position + Vector3.right * SongManager.Instance.noteSpawnX * 2, Quaternion.identity, transform);
+        note.gameObject.SetActive(false);
+        return note;
     }
 
     // Overloaded method for preallocating note objects in the pool
@@ -130,8 +134,9 @@ public class LaneManager : Singleton<LaneManager>
                 note.assignedTime = (float)timeStamps[spawnIndex];
                 spawnIndex++;
             }
-            else if (SongManager.GetAudioSourceTime() >= timeStamps[spawnIndex] - SongManager.Instance.noteTime - enemyTime)
+            else if (noteSpawnCooldownComplete && SongManager.GetAudioSourceTime() >= timeStamps[spawnIndex] - SongManager.Instance.noteTime - enemyTime)
             {
+                StartCoroutine(NoteSpawnCooldown(0.1f));
                 float yPos = ScreenManager.Instance.InsideLanesYPositions[timeYIndex[spawnIndex]];
                 NoteSpawned?.Invoke(new Vector3(SongManager.Instance.noteSpawnX, yPos, 0));
             }
@@ -155,6 +160,20 @@ public class LaneManager : Singleton<LaneManager>
                 inputIndex++;
             }
         }       
+    }
+
+    IEnumerator NoteSpawnCooldown(float cooldownTime)
+    {
+        noteSpawnCooldownComplete = false;
+        float currentTime = 0;
+
+        while (currentTime < cooldownTime)
+        {
+            currentTime += Time.deltaTime;
+            yield return null;
+        }
+
+        noteSpawnCooldownComplete = true;
     }
 
     // Determine how accurate each note is when the player slashes their sword
