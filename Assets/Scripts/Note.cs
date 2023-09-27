@@ -20,6 +20,7 @@ public class Note : MonoBehaviour
     void OnEnable()
     {
         timeInstantiated = SongManager.GetAudioSourceTime();
+        
         ///GameManager.GameOver += () => gameOver = true;
     }
 

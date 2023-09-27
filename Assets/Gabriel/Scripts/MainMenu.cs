@@ -8,6 +8,8 @@ public class MainMenu : MonoBehaviour
     public GameObject menuScreen;
     public GameObject loadingScreen;
     public static GameObject levelSelect;
+
+    public static bool levelSelectEnabled;
     
 
 
@@ -21,7 +23,7 @@ public class MainMenu : MonoBehaviour
     // }
     private void Start()
     {
-        levelSelect = GameObject.FindWithTag("Level Select");
+        AudioManager.Instance.PlayMusic("MenuMusic");
     }
     public void QuitGame()
     {
@@ -38,6 +40,7 @@ public class MainMenu : MonoBehaviour
 
     public void LoadScene(int sceneID)
     {
+        AudioManager.Instance.musicSource.Stop();
         StartCoroutine(LoadSceneAsync(sceneID));
     }
     public void Reload()
@@ -61,6 +64,5 @@ public class MainMenu : MonoBehaviour
 
             yield return null;
         }
-        levelSelect = GameObject.FindWithTag("Level Select");
     }
 }

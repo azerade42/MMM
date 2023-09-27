@@ -79,7 +79,6 @@ public class LaneManager : Singleton<LaneManager>
     private Note CreateNote()
     {
         Note note = Instantiate(_notePrefab, transform.position + Vector3.right * SongManager.Instance.noteSpawnX * 2, Quaternion.identity, transform);
-        note.gameObject.SetActive(false);
         return note;
     }
 
@@ -87,7 +86,10 @@ public class LaneManager : Singleton<LaneManager>
     private void CreateNote(int amount)
     {
         for (int i = 0; i < amount; i++)
-            _notePool.Get();
+        {
+            Note note = _notePool.Get();
+            note.gameObject.SetActive(false);
+        }
     }
 
     // Initialize the time stamps in the song
@@ -96,19 +98,26 @@ public class LaneManager : Singleton<LaneManager>
         foreach (var note in array)
         {
             var metricTimeSpan = TimeConverter.ConvertTo<MetricTimeSpan>(note.Time, SongManager.midiFile.GetTempoMap());
-            timeStamps.Add((double)metricTimeSpan.Minutes * 60f + metricTimeSpan.Seconds + (double)metricTimeSpan.Milliseconds / 1000f);
-
             // Based on the note type in the MIDI file, determine which lane it should go in (0 = top, 1 = mid, 2 = bottom, 3 = some fourth lane)
             switch (note.NoteName)
             { 
                 case Melanchall.DryWetMidi.MusicTheory.NoteName.A:
                     timeYIndex.Add(0);
+                    timeStamps.Add((double)metricTimeSpan.Minutes * 60f + metricTimeSpan.Seconds + (double)metricTimeSpan.Milliseconds / 1000f);
                     break;
                 case Melanchall.DryWetMidi.MusicTheory.NoteName.G:
                     timeYIndex.Add(1);
+                    timeStamps.Add((double)metricTimeSpan.Minutes * 60f + metricTimeSpan.Seconds + (double)metricTimeSpan.Milliseconds / 1000f);
                     break;
                 case Melanchall.DryWetMidi.MusicTheory.NoteName.F:
                     timeYIndex.Add(2);
+                    timeStamps.Add((double)metricTimeSpan.Minutes * 60f + metricTimeSpan.Seconds + (double)metricTimeSpan.Milliseconds / 1000f);
+                    break;
+                case Melanchall.DryWetMidi.MusicTheory.NoteName.E:
+                    // popup times
+                    break;
+                case Melanchall.DryWetMidi.MusicTheory.NoteName.D:
+                    // camera angles
                     break;
                 default:
                     Debug.LogError($"Note name {note.NoteName} not accounted for when setting timeStamps.");
@@ -201,8 +210,9 @@ public class LaneManager : Singleton<LaneManager>
                 PerfectHit();
                 // print($"Perfect Hit on {inputIndex} note");
                 print("Perfect");
-                AudioManager.Instance.PlaySFX("HitNotePerfect");
                 noteDeletionIndexQueue.Enqueue(inputIndex);
+                
+                AudioManager.Instance.PlaySFX("HitNotePerfect");
                 
             }
             // If the player's swing is good (within the margin of error)
@@ -210,19 +220,21 @@ public class LaneManager : Singleton<LaneManager>
             {
                 GoodHit();
                 print("Good");
-                AudioManager.Instance.PlaySFX("HitNoteGood");
                 // print($"Good Hit on {inputIndex} note");
                 
                 noteDeletionIndexQueue.Enqueue(inputIndex);
+                
+                AudioManager.Instance.PlaySFX("HitNoteGood");
             }
             // If the player's swing missed (could be used to release the note)
             else
             {
                 //print($"Miss on {gameObject.name} lane with {Math.Abs(audioTime - timeStamp)} delay");
                 Miss();
+                //noteDeletionIndexQueue.Enqueue(inputIndex);
                 print("Miss (bad timing)");
                 AudioManager.Instance.PlaySFX("MissNote");
-                //Destroy(notes[inputIndex].gameObject);
+                
             }
 
             // Release the first note in the deletion queue

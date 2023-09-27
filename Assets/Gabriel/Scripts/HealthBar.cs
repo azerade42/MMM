@@ -15,9 +15,9 @@ public class HealthBar : MonoBehaviour
 
     private void Awake()
     {
-        perfectAdd = slider.maxValue / 5f;
-        goodAdd = slider.maxValue / 10f;
-        missSubtract = slider.maxValue / -5f;
+        perfectAdd = slider.maxValue / 10f;
+        goodAdd = slider.maxValue / 20f;
+        missSubtract = slider.maxValue / -10f;
     }
     private void OnEnable()
     {
@@ -29,6 +29,8 @@ public class HealthBar : MonoBehaviour
     private void OnDisable()
     {
         LaneManager.HitPerfect -= PerfectHit;
+        LaneManager.HitGood -= GoodHit;
+        LaneManager.HitMiss -= MissHit;
     }
 
     // public void SetMaxHealth (float health)
@@ -55,9 +57,10 @@ public class HealthBar : MonoBehaviour
         float newValue = slider.value + missSubtract;
         slider.value = Mathf.Clamp(newValue, slider.minValue, slider.maxValue);
 
+
         if (newValue <= 0f)
         {
-            //GameManager.Instance.GameOver.Invoke();
+            GameManager.TriggerGameOver();
         }
     }
 }

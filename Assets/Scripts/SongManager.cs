@@ -104,6 +104,7 @@ public class SongManager : Singleton<SongManager>
     // Get the current time in the AudioSource
     public static double GetAudioSourceTime()
     {
+        if (Instance.audioSource == null) return 0;
         return (double)Instance.audioSource.timeSamples / Instance.audioSource.clip.frequency;
     }
 }

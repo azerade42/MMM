@@ -15,6 +15,12 @@ public class UINoteTiming : MonoBehaviour
         LaneManager.HitGood += EnableGood;
         LaneManager.HitMiss += EnableMiss;
     }
+    private void OnDisable()
+    {
+        LaneManager.HitPerfect -= EnablePerfect;
+        LaneManager.HitGood -= EnableGood;
+        LaneManager.HitMiss -= EnableMiss;
+    }
     private void EnablePerfect()
     {
         _perfectText.gameObject.SetActive(true);

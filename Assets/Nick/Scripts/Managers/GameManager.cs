@@ -6,12 +6,25 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     public static Action GameOver;
+    public static Action SongOver;
     public static Action Pause;
     public static Action UnPause;
 
-    public void TriggerGameOver()
+    public static void TriggerGameOver()
     {
         GameOver?.Invoke();
+        Time.timeScale = 0f;
+        AudioManager.Instance.musicSource.Stop();
+        PlayerInput.Instance.DisableInput();
+    }
+
+    public static void TriggerSongOver()
+    {
+        SongOver?.Invoke();
+        Time.timeScale = 0f;
+        AudioManager.Instance.musicSource.Stop();
+        AudioManager.Instance.masterSource.Stop();
+        PlayerInput.Instance.DisableInput();
     }
 
     public static void TriggerPause()
