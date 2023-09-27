@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 using TMPro;
 
 public class OptionsController : MonoBehaviour
@@ -14,6 +15,8 @@ public class OptionsController : MonoBehaviour
     [SerializeField]
     private GameObject fullScreenToggle;
 
+    [SerializeField]
+    private AudioMixer mixer;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +31,7 @@ public class OptionsController : MonoBehaviour
     public void MasterVolume()
     {
         masterPercent.text = Mathf.RoundToInt(_masterSlider.value * 100) + "%";
+        mixer.SetFloat ("MasterVol", Mathf.Log10 (_masterSlider.value) * 20);
         //AudioManager.Instance.MasterVolume(_masterSlider.value);
         SaveValues.masterVolume = _masterSlider.value;
 
