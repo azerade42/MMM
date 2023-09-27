@@ -827,7 +827,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 8323399813124888073}
           m_TargetAssemblyTypeName: Window, Assembly-CSharp
-          m_MethodName: ReactivateInput
+          m_MethodName: DeactivateInput
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -843,7 +843,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 8323399813124888073}
           m_TargetAssemblyTypeName: Window, Assembly-CSharp
-          m_MethodName: DeactivateInput
+          m_MethodName: ReactivateInput
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
