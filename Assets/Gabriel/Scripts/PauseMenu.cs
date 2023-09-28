@@ -16,7 +16,9 @@ public class PauseMenu : MonoBehaviour
     }
     public void ToMainMenu()
     {
-        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(0);
+        AudioManager.Instance.musicSource.Stop();
     }
     public void QuitGame()
     {

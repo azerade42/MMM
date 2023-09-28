@@ -23,7 +23,6 @@ public class GameManager : Singleton<GameManager>
         SongOver?.Invoke();
         Time.timeScale = 0f;
         AudioManager.Instance.musicSource.Stop();
-        AudioManager.Instance.masterSource.Stop();
         PlayerInput.Instance.DisableInput();
     }
 

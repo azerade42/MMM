@@ -1,4 +1,5 @@
-﻿﻿using Melanchall.DryWetMidi.Interaction;
+﻿﻿using EZCameraShake;
+using Melanchall.DryWetMidi.Interaction;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -260,6 +261,7 @@ public class LaneManager : Singleton<LaneManager>
     }
     private void Miss()
     {
+        //CameraShaker.Instance.ShakeOnce(0.1f, 0.2f, 0.1f, 0.1f);
         ScoreManager.Miss();
         HitMiss?.Invoke();
     }

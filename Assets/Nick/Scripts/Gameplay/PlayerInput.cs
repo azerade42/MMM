@@ -140,6 +140,7 @@ public class PlayerInput : Singleton<PlayerInput>
 
      private void SpinSlash()
     {
+        return;
         _playerAnim.ResetTrigger("Slash");
         _playerAnim.SetBool("Spinning", true);
         _playerAnim.SetTrigger("SpinSlash");

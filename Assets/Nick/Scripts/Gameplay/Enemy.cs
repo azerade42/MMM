@@ -49,4 +49,9 @@ public class Enemy : MonoBehaviour
     {
         _animator.ResetTrigger("Attack");
     }
+
+    public void Die()
+    {
+        _animator.SetTrigger("Die");
+    }
 }
