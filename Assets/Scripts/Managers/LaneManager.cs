@@ -101,15 +101,20 @@ public class LaneManager : Singleton<LaneManager>
             var metricTimeSpan = TimeConverter.ConvertTo<MetricTimeSpan>(note.Time, SongManager.midiFile.GetTempoMap());
             // Based on the note type in the MIDI file, determine which lane it should go in (0 = top, 1 = mid, 2 = bottom, 3 = some fourth lane)
             switch (note.NoteName)
-            { 
+            {
+                // top lane
                 case Melanchall.DryWetMidi.MusicTheory.NoteName.A:
                     timeYIndex.Add(0);
                     timeStamps.Add((double)metricTimeSpan.Minutes * 60f + metricTimeSpan.Seconds + (double)metricTimeSpan.Milliseconds / 1000f);
                     break;
+
+                // middle lane
                 case Melanchall.DryWetMidi.MusicTheory.NoteName.G:
                     timeYIndex.Add(1);
                     timeStamps.Add((double)metricTimeSpan.Minutes * 60f + metricTimeSpan.Seconds + (double)metricTimeSpan.Milliseconds / 1000f);
                     break;
+
+                // bottom lane
                 case Melanchall.DryWetMidi.MusicTheory.NoteName.F:
                     timeYIndex.Add(2);
                     timeStamps.Add((double)metricTimeSpan.Minutes * 60f + metricTimeSpan.Seconds + (double)metricTimeSpan.Milliseconds / 1000f);
