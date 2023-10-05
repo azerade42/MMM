@@ -12,6 +12,7 @@ public class PlayerInput : Singleton<PlayerInput>
     private float playerXPos;
     private float playerYPos;
     private float lastYPos;
+    private float startZPos;
     private int frameCount;
     private bool enoughTimeSinceLastSlash = true;
 
@@ -26,7 +27,7 @@ public class PlayerInput : Singleton<PlayerInput>
 
     private Animator _playerAnim;
 
-    [Range(-1,1)][SerializeField] float xPosition;
+    [SerializeField] float xPosition;
     [SerializeField] private float slashCooldown = 1.0f;
 
     public static Action OnPlayerSlash;
@@ -98,12 +99,14 @@ public class PlayerInput : Singleton<PlayerInput>
         // Use the screen boundaries to clamp the x position of the player sprite
         playerXPos = screenBounds.x * -xPosition;
         playerXPos = Mathf.Clamp(playerXPos, screenBounds.x + playerWidth, -screenBounds.x - playerWidth);
+
+        startZPos = transform.position.z;
     }
 
     // Have the camera and player constantly move right while staying in bounds
     private void Update()
     {
-        transform.position = playerYPos * Vector3.up + Vector3.right * playerXPos;
+        transform.localPosition = playerYPos * Vector3.up + Vector3.right * playerXPos;
     }
 
     // Move the player up and down the screen using the mouse while clamping the player in the screen boundaries

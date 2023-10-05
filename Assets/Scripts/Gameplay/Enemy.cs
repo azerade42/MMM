@@ -34,12 +34,12 @@ public class Enemy : MonoBehaviour
     private IEnumerator MoveEnemyToPosition(Vector3 position, float moveTime)
     {
         float elapsedTime = 0f;
-        Vector3 startPos = transform.position;
+        Vector3 startPos = transform.localPosition;
         Vector3 endPos = position + enemyOffset;
         while (elapsedTime < moveTime)
         {
             elapsedTime += Time.deltaTime;
-            transform.position = Vector3.Lerp(startPos, endPos, (elapsedTime/moveTime));
+            transform.localPosition = Vector3.Lerp(startPos, endPos, (elapsedTime/moveTime));
             //print(Vector3.Lerp(startPos, endPos, elapsedTime));
             yield return null;
         }

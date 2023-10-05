@@ -53,7 +53,7 @@ public class Note : MonoBehaviour
     // Reset Position and release Note back into the object pool
     public void ReleaseNote()
     {
-        transform.position = Vector3.right * SongManager.Instance.noteSpawnX + Vector3.up * assignedYPos;
+        transform.localPosition = Vector3.right * SongManager.Instance.noteSpawnX + Vector3.up * assignedYPos;
         LaneManager.Instance._notePool.Release(this);
     }
 }
