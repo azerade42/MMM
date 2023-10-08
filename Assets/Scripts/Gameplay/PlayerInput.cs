@@ -20,6 +20,12 @@ public class PlayerInput : Singleton<PlayerInput>
     private bool gameOver;
     private bool paused;
 
+    private bool isSpinSlashing;
+    public bool IsSpinSlashing
+    {
+        get { return isSpinSlashing; }
+    }
+
     public Vector2 PlayerPosition
     {
         get { return new Vector2(playerXPos, playerYPos); }
@@ -82,6 +88,7 @@ public class PlayerInput : Singleton<PlayerInput>
             SpinSlash();
         if (context.canceled)
         {
+            isSpinSlashing = false;
             _playerAnim.SetBool("Spinning", false);
             _playerAnim.ResetTrigger("SpinSlash");
         }
@@ -143,6 +150,7 @@ public class PlayerInput : Singleton<PlayerInput>
 
      private void SpinSlash()
     {
+        isSpinSlashing = true;
         _playerAnim.ResetTrigger("Slash");
         _playerAnim.SetBool("Spinning", true);
         _playerAnim.SetTrigger("SpinSlash");

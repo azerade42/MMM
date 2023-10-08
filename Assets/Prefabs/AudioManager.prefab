@@ -438,6 +438,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 7494be88750627d429096dc2e6c261eb, type: 3}
   - name: Level1Music
     clip: {fileID: 8300000, guid: 3834e29e541d4534891f1a0456c527c4, type: 3}
+  - name: Level2Music
+    clip: {fileID: 8300000, guid: dc3360102f53fd14b96b0a3fe46f9fdc, type: 3}
   sfxSounds:
   - name: HitNotePerfect
     clip: {fileID: 8300000, guid: 668f331f9549b9c43ac8aed803375f6f, type: 3}

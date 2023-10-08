@@ -818,7 +818,7 @@ MonoBehaviour:
   marginOfErrorX: 0.15
   marginOfErrorY: 1
   inputDelayInMilliseconds: 0
-  fileLocation: Track1.mid
+  fileLocation: LongNoteTest.mid
   noteTime: 2
   noteSpawnX: 16
   noteTapX: -14
@@ -5493,8 +5493,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _notePrefab: {fileID: 4892034370423235085, guid: 27979e659a2ae8f4384360ffe73e7edd,
     type: 3}
+  _longNotePrefab: {fileID: 3334056235994314253, guid: 059044249692a8f41905f591659ee401,
+    type: 3}
   timeStamps: []
   timeYIndex: 
+  heldNotes: 
   enemyTime: 0.36
 --- !u!1 &1522487266
 GameObject:

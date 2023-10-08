@@ -6,6 +6,7 @@ using Melanchall.DryWetMidi.Interaction;
 using System.IO;
 using UnityEngine.Networking;
 using System;
+using UnityEngine.SceneManagement;
 
 public class SongManager : Singleton<SongManager>
 {
@@ -97,7 +98,17 @@ public class SongManager : Singleton<SongManager>
     }
     public void StartSong()
     {
-        AudioManager.Instance.PlayMusic("Level1Music");
+        switch (SceneManager.GetActiveScene().buildIndex)
+        {
+            case 1: 
+                AudioManager.Instance.PlayMusic("Level1Music");
+                break;
+            case 2:
+                AudioManager.Instance.PlayMusic("Level2Music");
+                break;
+            
+
+        }
         songPlaying = true;
     }
 

@@ -13,12 +13,15 @@ public class LaneManager : Singleton<LaneManager>
 
     // The prefab that will be used for the note
     public Note _notePrefab;
+    
+    public GameObject _longNotePrefab;
     // The list of all notes in the song
     List<Note> notes = new List<Note>();
     // The times in the song where the notes are positioned
     [HideInInspector] public List<double> timeStamps = new List<double>();
     // The Y positions for each note that correlate with each time stamp
     [HideInInspector] public List<int> timeYIndex = new List<int>();
+    [HideInInspector] public List<bool> heldNotes = new List<bool>();
     // The queue created for releasing notes from the note pool
     private Queue<int> noteDeletionIndexQueue = new Queue<int>();
     // The object pool created for preallocating note objects to replace instantiation/destroy calls at runtime
@@ -99,25 +102,64 @@ public class LaneManager : Singleton<LaneManager>
         foreach (var note in array)
         {
             var metricTimeSpan = TimeConverter.ConvertTo<MetricTimeSpan>(note.Time, SongManager.midiFile.GetTempoMap());
+            var metricEndTimeSpan = TimeConverter.ConvertTo<MetricTimeSpan>(note.EndTime, SongManager.midiFile.GetTempoMap());
+
+            bool longNote = note.Length > 64;
+
+            // if ((int)note.Length % 64 != 0)
+            // {
+            //     Debug.LogError("Note duration is not a multiple of 64");
+            //     continue;
+            // }
+
+            float noteCount = 1; //= note.Length / 64;
+            if (longNote)
+                noteCount = 2;
+
             // Based on the note type in the MIDI file, determine which lane it should go in (0 = top, 1 = mid, 2 = bottom, 3 = some fourth lane)
             switch (note.NoteName)
             {
-                // top lane
+                // bottom lane
                 case Melanchall.DryWetMidi.MusicTheory.NoteName.A:
-                    timeYIndex.Add(0);
-                    timeStamps.Add((double)metricTimeSpan.Minutes * 60f + metricTimeSpan.Seconds + (double)metricTimeSpan.Milliseconds / 1000f);
+
+                    for (int i = 0; i < noteCount; i++)
+                    {
+                        bool isHeldNote = i > 0;
+                        heldNotes.Add(isHeldNote);
+                        timeYIndex.Add(0);
+                        if (!isHeldNote)
+                            timeStamps.Add((double)metricTimeSpan.Minutes * 60f + metricTimeSpan.Seconds + ((double)metricTimeSpan.Milliseconds) / 1000f);
+                        else
+                            timeStamps.Add((double)metricEndTimeSpan.Minutes * 60f + metricEndTimeSpan.Seconds + ((double)metricEndTimeSpan.Milliseconds) / 1000f);
+                    }
                     break;
 
                 // middle lane
                 case Melanchall.DryWetMidi.MusicTheory.NoteName.G:
-                    timeYIndex.Add(1);
-                    timeStamps.Add((double)metricTimeSpan.Minutes * 60f + metricTimeSpan.Seconds + (double)metricTimeSpan.Milliseconds / 1000f);
+                    for (int i = 0; i < noteCount; i++)
+                    {
+                        bool isHeldNote = i > 0;
+                        heldNotes.Add(isHeldNote);
+                        timeYIndex.Add(1);
+                        if (!isHeldNote)
+                            timeStamps.Add((double)metricTimeSpan.Minutes * 60f + metricTimeSpan.Seconds + ((double)metricTimeSpan.Milliseconds) / 1000f);
+                        else
+                            timeStamps.Add((double)metricEndTimeSpan.Minutes * 60f + metricEndTimeSpan.Seconds + ((double)metricEndTimeSpan.Milliseconds) / 1000f);
+                    }
                     break;
 
-                // bottom lane
+                // top lane
                 case Melanchall.DryWetMidi.MusicTheory.NoteName.F:
-                    timeYIndex.Add(2);
-                    timeStamps.Add((double)metricTimeSpan.Minutes * 60f + metricTimeSpan.Seconds + (double)metricTimeSpan.Milliseconds / 1000f);
+                    for (int i = 0; i < noteCount; i++)
+                    {
+                        bool isHeldNote = i > 0;
+                        heldNotes.Add(isHeldNote);
+                        timeYIndex.Add(2);
+                        if (!isHeldNote)
+                            timeStamps.Add((double)metricTimeSpan.Minutes * 60f + metricTimeSpan.Seconds + ((double)metricTimeSpan.Milliseconds) / 1000f);
+                        else
+                            timeStamps.Add((double)metricEndTimeSpan.Minutes * 60f + metricEndTimeSpan.Seconds + ((double)metricEndTimeSpan.Milliseconds) / 1000f);
+                    }
                     break;
                 case Melanchall.DryWetMidi.MusicTheory.NoteName.E:
                     // popup times
@@ -154,6 +196,9 @@ public class LaneManager : Singleton<LaneManager>
                 StartCoroutine(NoteSpawnCooldown(0.1f));
                 float yPos = ScreenManager.Instance.InsideLanesYPositions[timeYIndex[spawnIndex]];
                 NoteSpawned?.Invoke(new Vector3(SongManager.Instance.noteSpawnX, yPos, 0));
+
+                if (heldNotes[spawnIndex + 1])
+                    Instantiate(_longNotePrefab, new Vector3(SongManager.Instance.noteSpawnX, yPos, 0), Quaternion.identity);
             }
         }
 
@@ -166,14 +211,26 @@ public class LaneManager : Singleton<LaneManager>
             
             if (timeStamp + marginOfErrorX <= audioTime)
             {
-                Miss();
-                //print($"Missed {inputIndex} note");
-                print("Miss (did not attempt to hit)");
-                // _notePool.Release(notes[inputIndex]);
+                // Release the note
                 notes[inputIndex].ReleaseNote();
-                //Destroy(notes[inputIndex].gameObject);
+                int tempIndex = inputIndex;
+                // Focus the next note
                 inputIndex++;
-                AudioManager.Instance.PlaySFX("MissNote");
+
+                // Only truly miss the note and affect health if the note isn't a held note
+                if (!heldNotes[tempIndex])
+                {
+                    Miss();
+                    AudioManager.Instance.PlaySFX("MissNote");
+                    print("Miss (did not attempt to hit)");
+
+                    // Grey out the held note if the first one is missed
+                    bool nextNoteIsHeldNote = heldNotes[tempIndex + 1];
+                    if (nextNoteIsHeldNote)
+                    {
+                        notes[tempIndex + 1].GreyOutNote();
+                    }
+                }                
             }
         }       
     }
@@ -206,12 +263,12 @@ public class LaneManager : Singleton<LaneManager>
             // Calculate the difference between the player and the note
             double xPosDifference = Math.Abs(audioTime - timeStamp);
             float yPosDifference = Math.Abs(ScreenManager.Instance.InsideLanesYPositions[timeYIndex[inputIndex]] - playerPosition.y - 1.07f); // -1 to account for the sword's vertical offset
-
+            bool isHeldNote = heldNotes[inputIndex];
             // Debug that helps with determine how off the player's swing was compared to the margins of error
             // print($"lane: {gameObject.name} xPosDiff: {xPosDifference} yPosDiff: {yPosDifference}");
 
             // If the player's swing is perfect
-            if (xPosDifference < marginOfErrorX / 4f && yPosDifference < marginOfErrorY)
+            if (xPosDifference < marginOfErrorX / 4f && yPosDifference < marginOfErrorY && !PlayerInput.Instance.IsSpinSlashing && !isHeldNote)
             {
                 PerfectHit();
                 // print($"Perfect Hit on {inputIndex} note");
@@ -219,38 +276,117 @@ public class LaneManager : Singleton<LaneManager>
                 noteDeletionIndexQueue.Enqueue(inputIndex);
                 
                 AudioManager.Instance.PlaySFX("HitNotePerfect");
+
+                if (heldNotes[inputIndex + 1])
+                {
+                    StartCoroutine(WaitForSpinSlash(0.5f));
+                }
                 
             }
             // If the player's swing is good (within the margin of error)
-            else if (xPosDifference < marginOfErrorX && yPosDifference < marginOfErrorY)
+            else if (xPosDifference < marginOfErrorX && yPosDifference < marginOfErrorY && !PlayerInput.Instance.IsSpinSlashing && !isHeldNote)
             {
                 GoodHit();
-                print("Good");
                 // print($"Good Hit on {inputIndex} note");
+                print("Good");
                 
                 noteDeletionIndexQueue.Enqueue(inputIndex);
                 
                 AudioManager.Instance.PlaySFX("HitNoteGood");
+
+                if (heldNotes[inputIndex + 1])
+                {
+                    StartCoroutine(WaitForSpinSlash(0.5f));
+                }
             }
             // If the player's swing missed (could be used to release the note)
             else
             {
+                
                 //print($"Miss on {gameObject.name} lane with {Math.Abs(audioTime - timeStamp)} delay");
                 Miss();
-                //noteDeletionIndexQueue.Enqueue(inputIndex);
+                // notes[inputIndex].GreyOutNote();
+                // noteDeletionIndexQueue.Enqueue(inputIndex);
                 print("Miss (bad timing)");
                 AudioManager.Instance.PlaySFX("MissNote");
                 
             }
 
-            // Release the first note in the deletion queue
-            if (noteDeletionIndexQueue.Count > 0)
+            // Release all the notes in the deletion queue
+            while (noteDeletionIndexQueue.Count > 0)
             {
                 Note noteToRelease = notes[noteDeletionIndexQueue.Dequeue()];
                 noteToRelease.ReleaseNote();
                 inputIndex++;
             }
         }       
+    }
+
+    IEnumerator WaitForSpinSlash(float waitTime)
+    {
+        float curTime = 0;
+
+        while (curTime < waitTime)
+        {
+            curTime += Time.deltaTime;
+            if (PlayerInput.Instance.IsSpinSlashing) break;
+            yield return null;
+        }
+        print("got to here!");
+        if (PlayerInput.Instance.IsSpinSlashing)
+            StartCoroutine(WaitForHeldNoteOnBeat());
+        else
+        {
+            print("failed to press spinslash");
+            Miss();
+            AudioManager.Instance.PlaySFX("MissNote");
+            notes[inputIndex].GreyOutNote();
+        }
+    }
+
+    IEnumerator WaitForHeldNoteOnBeat()
+    {
+        audioTime = SongManager.GetAudioSourceTime() - (SongManager.Instance.inputDelayInMilliseconds / 1000.0);
+        double timeStamp = timeStamps[inputIndex];
+        bool fullSpinSlash = false;
+        while (audioTime <= timeStamp)
+        {
+            //print($"{audioTime} + {timeStamp}");
+            audioTime = SongManager.GetAudioSourceTime() - (SongManager.Instance.inputDelayInMilliseconds / 1000.0);
+            timeStamp = timeStamps[inputIndex];
+            
+            float marginOfErrorY = SongManager.Instance.marginOfErrorY;
+            Vector2 playerPosition = PlayerInput.Instance.PlayerPosition;
+            float yPosDifference = Math.Abs(ScreenManager.Instance.InsideLanesYPositions[timeYIndex[inputIndex]] - playerPosition.y - 1.07f); // -1 to account for the sword's vertical offset
+
+            fullSpinSlash = PlayerInput.Instance.IsSpinSlashing && yPosDifference < marginOfErrorY;
+            if (!fullSpinSlash) break;
+            yield return null;
+        }
+        if (fullSpinSlash)
+            RemoveHeldNoteOnBeat();
+        else
+        {
+            print("failed to finish spin slash");
+            Miss();
+            AudioManager.Instance.PlaySFX("MissNote");
+            notes[inputIndex].GreyOutNote();
+        }
+    }
+
+    private void RemoveHeldNoteOnBeat()
+    {
+        if (heldNotes[inputIndex])
+        {
+            PerfectHit();
+            // print($"Perfect Hit on {inputIndex} note");
+            print("Perfect");
+            AudioManager.Instance.PlaySFX("HitNotePerfect");
+            print("succeeded spin slash");
+            notes[inputIndex].ReleaseNote();
+            //notes[inputIndex].GreyOutNote();
+            inputIndex++;
+        }
     }
 
     // Functions that communicate with other scripts for each note accuracy
