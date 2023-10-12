@@ -41,6 +41,10 @@ public class LaneManager : Singleton<LaneManager>
     public static Action HitGood;
     public static Action HitMiss;
 
+    public static Action AnimateAllTopLanes;
+    public static Action AnimateAllMiddleLanes;
+    public static Action AnimateAllBottomLanes;
+
     private bool noteSpawnCooldownComplete = true;
 
 
@@ -281,6 +285,8 @@ public class LaneManager : Singleton<LaneManager>
                 {
                     StartCoroutine(WaitForSpinSlash(0.5f));
                 }
+
+                AnimateObjects(timeYIndex[inputIndex]);
                 
             }
             // If the player's swing is good (within the margin of error)
@@ -298,6 +304,8 @@ public class LaneManager : Singleton<LaneManager>
                 {
                     StartCoroutine(WaitForSpinSlash(0.5f));
                 }
+
+                AnimateObjects(timeYIndex[inputIndex]);
             }
             // If the player's swing missed (could be used to release the note)
             else
@@ -379,10 +387,10 @@ public class LaneManager : Singleton<LaneManager>
         if (heldNotes[inputIndex])
         {
             PerfectHit();
-            // print($"Perfect Hit on {inputIndex} note");
-            print("Perfect");
             AudioManager.Instance.PlaySFX("HitNotePerfect");
+            print("Perfect");
             print("succeeded spin slash");
+            AnimateObjects(timeYIndex[inputIndex]);
             notes[inputIndex].ReleaseNote();
             //notes[inputIndex].GreyOutNote();
             inputIndex++;
@@ -405,5 +413,15 @@ public class LaneManager : Singleton<LaneManager>
         //CameraShaker.Instance.ShakeOnce(0.1f, 0.2f, 0.1f, 0.1f);
         ScoreManager.Miss();
         HitMiss?.Invoke();
+    }
+
+    private void AnimateObjects(int yPos)
+    {
+        if (yPos == 0)
+            AnimateAllBottomLanes?.Invoke();
+        else if (yPos == 1)
+            AnimateAllMiddleLanes?.Invoke();
+        else if (yPos == 2)
+            AnimateAllTopLanes?.Invoke();
     }
 }
