@@ -11,13 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CafeLevel.unity
     guid: bba930ad7b6924e42b4ce9c8e69d1385
-  - enabled: 0
-    path: Assets/Scenes/LorenzoTesting.unity
-    guid: 2d00fd05fe9b140358320626e4e0d763
-  - enabled: 0
-    path: Assets/Scenes/GabeTesting.unity
-    guid: 0a9c1a42050da2c4fb357d639a7f86a1
-  - enabled: 0
-    path: Assets/Scenes/NickTesting.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/NightclubLevel.unity
+    guid: b1f20784e7587554b969ef4fe7b72265
   m_configObjects: {}

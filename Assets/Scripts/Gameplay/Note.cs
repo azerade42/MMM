@@ -9,6 +9,8 @@ public class Note : MonoBehaviour
 
     float assignedYPos;
 
+    SpriteRenderer _spriteRenderer;
+
     //bool gameOver;
 
 
@@ -21,12 +23,20 @@ public class Note : MonoBehaviour
     {
         timeInstantiated = SongManager.GetAudioSourceTime();
         
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        
         ///GameManager.GameOver += () => gameOver = true;
     }
 
     private void OnDisable()
     {
+        
+        _spriteRenderer.color = new Color(255f, 255f, 255f, 1f);
         //GameManager.GameOver -= () => gameOver = true;
+    }
+
+    private void Start()
+    {
     }
 
     // Update is called once per frame
@@ -53,7 +63,12 @@ public class Note : MonoBehaviour
     // Reset Position and release Note back into the object pool
     public void ReleaseNote()
     {
-        transform.position = Vector3.right * SongManager.Instance.noteSpawnX + Vector3.up * assignedYPos;
+        transform.localPosition = Vector3.right * SongManager.Instance.noteSpawnX + Vector3.up * assignedYPos;
         LaneManager.Instance._notePool.Release(this);
+    }
+
+    public void GreyOutNote()
+    {
+        _spriteRenderer.color = new Color(0.3f, 0.3f, 0.3f);
     }
 }

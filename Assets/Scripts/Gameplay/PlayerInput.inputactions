@@ -71,7 +71,7 @@
                     "name": "",
                     "id": "00d1fdc3-5ef3-4d67-8840-5a08ef7f39a7",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "Hold",
+                    "interactions": "Hold(duration=0.2)",
                     "processors": "",
                     "groups": "",
                     "action": "SpinSlash",

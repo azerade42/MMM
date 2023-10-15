@@ -11,7 +11,7 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager Instance;
     // public AudioSource hitSFX;
     // public AudioSource missSFX;
-    public TextMeshPro scoreText;
+    public TextMeshProUGUI scoreText;
     // public Slider healthSlider;
     public GameObject endScreen;
     public GameObject loseScreen;
