@@ -14,7 +14,7 @@ public class LaneManager : Singleton<LaneManager>
     // The prefab that will be used for the note
     public Note _notePrefab;
     
-    public GameObject _longNotePrefab;
+    public LongNote _longNotePrefab;
     // The list of all notes in the song
     List<Note> notes = new List<Note>();
     // The times in the song where the notes are positioned
@@ -26,6 +26,7 @@ public class LaneManager : Singleton<LaneManager>
     private Queue<int> noteDeletionIndexQueue = new Queue<int>();
     // The object pool created for preallocating note objects to replace instantiation/destroy calls at runtime
     public ObjectPool<Note> _notePool;
+    public ObjectPool<LongNote> _longNotePool;
 
     // Indexes for tracking the current note in the song
     private int spawnIndex = 0;
@@ -71,6 +72,18 @@ public class LaneManager : Singleton<LaneManager>
         }, note => {
             Destroy(note.gameObject);
         }, false,
+        20,
+        60
+        );
+
+        _longNotePool = new ObjectPool<LongNote>(CreateLongNote,
+        note => {
+            note.gameObject.SetActive(true);
+        }, note => {
+            note.gameObject.SetActive(false);
+        }, note => {
+            Destroy(note.gameObject);
+        }, false,
         10,
         20
         );
@@ -80,7 +93,8 @@ public class LaneManager : Singleton<LaneManager>
     // Called before the first frame of Update()
     private void Start()
     {
-        CreateNote(5);
+        CreateNote(10);
+        CreateLongNote(5);
     }
 
     // Overloaded method for instantiating each individual note
@@ -96,6 +110,23 @@ public class LaneManager : Singleton<LaneManager>
         for (int i = 0; i < amount; i++)
         {
             Note note = _notePool.Get();
+            note.gameObject.SetActive(false);
+        }
+    }
+
+    // Overloaded method for instantiating each individual note
+    private LongNote CreateLongNote()
+    {
+        LongNote note = Instantiate(_longNotePrefab, transform.position + Vector3.right * SongManager.Instance.noteSpawnX * 2, Quaternion.identity, transform);
+        return note;
+    }
+
+    // Overloaded method for preallocating note objects in the pool
+    private void CreateLongNote(int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            var note = _longNotePool.Get();
             note.gameObject.SetActive(false);
         }
     }
@@ -193,6 +224,16 @@ public class LaneManager : Singleton<LaneManager>
                 note.Init(yPos);
                 notes.Add(note);
                 note.assignedTime = (float)timeStamps[spawnIndex];
+
+                // SPAWN LONG NOTE
+                if (heldNotes[spawnIndex + 1])
+                {
+                    LongNote longNote = _longNotePool.Get();
+                    // Instantiate(_longNotePrefab, new Vector3(SongManager.Instance.noteSpawnX, yPos, 0), Quaternion.identity) as LongNote;
+                    longNote.Init(yPos, (float)timeStamps[spawnIndex + 1]);
+                    longNote.assignedTime = (float)timeStamps[spawnIndex];
+                }
+
                 spawnIndex++;
             }
             else if (noteSpawnCooldownComplete && SongManager.GetAudioSourceTime() >= timeStamps[spawnIndex] - SongManager.Instance.noteTime - enemyTime)
@@ -201,8 +242,7 @@ public class LaneManager : Singleton<LaneManager>
                 float yPos = ScreenManager.Instance.InsideLanesYPositions[timeYIndex[spawnIndex]];
                 NoteSpawned?.Invoke(new Vector3(SongManager.Instance.noteSpawnX, yPos, 0));
 
-                if (heldNotes[spawnIndex + 1])
-                    Instantiate(_longNotePrefab, new Vector3(SongManager.Instance.noteSpawnX, yPos, 0), Quaternion.identity);
+                
             }
         }
 
@@ -340,7 +380,7 @@ public class LaneManager : Singleton<LaneManager>
             if (PlayerInput.Instance.IsSpinSlashing) break;
             yield return null;
         }
-        print("got to here!");
+        //print("got to here!");
         if (PlayerInput.Instance.IsSpinSlashing)
             StartCoroutine(WaitForHeldNoteOnBeat());
         else
