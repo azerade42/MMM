@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ef4a6bee6982c4a54aa237900394c8be
+guid: f4509175b0d86425ab833227b04d09c2
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -60,11 +60,11 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 10
+      additiveReferencePoseFrame: 1
     - serializedVersion: 16
       name: BeatHit
       takeName: Take 001
-      internalID: 9067093048684652814
+      internalID: -998496362607748373
       firstFrame: 25
       lastFrame: 45
       wrapMode: 0
@@ -93,7 +93,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 50
+    globalScale: 75
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -148,7 +148,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 50
+    globalScale: 75
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
