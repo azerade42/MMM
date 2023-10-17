@@ -1212,7 +1212,7 @@ MonoBehaviour:
   marginOfErrorX: 0.15
   marginOfErrorY: 1
   inputDelayInMilliseconds: 0
-  fileLocation: LongNoteTest.mid
+  fileLocation: beatmap2pls.mid
   noteTime: 2
   noteSpawnX: 16
   noteTapX: -14
