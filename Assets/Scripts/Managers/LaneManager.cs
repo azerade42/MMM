@@ -271,8 +271,10 @@ public class LaneManager : Singleton<LaneManager>
                     Miss();
                     AudioManager.Instance.PlaySFX("MissNote");
                     print("Miss (did not attempt to hit)");
-
+                    
+                    if (tempIndex >= heldNotes.Count - 1) return;
                     // Grey out the held note if the first one is missed
+
                     bool nextNoteIsHeldNote = heldNotes[tempIndex + 1];
                     if (nextNoteIsHeldNote)
                     {
