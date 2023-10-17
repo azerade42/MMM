@@ -861,6 +861,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 101413934}
   m_CullTransparentMesh: 1
+--- !u!1 &108866732 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1940874703766207955, guid: 01cbb114c4f817246af53d92925f430b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1678874080}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &108866734
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108866732}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 11a0471d4cf2b4e409e839fe21b4b054, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &108866735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108866732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 581cf29005b57914584d8684e8f74675, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  laneHitToAnimate: 2
 --- !u!1 &195417116
 GameObject:
   m_ObjectHideFlags: 0
@@ -7699,7 +7739,15 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 27032386}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1940874703766207955, guid: 01cbb114c4f817246af53d92925f430b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 108866734}
+    - targetCorrespondingSourceObject: {fileID: 1940874703766207955, guid: 01cbb114c4f817246af53d92925f430b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 108866735}
   m_SourcePrefab: {fileID: 100100000, guid: 01cbb114c4f817246af53d92925f430b, type: 3}
 --- !u!4 &1678874081 stripped
 Transform:
