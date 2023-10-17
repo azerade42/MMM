@@ -1752,8 +1752,8 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 0.28773582, g: 1, b: 1, a: 1}
-  m_Intensity: 400
+  m_Color: {r: 0.6775098, g: 0.990566, b: 0.990566, a: 1}
+  m_Intensity: 199.8
   m_Range: 43.15818
   m_SpotAngle: 179
   m_InnerSpotAngle: 154.86974
@@ -4798,7 +4798,7 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 0.28773582, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 10
   m_Range: 43.15818
   m_SpotAngle: 179
@@ -6489,8 +6489,8 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 0.28773582, g: 1, b: 1, a: 1}
-  m_Intensity: 400
+  m_Color: {r: 0.6775098, g: 0.990566, b: 0.990566, a: 1}
+  m_Intensity: 199.8
   m_Range: 43.15818
   m_SpotAngle: 179
   m_InnerSpotAngle: 154.86974
@@ -7614,6 +7614,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 458.673
       objectReference: {fileID: 0}
+    - target: {fileID: 3547413919823379105, guid: 01cbb114c4f817246af53d92925f430b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 353d3a6dc638baa47aa5836cc7e5d076, type: 2}
+    - target: {fileID: 5173685030254230433, guid: 01cbb114c4f817246af53d92925f430b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 353d3a6dc638baa47aa5836cc7e5d076, type: 2}
     - target: {fileID: 5820689603963180462, guid: 01cbb114c4f817246af53d92925f430b,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -7719,6 +7729,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cafe
       objectReference: {fileID: 0}
+    - target: {fileID: 8287798822409339937, guid: 01cbb114c4f817246af53d92925f430b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 353d3a6dc638baa47aa5836cc7e5d076, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 4237921389360642867, guid: 01cbb114c4f817246af53d92925f430b, type: 3}
