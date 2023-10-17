@@ -229,7 +229,7 @@ public class LaneManager : Singleton<LaneManager>
                 note.assignedTime = (float)timeStamps[spawnIndex];
 
                 // SPAWN LONG NOTE
-                if (heldNotes[spawnIndex + 1])
+                if (spawnIndex < heldNotes.Count - 1 && heldNotes[spawnIndex + 1])
                 {
                     LongNote longNote = _longNotePool.Get();
                     // Instantiate(_longNotePrefab, new Vector3(SongManager.Instance.noteSpawnX, yPos, 0), Quaternion.identity) as LongNote;
