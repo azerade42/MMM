@@ -978,7 +978,7 @@ MonoBehaviour:
   marginOfErrorX: 0.15
   marginOfErrorY: 1
   inputDelayInMilliseconds: 0
-  fileLocation: beatmap2pls.mid
+  fileLocation: Beatmap2Changed.mid
   noteTime: 2
   noteSpawnX: 16
   noteTapX: -14
