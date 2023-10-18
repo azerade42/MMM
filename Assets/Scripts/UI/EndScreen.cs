@@ -20,9 +20,27 @@ public class EndScreen : MonoBehaviour
         gameObject.SetActive(true);
     }
 
+    public void Restart()
+    {
+        //TO DO BROKEN
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void NextLevel()
+    {
+        //TO DO BROKEN
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
     public void LoadMainMenu()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

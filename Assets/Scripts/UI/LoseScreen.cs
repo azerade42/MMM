@@ -10,10 +10,20 @@ public class LoseScreen : MonoBehaviour
         AudioManager.Instance.musicSource.Stop();
         gameObject.SetActive(true);
     }
+    public void Restart()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 
     public void LoadMainMenu()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
