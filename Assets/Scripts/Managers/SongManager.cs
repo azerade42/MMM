@@ -106,9 +106,8 @@ public class SongManager : Singleton<SongManager>
             case 2:
                 AudioManager.Instance.PlayMusic("Level2Music");
                 break;
-            
-
         }
+
         songPlaying = true;
     }
 
