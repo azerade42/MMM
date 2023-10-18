@@ -6432,7 +6432,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _notePrefab: {fileID: 4892034370423235085, guid: 27979e659a2ae8f4384360ffe73e7edd,
     type: 3}
-  _longNotePrefab: {fileID: 0}
+  _longNotePrefab: {fileID: 3317607261280446188, guid: 2d96f9321d87c1443aa30a10e285300d,
+    type: 3}
   timeStamps: []
   timeYIndex: 
   heldNotes: 
@@ -9201,6 +9202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyOffset: {x: 0.79, y: 0.75, z: 0}
+  moveTimeToNextNote: 0.05
 --- !u!1 &1975400984
 GameObject:
   m_ObjectHideFlags: 0
