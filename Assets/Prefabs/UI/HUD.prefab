@@ -2546,7 +2546,7 @@ RectTransform:
   - {fileID: 8172815011504682434}
   - {fileID: 3167830567715128165}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2647,6 +2647,7 @@ MonoBehaviour:
   musicPercent: {fileID: 6577027631093062631}
   sfxPercent: {fileID: 8622313159042162425}
   fullScreenToggle: {fileID: 4390890402099865188}
+  mixer: {fileID: 0}
 --- !u!1 &4908668553982626998
 GameObject:
   m_ObjectHideFlags: 0
