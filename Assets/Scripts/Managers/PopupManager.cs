@@ -74,9 +74,9 @@ public class PopupManager : Singleton<PopupManager>
                 popup.gameObject.transform.position = position;
 
 
-                popup.gameObject.transform.Rotate(-5, 10, -1);
+                //popup.gameObject.transform.Rotate(-5, 10, -1);
 
-                
+
                 popup.localScale = Vector3.one * randomPopup.scale;
                 break;
             case PopupType.WidescreenVideo:
