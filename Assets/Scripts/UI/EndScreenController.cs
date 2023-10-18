@@ -9,13 +9,13 @@ public class EndScreenController : MonoBehaviour
 
     private void OnEnable()
     {
-        GameManager.GameOver += endScreen.SetScreenActive;
+        GameManager.SongOver += endScreen.SetScreenActive;
         GameManager.GameOver += loseScreen.SetScreenActive;
     }
 
     private void OnDisable()
     {
-        GameManager.GameOver -= endScreen.SetScreenActive;
+        GameManager.SongOver -= endScreen.SetScreenActive;
         GameManager.GameOver -= loseScreen.SetScreenActive;
     }
 }
