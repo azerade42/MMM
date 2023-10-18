@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   texture: {fileID: 2800000, guid: f3e6427430ef28e47b176cf565721d71, type: 3}
+  scale: 0.64644

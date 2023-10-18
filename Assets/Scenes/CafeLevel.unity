@@ -2992,7 +2992,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &417917125
 Transform:
   m_ObjectHideFlags: 0
@@ -10105,6 +10105,7 @@ MonoBehaviour:
   _squareWindowPrefab: {fileID: 3079844726339017839, guid: 6a5a962ef9538784e87315f6d0ca9195,
     type: 3}
   _spawnFrequency: 0.1
+  popupTimes: []
 --- !u!1 &1631664220
 GameObject:
   m_ObjectHideFlags: 0
@@ -10752,7 +10753,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1735520533
 Transform:
   m_ObjectHideFlags: 0
@@ -12863,7 +12864,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2119136341
 Transform:
   m_ObjectHideFlags: 0

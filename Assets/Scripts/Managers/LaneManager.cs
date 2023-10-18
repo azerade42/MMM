@@ -51,6 +51,8 @@ public class LaneManager : Singleton<LaneManager>
     private bool noteSpawnCooldownComplete = true;
     private bool lastNoteSpawned = false;
 
+    public static Action<double> ReadPopupNote;
+
 
     // Subscribe to static actions
     void OnEnable()
@@ -199,8 +201,10 @@ public class LaneManager : Singleton<LaneManager>
                             timeStamps.Add((double)metricEndTimeSpan.Minutes * 60f + metricEndTimeSpan.Seconds + ((double)metricEndTimeSpan.Milliseconds) / 1000f);
                     }
                     break;
+                // popup times
                 case Melanchall.DryWetMidi.MusicTheory.NoteName.E:
-                    // popup times
+                    double popupTime = (double)metricTimeSpan.Minutes * 60f + metricTimeSpan.Seconds + ((double)metricTimeSpan.Milliseconds) / 1000f;
+                    ReadPopupNote?.Invoke(popupTime);
                     break;
                 case Melanchall.DryWetMidi.MusicTheory.NoteName.D:
                     // camera angles
@@ -280,7 +284,7 @@ public class LaneManager : Singleton<LaneManager>
                     Miss();
                     AudioManager.Instance.PlaySFX("MissNote");
                     print("Miss (did not attempt to hit)");
-                    print(tempIndex + " " + (heldNotes.Count - 1));
+                    // print(tempIndex + " " + (heldNotes.Count - 1));
                     // Grey out the held note if the first one is missed
 
                     bool nextNoteIsHeldNote = heldNotes[tempIndex + 1];

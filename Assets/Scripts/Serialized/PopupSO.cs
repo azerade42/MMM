@@ -5,7 +5,7 @@ using UnityEngine;
 public enum PopupType
 {
     WidescreenVideo,
-    SquareVideo
+    SquareVideo,
 }
 
 [CreateAssetMenu(menuName = "PopupSO", order = 2)]
@@ -13,4 +13,5 @@ public class PopupSO : ScriptableObject
 {
     public PopupType type;
     public Texture texture;
+    public float scale = 1;
 }
