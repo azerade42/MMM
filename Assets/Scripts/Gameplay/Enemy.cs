@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private Vector3 enemyOffset;
 
+    [SerializeField] private float moveTimeToNextNote = 0.05f;
+
     private Animator _animator;
 
     private void Awake()
@@ -27,7 +29,7 @@ public class Enemy : MonoBehaviour
 
     private void MoveToNoteSpawn(Vector3 position)
     {
-        StartCoroutine(MoveEnemyToPosition(position, 0.05f));
+        StartCoroutine(MoveEnemyToPosition(position, moveTimeToNextNote));
         _animator.SetTrigger("Attack");
     }
 
