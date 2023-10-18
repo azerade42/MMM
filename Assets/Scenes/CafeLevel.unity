@@ -6643,6 +6643,11 @@ PrefabInstance:
       propertyPath: m_Texture
       value: 
       objectReference: {fileID: 2800000, guid: e21edd0372a23834baeff65a14064546, type: 3}
+    - target: {fileID: 3748784528490797564, guid: ab077b145e05ddf4a805e23c35a947f5,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.7490196
+      objectReference: {fileID: 0}
     - target: {fileID: 4654034075743910475, guid: ab077b145e05ddf4a805e23c35a947f5,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -6892,6 +6897,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7133124779898441583, guid: ab077b145e05ddf4a805e23c35a947f5,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.7490196
       objectReference: {fileID: 0}
     - target: {fileID: 7668556390615388306, guid: ab077b145e05ddf4a805e23c35a947f5,
         type: 3}
@@ -12777,7 +12787,7 @@ GameObject:
   - component: {fileID: 2104514237}
   - component: {fileID: 2104514236}
   m_Layer: 5
-  m_Name: HowToPlay
+  m_Name: HowToPlayBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12816,7 +12826,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.68235296}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.7490196}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
