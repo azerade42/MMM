@@ -81,7 +81,7 @@ public class LongNote : MonoBehaviour
         {
             if (!decreasedWhileActive)
             {
-                _spriteRenderer.size = Vector2.Lerp(new Vector2(0f, 20.48f), new Vector2(20.48f * 20.48f * 0.85f * (nextNotePositionX - assignedTime), 20.48f), longNoteSize);
+                _spriteRenderer.size = Vector2.Lerp(new Vector2(0f, 20.48f), new Vector2(20.48f * 20.48f * 0.7f * (nextNotePositionX - assignedTime), 20.48f), longNoteSize);
                 transform.localPosition = Vector3.Lerp(Vector3.right * (SongManager.Instance.noteSpawnX + xOffset) + Vector3.up * assignedYPos, Vector3.right * (SongManager.Instance.noteDespawnX + xOffset) + Vector3.up * assignedYPos, t);
             }
             else

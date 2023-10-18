@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: DJCOUGHPopup
   m_EditorClassIdentifier: 
   type: 1
-  texture: {fileID: 1241991483242284702, guid: 456781468b58c284a81725aaef98f68e, type: 2}
-  scale: 2.5
+  texture: {fileID: 8400000, guid: 9f6b20662d354cb46a56086ebf873d64, type: 2}
+  scale: 0.75
