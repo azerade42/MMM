@@ -206,6 +206,7 @@ public class LaneManager : Singleton<LaneManager>
                     double popupTime = (double)metricTimeSpan.Minutes * 60f + metricTimeSpan.Seconds + ((double)metricTimeSpan.Milliseconds) / 1000f;
                     ReadPopupNote?.Invoke(popupTime);
                     break;
+
                 case Melanchall.DryWetMidi.MusicTheory.NoteName.D:
                     // camera angles
                     break;
