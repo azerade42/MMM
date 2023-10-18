@@ -49,6 +49,7 @@ public class LaneManager : Singleton<LaneManager>
     public static Action AnimateAllBottomLanes;
 
     private bool noteSpawnCooldownComplete = true;
+    private bool lastNoteSpawned = false;
 
 
     // Subscribe to static actions
@@ -217,6 +218,14 @@ public class LaneManager : Singleton<LaneManager>
         // Add a new note to the scene when it's appropriate in the song
         if (spawnIndex < timeStamps.Count)
         {
+            // If it's the last note spawned, end the song after a set amount of seconds
+            if (spawnIndex == timeStamps.Count - 1 && !lastNoteSpawned)
+            {
+                lastNoteSpawned = true;
+                print(SongManager.Instance.noteTime);
+                StartCoroutine(EndSong(10f));
+            }
+
             if (SongManager.GetAudioSourceTime() >= timeStamps[spawnIndex] - SongManager.Instance.noteTime)
             {
                 float yPos = ScreenManager.Instance.InsideLanesYPositions[timeYIndex[spawnIndex]];
@@ -257,7 +266,7 @@ public class LaneManager : Singleton<LaneManager>
             double timeStamp = timeStamps[inputIndex];
             double marginOfErrorX = SongManager.Instance.marginOfErrorX;
             
-            if (timeStamp + marginOfErrorX <= audioTime)
+            if (timeStamp + marginOfErrorX * 2 <= audioTime)
             {
                 // Release the note
                 notes[inputIndex].ReleaseNote();
@@ -271,14 +280,15 @@ public class LaneManager : Singleton<LaneManager>
                     Miss();
                     AudioManager.Instance.PlaySFX("MissNote");
                     print("Miss (did not attempt to hit)");
-                    
-                    if (tempIndex >= heldNotes.Count - 1) return;
+                    print(tempIndex + " " + (heldNotes.Count - 1));
                     // Grey out the held note if the first one is missed
 
                     bool nextNoteIsHeldNote = heldNotes[tempIndex + 1];
                     if (nextNoteIsHeldNote)
                     {
-                        notes[tempIndex + 1].GreyOutNote();
+                        if (tempIndex + 1 < heldNotes.Count - 1)
+                            notes[tempIndex + 1].GreyOutNote();
+                        
                         longNotes[longNoteIndex].GreyOutNote();
                         longNoteIndex++;
                     }
@@ -289,7 +299,18 @@ public class LaneManager : Singleton<LaneManager>
                 //     longNoteIndex++;
                 // }                
             }
-        }       
+        }
+    }
+
+    private IEnumerator EndSong(float timeUntilEnd)
+    {
+        float curTime = 0f;
+        while (curTime < timeUntilEnd)
+        {
+            curTime += Time.deltaTime;
+            yield return null;
+        }
+        GameManager.TriggerSongOver();
     }
 
     IEnumerator NoteSpawnCooldown(float cooldownTime)
@@ -334,7 +355,7 @@ public class LaneManager : Singleton<LaneManager>
                 
                 AudioManager.Instance.PlaySFX("HitNotePerfect");
 
-                if (heldNotes[inputIndex + 1])
+                if (inputIndex < heldNotes.Count - 1 && heldNotes[inputIndex + 1])
                 {
                     StartCoroutine(WaitForSpinSlash(0.5f));
                     longNotes[longNoteIndex].StartDecrease();
@@ -354,7 +375,7 @@ public class LaneManager : Singleton<LaneManager>
                 
                 AudioManager.Instance.PlaySFX("HitNoteGood");
 
-                if (heldNotes[inputIndex + 1])
+                if (inputIndex < heldNotes.Count - 1 && heldNotes[inputIndex + 1])
                 {
                     StartCoroutine(WaitForSpinSlash(0.5f));
                     longNotes[longNoteIndex].StartDecrease();
