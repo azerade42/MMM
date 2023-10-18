@@ -4976,7 +4976,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EndSession: 0
-  _referenceResolution: {x: 1920, y: 780}
+  _referenceResolution: {x: 1920, y: 850}
   _gameplayWindowBorder: {fileID: 0}
   _bottomLeftScreen: {fileID: 93633676}
   _bottomRightScreen: {fileID: 1783252050}
