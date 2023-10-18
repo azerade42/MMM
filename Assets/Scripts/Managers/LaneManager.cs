@@ -23,6 +23,8 @@ public class LaneManager : Singleton<LaneManager>
     // The Y positions for each note that correlate with each time stamp
     [HideInInspector] public List<int> timeYIndex = new List<int>();
     [HideInInspector] public List<bool> heldNotes = new List<bool>();
+
+    [HideInInspector] public List<double> beatDrops = new List<double>();
     // The queue created for releasing notes from the note pool
     private Queue<int> noteDeletionIndexQueue = new Queue<int>();
     // The object pool created for preallocating note objects to replace instantiation/destroy calls at runtime
@@ -33,6 +35,7 @@ public class LaneManager : Singleton<LaneManager>
     private int spawnIndex = 0;
     private int inputIndex = 0;
     private int longNoteIndex = 0;
+    private int beatDropIndex = 0;
 
     // The current time in the song
     private double audioTime;
@@ -52,6 +55,7 @@ public class LaneManager : Singleton<LaneManager>
     private bool lastNoteSpawned = false;
 
     public static Action<double> ReadPopupNote;
+    public static Action BeatDrop;
 
 
     // Subscribe to static actions
@@ -207,8 +211,10 @@ public class LaneManager : Singleton<LaneManager>
                     ReadPopupNote?.Invoke(popupTime);
                     break;
 
+                // beat drop
                 case Melanchall.DryWetMidi.MusicTheory.NoteName.D:
-                    // camera angles
+                    double beatDropTime = (double)metricTimeSpan.Minutes * 60f + metricTimeSpan.Seconds + ((double)metricTimeSpan.Milliseconds) / 1000f;
+                    beatDrops.Add(beatDropTime);
                     break;
                 default:
                     Debug.LogError($"Note name {note.NoteName} not accounted for when setting timeStamps.");
@@ -260,7 +266,12 @@ public class LaneManager : Singleton<LaneManager>
                 StartCoroutine(NoteSpawnCooldown(0.1f));
                 float yPos = ScreenManager.Instance.InsideLanesYPositions[timeYIndex[spawnIndex]];
                 NoteSpawned?.Invoke(new Vector3(SongManager.Instance.noteSpawnX, yPos, 0));
+            }
 
+            if (beatDrops.Count > 0 && beatDropIndex < beatDrops.Count && SongManager.GetAudioSourceTime() >= beatDrops[beatDropIndex])
+            {
+                BeatDrop?.Invoke();
+                beatDropIndex++;
             }
         }
 

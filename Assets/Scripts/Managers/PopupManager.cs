@@ -14,7 +14,7 @@ public class PopupManager : Singleton<PopupManager>
     // [SerializeField] private float _spawnFrequency = 1f;
 
     [SerializeField] private bool _spawnInRandomPositions = true;
-    [SerializeField] private Vector3 _popupSpawnPosition;
+    [SerializeField] private Transform _popupSpawnTransform;
 
     private ObjectPool<RectTransform> _widescreenPopupPool;
     private ObjectPool<RectTransform> _squarePopupPool;
@@ -44,6 +44,7 @@ public class PopupManager : Singleton<PopupManager>
             }, popup => {
                 Destroy(popup);
             }, false, 10, 25);
+            
     }
 
     private void OnEnable()
@@ -71,6 +72,11 @@ public class PopupManager : Singleton<PopupManager>
                 popup = _squarePopupPool.Get();
                 popup.GetComponentInChildren<RawImage>().texture = randomPopup.texture;
                 popup.gameObject.transform.position = position;
+
+
+                //popup.gameObject.transform.Rotate(-5, 10, -1);
+
+
                 popup.localScale = Vector3.one * randomPopup.scale;
                 break;
             case PopupType.WidescreenVideo:
@@ -124,7 +130,7 @@ public class PopupManager : Singleton<PopupManager>
             if (_spawnInRandomPositions)
                 SpawnPopup();
             else
-                SpawnPopup(_popupSpawnPosition);
+                SpawnPopup(_popupSpawnTransform.position);
             
             popupIndex++;
         }
