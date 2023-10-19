@@ -39,7 +39,6 @@ public class ScoreManager : MonoBehaviour
     {
         comboScore += 250;
         meterScore += 1;
-        print(comboScore);
         // health += meterScore / 2;
         // Instance.hitSFX.Play();
     }
