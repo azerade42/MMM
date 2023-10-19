@@ -41,6 +41,8 @@ public class SongManager : Singleton<SongManager>
 
     public static MidiFile midiFile;
 
+    public static Action SongStarted;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -109,6 +111,7 @@ public class SongManager : Singleton<SongManager>
         }
 
         songPlaying = true;
+        SongStarted?.Invoke();
     }
 
     // Get the current time in the AudioSource
