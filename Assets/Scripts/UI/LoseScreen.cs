@@ -9,6 +9,7 @@ public class LoseScreen : MonoBehaviour
     {
         AudioManager.Instance.musicSource.Stop();
         gameObject.SetActive(true);
+        AudioManager.Instance.PlayWorld("LoseSound");
     }
     public void Restart()
     {

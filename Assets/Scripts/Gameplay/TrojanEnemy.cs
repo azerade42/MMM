@@ -74,5 +74,7 @@ public class TrojanEnemy : MonoBehaviour
             horseObject.SetActive(false);
 
         _animator = _spiderman.GetComponent<Animator>();
+
+        AudioManager.Instance.PlayWorld("SpiderTransition");
     }
 }

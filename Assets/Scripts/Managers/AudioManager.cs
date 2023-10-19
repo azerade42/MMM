@@ -7,8 +7,8 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
-    public Sound[] musicSounds, sfxSounds;
-    public AudioSource masterSource, musicSource, sfxSource;
+    public Sound[] musicSounds, sfxSounds, worldSounds;
+    public AudioSource masterSource, musicSource, sfxSource, worldSource;
 
     private void Awake()
     {
@@ -57,12 +57,31 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void PlayWorld (string name)
+    {
+        Sound s = Array.Find(worldSounds, x => x.name == name);
+
+        if (s == null)
+        {
+            Debug.Log("Sound Not Found");
+        }
+        else
+        {
+            worldSource.PlayOneShot(s.clip);
+        }
+    }
+
     public void ToggleMusic()
     {
         musicSource.mute = !musicSource.mute;
     }
 
     public void ToggleSFX()
+    {
+        sfxSource.mute = !sfxSource.mute;
+    }
+
+    public void ToggleWorld()
     {
         sfxSource.mute = !sfxSource.mute;
     }
@@ -75,5 +94,10 @@ public class AudioManager : MonoBehaviour
     public void SFXVolume(float volume)
     {
         sfxSource.volume = volume;
+    }
+
+    public void WorldVolume(float volume)
+    {
+        worldSource.volume = volume;
     }
 }

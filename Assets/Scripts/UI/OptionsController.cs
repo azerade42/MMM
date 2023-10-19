@@ -45,9 +45,9 @@ public class OptionsController : MonoBehaviour
     }
     public void SFXVolume()
     {
-        
         sfxPercent.text = Mathf.RoundToInt(_sfxSlider.value * 100) + "%";
         AudioManager.Instance.SFXVolume(_sfxSlider.value); 
+        AudioManager.Instance.WorldVolume(_sfxSlider.value);
         SaveValues.sfxVolume = _sfxSlider.value;
     }
 
