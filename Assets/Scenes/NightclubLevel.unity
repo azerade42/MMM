@@ -1161,7 +1161,7 @@ MonoBehaviour:
   marginOfErrorX: 0.15
   marginOfErrorY: 1
   inputDelayInMilliseconds: -25
-  fileLocation: Beatmap2Ripped.mid
+  fileLocation: Beatmap2Changed.mid
   noteTime: 2
   noteSpawnX: 12
   noteTapX: -11.75
