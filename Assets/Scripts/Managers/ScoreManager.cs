@@ -15,7 +15,8 @@ public class ScoreManager : MonoBehaviour
     // public Slider healthSlider;
     public GameObject endScreen;
     public GameObject loseScreen;
-    public TextMeshProUGUI menuScore;
+    public TextMeshProUGUI endScreenScore;
+    public TextMeshProUGUI loseScreenScore;
     public float rateOfChange;
     public int healthLoss;
     
@@ -38,6 +39,7 @@ public class ScoreManager : MonoBehaviour
     {
         comboScore += 250;
         meterScore += 1;
+        print(comboScore);
         // health += meterScore / 2;
         // Instance.hitSFX.Play();
     }
@@ -50,11 +52,11 @@ public class ScoreManager : MonoBehaviour
     }
     public static void Miss()
     {
-        if (comboScore > 70)
-            comboScore -= 70;
-        else
-            comboScore = 0;
-        meterScore = 0;
+        // if (comboScore > 70)
+        //     comboScore -= 70;
+        // else
+        //     comboScore = 0;
+        // meterScore = 0;
         // health -= 5;
         // Instance.missSFX.Play();    
     }
@@ -65,13 +67,22 @@ public class ScoreManager : MonoBehaviour
         // else if (health <= 0)
         //     health = 0;
         // healthSlider.value = health;
-        scoreText.text = meterScore.ToString();
-        if (endScreen.activeSelf && scoreTrack < comboScore)
+        // scoreText.text = meterScore.ToString();
+        if (loseScreen.activeSelf) // && scoreTrack < comboScore)
         {
-            scoreTrack += rateOfChange * Time.deltaTime;
-            menuScore.text = scoreTrack.ToString("F0");
-            MainMenu.levelSelectEnabled = true;
+            loseScreenScore.text = comboScore.ToString("F0");
+            // scoreTrack += rateOfChange * Time.deltaTime;
+            // loseScreenScore.text = scoreTrack.ToString("F0");
+            // MainMenu.levelSelectEnabled = true;
         }
+        else if (endScreen.activeSelf) // && scoreTrack < comboScore)
+        {
+            endScreenScore.text = comboScore.ToString("F0");
+            // scoreTrack += rateOfChange * Time.deltaTime;
+            // loseScreenScore.text = scoreTrack.ToString("F0");
+            // MainMenu.levelSelectEnabled = true;
+        }
+
         // if(healthSlider.value <= 0)
         // {
         //     loseScreen.SetActive(true);

@@ -299,8 +299,8 @@ public class LaneManager : Singleton<LaneManager>
                     // print(tempIndex + " " + (heldNotes.Count - 1));
                     // Grey out the held note if the first one is missed
 
-                    bool nextNoteIsHeldNote = heldNotes[tempIndex + 1];
-                    if (nextNoteIsHeldNote)
+                    // bool nextNoteIsHeldNote = heldNotes[tempIndex + 1];
+                    if (tempIndex + 1 < heldNotes.Count && heldNotes[tempIndex + 1])
                     {
                         if (tempIndex + 1 < heldNotes.Count - 1)
                             notes[tempIndex + 1].GreyOutNote();
