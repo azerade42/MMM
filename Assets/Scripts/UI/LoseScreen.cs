@@ -17,9 +17,10 @@ public class LoseScreen : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public void LoadMainMenu()
+    public void LoadLevelSelect()
     {
         Time.timeScale = 1f;
+        MainMenu.levelSelectEnabled = true;
         SceneManager.LoadScene(0);
     }
 

@@ -359,6 +359,7 @@ GameObject:
   - component: {fileID: 3079844726339017839}
   - component: {fileID: 4607653203654561730}
   - component: {fileID: 8323399813124888073}
+  - component: {fileID: 3355983327175730981}
   m_Layer: 0
   m_Name: NightclubPopup
   m_TagString: Untagged
@@ -409,6 +410,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9392346aaed4100439aeda8e30bbaab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3355983327175730981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5490163815474848197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69acfb13be6b006488ce054f552df421, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5874613797945625933
@@ -627,6 +640,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1180356348162536176}
         m_TargetAssemblyTypeName: ShrinkPopup, Assembly-CSharp
         m_MethodName: ShrinkThatPopup
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3355983327175730981}
+        m_TargetAssemblyTypeName: ClickSound, Assembly-CSharp
+        m_MethodName: PlayClickSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

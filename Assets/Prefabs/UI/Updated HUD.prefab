@@ -4430,7 +4430,7 @@ PrefabInstance:
     - target: {fileID: 1127344927951940418, guid: ab077b145e05ddf4a805e23c35a947f5,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -105.89999
+      value: -110.8
       objectReference: {fileID: 0}
     - target: {fileID: 1565677077107549555, guid: ab077b145e05ddf4a805e23c35a947f5,
         type: 3}
@@ -4588,6 +4588,11 @@ PrefabInstance:
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4533949537220215826, guid: ab077b145e05ddf4a805e23c35a947f5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -33.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4654034075743910475, guid: ab077b145e05ddf4a805e23c35a947f5,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -4641,7 +4646,7 @@ PrefabInstance:
     - target: {fileID: 4836382362768305164, guid: ab077b145e05ddf4a805e23c35a947f5,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 4836382362768305164, guid: ab077b145e05ddf4a805e23c35a947f5,
         type: 3}
@@ -4832,6 +4837,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5358829422102992903, guid: ab077b145e05ddf4a805e23c35a947f5,
+        type: 3}
+      propertyPath: m_text
+      value: Main Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5358829422102992903, guid: ab077b145e05ddf4a805e23c35a947f5,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 13.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5358829422102992903, guid: ab077b145e05ddf4a805e23c35a947f5,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 13.3
       objectReference: {fileID: 0}
     - target: {fileID: 6783668642046541643, guid: ab077b145e05ddf4a805e23c35a947f5,
         type: 3}
