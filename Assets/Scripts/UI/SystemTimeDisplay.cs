@@ -10,6 +10,6 @@ public class SystemTimeDisplay : MonoBehaviour
     private TextMeshProUGUI clockText;
     void Update()
     {
-        clockText.text = System.DateTime.UtcNow.ToString("HH:mm");
+        clockText.text = System.DateTime.Now.ToString("hh:mm tt");
     }
 }
