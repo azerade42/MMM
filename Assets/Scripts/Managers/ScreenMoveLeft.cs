@@ -17,7 +17,7 @@ public class ScreenMoveLeft : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.left *  Time.deltaTime  * speed);
+        transform.position += Vector3.left * Time.deltaTime * speed;
         if(transform.position.x < startPos.x - repeatWidth ){
             transform.position = startPos;
         }
