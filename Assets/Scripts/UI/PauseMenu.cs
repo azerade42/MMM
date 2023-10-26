@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    private TransitionManager transitionLevel;
+
+    private void Awake()
+    {
+        transitionLevel = FindObjectOfType<TransitionManager>();
+    }
     public void PauseGame()
     {
         GameManager.TriggerPause();
@@ -14,10 +20,10 @@ public class PauseMenu : MonoBehaviour
     {
         GameManager.TriggerUnPause();
     }
-    public void ToMainMenu()
+    public void ToMainMenu(int sceneID)
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(0);
+        transitionLevel.StartLoad(sceneID);
         AudioManager.Instance.musicSource.Stop();
     }
     public void QuitGame()

@@ -5,6 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class LoseScreen : MonoBehaviour
 {
+    private TransitionManager transitionLevel;
+    // public MainMenu mainMenu;
+    private void Awake()
+    {
+        transitionLevel = FindObjectOfType<TransitionManager>();
+        // private MainMenu mainMenu;
+
+    }
     public void SetScreenActive()
     {
         AudioManager.Instance.musicSource.Stop();
@@ -14,14 +22,16 @@ public class LoseScreen : MonoBehaviour
     public void Restart()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        transitionLevel.StartLoad(SceneManager.GetActiveScene().buildIndex);
+
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public void LoadLevelSelect()
+    public void LoadLevelSelect(int sceneID)
     {
         Time.timeScale = 1f;
-        MainMenu.levelSelectEnabled = true;
-        SceneManager.LoadScene(0);
+        // mainMenu.levelSelectEnabled = true;
+        transitionLevel.StartLoad(sceneID);
     }
 
     public void QuitGame()

@@ -14,6 +14,13 @@ public class EndScreen : MonoBehaviour
     // {
     //     GameManager.SongOver -= SetScreenActive;
     // }
+
+    private TransitionManager transitionLevel;
+
+    private void Awake()
+    {
+        transitionLevel = FindObjectOfType<TransitionManager>();
+    }
     public void SetScreenActive()
     {
         AudioManager.Instance.musicSource.Stop();
@@ -24,18 +31,20 @@ public class EndScreen : MonoBehaviour
     public void Restart()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        transitionLevel.StartLoad(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void NextLevel()
+    public void NextLevel(int sceneID)
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        transitionLevel.StartLoad(SceneManager.GetActiveScene().buildIndex + 1);
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
-    public void LoadLevelSelect()
+    public void LoadLevelSelect(int sceneID)
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(0);
+        transitionLevel.StartLoad(sceneID);
+        // SceneManager.LoadScene(0);
     }
 
     public void QuitGame()
