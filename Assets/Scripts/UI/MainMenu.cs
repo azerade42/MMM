@@ -41,13 +41,17 @@ public class MainMenu : MonoBehaviour
     public void LoadScene(int sceneID)
     {
         AudioManager.Instance.musicSource.Stop();
+        levelSelectEnabled = false;
         StartCoroutine(LoadSceneAsync(sceneID));
     }
     public void Reload()
     {
         SceneManager.LoadScene(0);
         if(levelSelect != null)
+        {
+            levelSelectEnabled = true;
             levelSelect.SetActive(true);
+        }
     }
 
     IEnumerator LoadSceneAsync(int sceneID)

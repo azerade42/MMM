@@ -18,22 +18,21 @@ public class EndScreen : MonoBehaviour
     {
         AudioManager.Instance.musicSource.Stop();
         gameObject.SetActive(true);
+        AudioManager.Instance.PlayWorld("WinSound");
     }
 
     public void Restart()
     {
-        //TO DO BROKEN
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void NextLevel()
     {
-        //TO DO BROKEN
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
-    public void LoadMainMenu()
+    public void LoadLevelSelect()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);

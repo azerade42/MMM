@@ -715,7 +715,7 @@ GameObject:
   - component: {fileID: 2570442084658880790}
   - component: {fileID: 4500197621088019332}
   m_Layer: 5
-  m_Name: MainMenu Text
+  m_Name: LevelSelect Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1846,7 +1846,7 @@ GameObject:
   - component: {fileID: 5571032989311565445}
   - component: {fileID: 263437088996943656}
   m_Layer: 5
-  m_Name: MainMenu Image
+  m_Name: LevelSelect Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1920,7 +1920,7 @@ GameObject:
   - component: {fileID: 7134393416465269404}
   - component: {fileID: 714357675675174841}
   m_Layer: 5
-  m_Name: MainMenuButton
+  m_Name: LevelSelectButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2032,7 +2032,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8736942924457371761}
         m_TargetAssemblyTypeName: EndScreen, Assembly-CSharp
-        m_MethodName: LoadMainMenu
+        m_MethodName: LoadLevelSelect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
