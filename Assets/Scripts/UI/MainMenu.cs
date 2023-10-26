@@ -6,12 +6,14 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public GameObject menuScreen;
-    public GameObject loadingScreen;
-    public static GameObject levelSelect;
-
-    public static bool levelSelectEnabled;
     
+    // [SerializeField]
+    // private GameObject levelSelect;
 
+    // public bool levelSelectEnabled = false;
+    
+    private ScreenWipe screenWipe;
+    private TransitionManager transitionLevel;
 
     // public Image loadingBarFill;
 
@@ -21,10 +23,22 @@ public class MainMenu : MonoBehaviour
     //     // Change this to add more levels
     //     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     // }
+    private void Awake()
+    {
+        transitionLevel = FindObjectOfType<TransitionManager>();
+    }
+
     private void Start()
     {
+        // levelSelectEnabled = false;
         AudioManager.Instance.PlayMusic("MenuMusic");
     }
+
+    // private void Update()
+    // {
+    //     levelSelectEnabled = false;
+    //     EnableLevelSelect();
+    // }
     public void QuitGame()
     {
         Application.Quit();
@@ -40,33 +54,25 @@ public class MainMenu : MonoBehaviour
 
     public void LoadScene(int sceneID)
     {
-        AudioManager.Instance.musicSource.Stop();
-        levelSelectEnabled = false;
-        StartCoroutine(LoadSceneAsync(sceneID));
-    }
-    public void Reload()
-    {
-        SceneManager.LoadScene(0);
-        if(levelSelect != null)
-        {
-            levelSelectEnabled = true;
-            levelSelect.SetActive(true);
-        }
+        transitionLevel.StartLoad(sceneID);
     }
 
-    IEnumerator LoadSceneAsync(int sceneID)
-    {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneID);
+    // public void EnableLevelSelect()
+    // {
+    //     if(levelSelectEnabled && levelSelect != null)
+    //     {
+    //         // levelSelectEnabled = true;
+    //         levelSelect.SetActive(true);
+    //     }    
+    // }
+    // public void Reload()
+    // {
+    //     SceneManager.LoadScene(0);
+    //     if(levelSelect != null)
+    //     {
+    //         // levelSelectEnabled = true;
+    //         levelSelect.SetActive(true);
+    //     }
+    // }
 
-        loadingScreen.SetActive(true);
-
-        while (!operation.isDone)
-        {
-            // float progressValue = Mathf.Clamp01(operation.progress / 0.9f);
-            // loadingBarFill.fillAmount = progressValue;
-
-
-            yield return null;
-        }
-    }
 }

@@ -282,6 +282,7 @@ GameObject:
   - component: {fileID: 3292296386945936926}
   - component: {fileID: 2982156845030964930}
   - component: {fileID: 3563917619534107806}
+  - component: {fileID: 9090486997191636538}
   m_Layer: 5
   m_Name: Taskbar
   m_TagString: Untagged
@@ -296,7 +297,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1742339800770227970}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 8.1, y: 4.054197, z: 4.054197}
   m_ConstrainProportionsScale: 0
@@ -347,6 +348,19 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &9090486997191636538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742339800770227970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9485e93a5e6b7fa439688c8a74f21dbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clockText: {fileID: 5891252568602977283}
 --- !u!1 &6237831343502828805
 GameObject:
   m_ObjectHideFlags: 0

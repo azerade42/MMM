@@ -8,7 +8,12 @@ public class SystemTimeDisplay : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI clockText;
-    void Update()
+
+    void Start()
+    {
+        InvokeRepeating("StartClock", 0f, 1.0f);
+    }
+    void StartClock()
     {
         clockText.text = System.DateTime.Now.ToString("hh:mm tt");
     }
