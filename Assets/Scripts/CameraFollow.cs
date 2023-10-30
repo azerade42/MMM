@@ -6,16 +6,17 @@ public class CameraFollow : MonoBehaviour
 {
     [SerializeField] private Transform _target;
 
-    private Vector3 startOffest;
+    private Vector3 startOffset;
 
     private void Start()
     {
-        startOffest = transform.position;
+        startOffset = transform.position;
     }
 
     private void LateUpdate()
     {
-        transform.position = _target.position + startOffest;
+        Vector3 newCameraPos = _target.position + startOffset;
+        transform.position = new Vector3(newCameraPos.x + 40f, 0, newCameraPos.z);
     }
 
 }
