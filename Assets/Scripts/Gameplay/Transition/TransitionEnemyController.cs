@@ -5,9 +5,9 @@ using UnityEngine;
 public class TransitionEnemyController : MonoBehaviour
 {
     private List<RailPath> railPaths;
-    [SerializeField] private RailPath topRail;
-    [SerializeField] private RailPath middleRail;
-    [SerializeField] private RailPath bottomRail;
+    public RailPath topRail;
+    public RailPath middleRail;
+    public RailPath bottomRail;
 
     [SerializeField] private int startIndex = 10;
 
@@ -75,12 +75,12 @@ public class TransitionEnemyController : MonoBehaviour
         }
     }
 
-    private void SwitchRail()
+    public void SwitchRail()
     {
         currentRail = railPaths[UnityEngine.Random.Range(0, railPaths.Count)];
         railPositions = currentRail.GetRailPath();
     }
-    private void SwitchRail(int railIndex)
+    public void SwitchRail(int railIndex)
     {
         currentRail = railPaths[railIndex];
         railPositions = currentRail.GetRailPath();

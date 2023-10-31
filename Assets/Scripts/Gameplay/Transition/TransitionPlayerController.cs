@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 
 public class TransitionPlayerController : MonoBehaviour
 {
+    public static TransitionPlayerController Instance;
     private List<RailPath> railPaths;
     [SerializeField] private RailPath topRail;
     [SerializeField] private RailPath middleRail;
@@ -18,7 +19,7 @@ public class TransitionPlayerController : MonoBehaviour
     private RailPath currentRail;
     public List<Vector3> railPositions;
 
-    private int lastChildIndex;
+    public int lastChildIndex { get; private set; }
 
     Vector3 currentRailPos;
     Vector3 startPos;
@@ -30,6 +31,11 @@ public class TransitionPlayerController : MonoBehaviour
 
     
     private bool inputDisabled;
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
