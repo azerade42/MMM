@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Unity.VisualScripting;
 using UnityEngine;
+
+using UnityEngine.InputSystem;
 
 public class TransitionPlayerController : MonoBehaviour
 {
@@ -25,6 +28,9 @@ public class TransitionPlayerController : MonoBehaviour
 
     private float railDistance;
 
+    
+    private bool inputDisabled;
+
     void Start()
     {
         lastChildIndex = startIndex;
@@ -38,7 +44,7 @@ public class TransitionPlayerController : MonoBehaviour
         railPaths.Add(middleRail);
         railPaths.Add(bottomRail);
 
-        InvokeRepeating(nameof(SwitchRail), 0f, 1f);
+        //InvokeRepeating(nameof(SwitchRail), 0f, 1f);
     }
 
     void Update()
@@ -76,6 +82,58 @@ public class TransitionPlayerController : MonoBehaviour
     {
         currentRail = railPaths[UnityEngine.Random.Range(0, railPaths.Count)];
         railPositions = currentRail.GetRailPath();
+    }
+    private void SwitchRail(int railIndex)
+    {
+        currentRail = railPaths[railIndex];
+        railPositions = currentRail.GetRailPath();
+    }
+
+    public void OnMoveMouse(InputAction.CallbackContext context)
+    {
+        if (!inputDisabled)
+            Move(context.ReadValue<Vector2>());
+    }
+
+    private void Move(Vector2 mousePos)
+    {
+        //print(mousePos.y);
+        // float newMouseYPos = Mathf.Lerp(-1f, 1f, (mousePos.y - ScreenManager.Instance.BottomLeftScreenPos.y) / ScreenManager.Instance.InsideScreenSize.y);
+        // playerYPos = newMouseYPos * -screenBounds.y;
+        // playerYPos = Mathf.Clamp(playerYPos, screenBounds.y + playerHeight, -screenBounds.y - playerHeight);
+
+        // if (lastYPos < newMouseYPos)
+        //     _playerAnim.SetFloat("mouseYPos", 1);
+        // else if (lastYPos > newMouseYPos)
+        //     _playerAnim.SetFloat("mouseYPos", -1);
+        // else
+        //     _playerAnim.SetFloat("mouseYPos", 0);
+        
+        // if (++frameCount > 10)
+        // {
+        //     lastYPos = newMouseYPos;
+        //     frameCount = 0;
+        // }
+        if (mousePos.y > 620 && currentRail != topRail)
+        {
+            // print("top!");
+            SwitchRail(0);
+        }
+        else if (mousePos.y > 440 && mousePos.y < 600 && currentRail != middleRail)
+        {
+            // print("middle!");
+            SwitchRail(1);
+        }
+        else if (mousePos.y < 400 && currentRail != bottomRail)
+        {
+            // print("bottom!");
+            SwitchRail(2);
+        }
+        else
+        {
+            // print("WRONG");
+        }
+
     }
 
 
