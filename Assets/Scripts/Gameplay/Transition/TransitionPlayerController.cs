@@ -32,20 +32,9 @@ public class TransitionPlayerController : MonoBehaviour
     
     private bool inputDisabled;
 
-    private Vector2 _screenBounds;
-    public Vector2 ScreenBounds
-    {
-        get { return _screenBounds; }
-    }
-
-    
-    [SerializeField] private Vector2 _referenceResolution;
-
     void Awake()
     {
         Instance = this;
-
-        
     }
 
     void Start()
@@ -67,8 +56,6 @@ public class TransitionPlayerController : MonoBehaviour
     void Update()
     {
         if (railPositions.Count <= 0) return;
-
-        railPositions = currentRail.GetRailPath();
 
         if (currentLerpPos == 0)
             railDistance = Vector3.Distance(railPositions[lastChildIndex], railPositions[lastChildIndex + 1]);
