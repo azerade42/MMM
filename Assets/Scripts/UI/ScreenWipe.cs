@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class ScreenWipe : MonoBehaviour
 {
+    public static Action ScreenWipeFinished;
+
     [SerializeField]
     [Range(0.1f, 5f)]
     private float wipeSpeed = 1f;
@@ -15,7 +18,7 @@ public class ScreenWipe : MonoBehaviour
     [SerializeField]
     private Image loadingIcon;
 
-    private RectTransform loadingIconRT;
+    // private RectTransform loadingIconRT;
 
     [SerializeField]
     private RectTransform startPos;
@@ -34,8 +37,25 @@ public class ScreenWipe : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         background.gameObject.SetActive(false);
-        loadingIconRT = loadingIcon.gameObject.GetComponent<RectTransform>();
+        // loadingIconRT = loadingIcon.gameObject.GetComponent<RectTransform>();
+        // loadingIcon.gameObject.GetComponent<FadeScript>();
     }
+
+    private void OnEnable()
+    {
+        TransitionManager.LoadLevelStart += NickWipeToBlocked;
+        FadeScript.FadeOutComplete += NickWipeToNotBlocked;
+    }
+
+    private void OnDisable()
+    {
+        TransitionManager.LoadLevelStart -= NickWipeToBlocked;
+        FadeScript.FadeOutComplete -= NickWipeToNotBlocked;
+    }
+
+    private void NickWipeToBlocked() => ToggleWipe(true);
+
+    private void NickWipeToNotBlocked() => ToggleWipe(false);
 
     public void ToggleWipe(bool blockScreen)
     {
@@ -63,13 +83,17 @@ public class ScreenWipe : MonoBehaviour
     {
         background.gameObject.SetActive(true);
         wipeProgress += Time.deltaTime * (1f / wipeSpeed);
-        loadingIconRT.anchoredPosition = Vector2.Lerp(startPos.anchoredPosition, endPos.anchoredPosition, wipeProgress);
+        // loadingIconRT.anchoredPosition = Vector2.Lerp(startPos.anchoredPosition, endPos.anchoredPosition, wipeProgress);
 
         background.fillAmount = wipeProgress;
         if (wipeProgress >= 1f)
         {
             isDone = true;
             wipeMode = WipeMode.Blocked;
+
+            loadingIcon.gameObject.SetActive(true);
+
+            ScreenWipeFinished?.Invoke();
         }
     }
 
@@ -77,7 +101,8 @@ public class ScreenWipe : MonoBehaviour
     {
         wipeProgress -= Time.deltaTime * (1f / wipeSpeed);
         background.fillAmount = wipeProgress;
-        loadingIconRT.anchoredPosition = Vector2.Lerp(startPos.anchoredPosition, endPos.anchoredPosition, wipeProgress);
+        // loadingIconRT.anchoredPosition = Vector2.Lerp(startPos.anchoredPosition, endPos.anchoredPosition, wipeProgress);
+
 
         if (wipeProgress <= 0)
         {
