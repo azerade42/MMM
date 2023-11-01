@@ -10,13 +10,13 @@ public class CameraFollow : MonoBehaviour
 
     private void Start()
     {
-        startOffset = transform.position + Vector3.right * 2;
+        startOffset = _target.position + Vector3.right * 50;
     }
 
-    private void LateUpdate()
-    {
-        Vector3 newCameraPos = _target.position + startOffset;
-        transform.position = new Vector3(newCameraPos.x + 40f, 0, startOffset.z);
-    }
+    // private void LateUpdate()
+    // {
+    //     Vector3 newCameraPos = _target.position + startOffset;
+    //     transform.position = new Vector3(newCameraPos.x + 40f, 0, startOffset.z);
+    // }
 
 }

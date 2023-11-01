@@ -9,6 +9,7 @@ using UnityEngine.InputSystem;
 public class TransitionPlayerController : MonoBehaviour
 {
     public static TransitionPlayerController Instance;
+    [SerializeField] private ScreenMoveLeft screenMoveLeft;
     private List<RailPath> railPaths;
     [SerializeField] private RailPath topRail;
     [SerializeField] private RailPath middleRail;
@@ -28,13 +29,23 @@ public class TransitionPlayerController : MonoBehaviour
     public float backgroundSpeed;
 
     private float railDistance;
-
     
     private bool inputDisabled;
+
+    private Vector2 _screenBounds;
+    public Vector2 ScreenBounds
+    {
+        get { return _screenBounds; }
+    }
+
+    
+    [SerializeField] private Vector2 _referenceResolution;
 
     void Awake()
     {
         Instance = this;
+
+        
     }
 
     void Start()
@@ -57,6 +68,8 @@ public class TransitionPlayerController : MonoBehaviour
     {
         if (railPositions.Count <= 0) return;
 
+        railPositions = currentRail.GetRailPath();
+
         if (currentLerpPos == 0)
             railDistance = Vector3.Distance(railPositions[lastChildIndex], railPositions[lastChildIndex + 1]);
 
@@ -68,7 +81,8 @@ public class TransitionPlayerController : MonoBehaviour
             Vector3 nextRailPos = railPositions[lastChildIndex + 1];
         
             currentRailPos = Vector3.Lerp(lastRailPos, nextRailPos, currentLerpPos / railDistance);
-            transform.position = currentRailPos;
+            screenMoveLeft.transform.position = new Vector3(-currentRailPos.x, 0, 0);
+            transform.position = new Vector3(0, currentRailPos.y, currentRailPos.z);
         }
         else if (currentLerpPos >= 1)
         {
@@ -80,6 +94,7 @@ public class TransitionPlayerController : MonoBehaviour
         {
             lastChildIndex = 0;
             transform.position = startPos;
+            screenMoveLeft.transform.position = screenMoveLeft.startPos;
             // swap to next rail
         }
     }
@@ -103,34 +118,19 @@ public class TransitionPlayerController : MonoBehaviour
 
     private void Move(Vector2 mousePos)
     {
-        //print(mousePos.y);
-        // float newMouseYPos = Mathf.Lerp(-1f, 1f, (mousePos.y - ScreenManager.Instance.BottomLeftScreenPos.y) / ScreenManager.Instance.InsideScreenSize.y);
-        // playerYPos = newMouseYPos * -screenBounds.y;
-        // playerYPos = Mathf.Clamp(playerYPos, screenBounds.y + playerHeight, -screenBounds.y - playerHeight);
+        float curHeight = Screen.height;
 
-        // if (lastYPos < newMouseYPos)
-        //     _playerAnim.SetFloat("mouseYPos", 1);
-        // else if (lastYPos > newMouseYPos)
-        //     _playerAnim.SetFloat("mouseYPos", -1);
-        // else
-        //     _playerAnim.SetFloat("mouseYPos", 0);
-        
-        // if (++frameCount > 10)
-        // {
-        //     lastYPos = newMouseYPos;
-        //     frameCount = 0;
-        // }
-        if (mousePos.y > 620 && currentRail != topRail)
+        if (mousePos.y > curHeight*2/3f && currentRail != topRail)
         {
             // print("top!");
             SwitchRail(0);
         }
-        else if (mousePos.y > 440 && mousePos.y < 600 && currentRail != middleRail)
+        else if (mousePos.y > curHeight*5/12f && mousePos.y < curHeight*7/12f && currentRail != middleRail)
         {
             // print("middle!");
             SwitchRail(1);
         }
-        else if (mousePos.y < 400 && currentRail != bottomRail)
+        else if (mousePos.y < curHeight/3f && currentRail != bottomRail)
         {
             // print("bottom!");
             SwitchRail(2);
@@ -139,8 +139,5 @@ public class TransitionPlayerController : MonoBehaviour
         {
             // print("WRONG");
         }
-
     }
-
-
 }
