@@ -122,9 +122,9 @@ MonoBehaviour:
   topRail: {fileID: 0}
   middleRail: {fileID: 0}
   bottomRail: {fileID: 0}
-  startIndex: 20
+  startIndex: 0
   railPositions: []
-  backgroundSpeed: 25
+  backgroundSpeed: 30
 --- !u!1001 &8505634043744945907
 PrefabInstance:
   m_ObjectHideFlags: 0

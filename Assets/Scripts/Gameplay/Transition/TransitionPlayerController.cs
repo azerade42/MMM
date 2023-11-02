@@ -55,7 +55,7 @@ public class TransitionPlayerController : MonoBehaviour
 
     void Update()
     {
-        if (railPositions.Count <= 0) return;
+        if (railPositions.Count <= 1) return;
 
         if (currentLerpPos == 0)
             railDistance = Vector3.Distance(railPositions[lastChildIndex], railPositions[lastChildIndex + 1]);

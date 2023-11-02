@@ -5,7 +5,7 @@ using UnityEngine;
 public class ScreenMoveLeft : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] private float backgroundSpeed;
+    // [SerializeField] private float backgroundSpeed;
     public Vector3 startPos;
     public float repeatWidth;
 

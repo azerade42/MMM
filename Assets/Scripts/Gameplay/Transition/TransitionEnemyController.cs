@@ -9,7 +9,7 @@ public class TransitionEnemyController : MonoBehaviour
     public RailPath middleRail;
     public RailPath bottomRail;
 
-    [SerializeField] private int startIndex = 10;
+    public int startIndex = 10;
 
     private RailPath currentRail;
     public List<Vector3> railPositions;
@@ -27,11 +27,14 @@ public class TransitionEnemyController : MonoBehaviour
     
     private bool inputDisabled;
 
+    TransitionPlayerController pc;
+
     void Start()
     {
-        lastChildIndex = startIndex;
+        pc = TransitionPlayerController.Instance;
         currentRail = topRail;
         railPositions = currentRail.GetRailPath();
+        lastChildIndex = 0;
         startPos = railPositions[lastChildIndex];
         transform.position = startPos;
 
@@ -46,10 +49,9 @@ public class TransitionEnemyController : MonoBehaviour
 
     void Update()
     {
-        if (railPositions.Count <= 0) return;
+        if (railPositions.Count <= 1) return;
 
-        if (currentLerpPos == 0)
-            railDistance = Vector3.Distance(railPositions[lastChildIndex], railPositions[lastChildIndex + 1]);
+        railDistance = Vector3.Distance(railPositions[lastChildIndex], railPositions[lastChildIndex + 1]);
 
         currentLerpPos += Time.deltaTime * backgroundSpeed;
         Vector3 lastRailPos = railPositions[lastChildIndex];
@@ -69,8 +71,9 @@ public class TransitionEnemyController : MonoBehaviour
 
         if (lastChildIndex >= railPositions.Count - 1)
         {
-            lastChildIndex = 0;
-            transform.position = startPos;
+            Destroy(gameObject);
+            // lastChildIndex = 0;
+            // transform.position = startPos;
             // swap to next rail
         }
     }

@@ -17,11 +17,11 @@ public class TransitionEnemySpawner : MonoBehaviour
     {
         pc = TransitionPlayerController.Instance;
 
-        Invoke(nameof(SpawnEnemy), 2f);
+        InvokeRepeating(nameof(SpawnEnemy), 0f, 1f);
     }
     private void SpawnEnemy()
     {
-        TransitionEnemyController enemy = Instantiate(transitionEnemyPrefab, pc.railPositions[pc.railPositions.Count - pc.lastChildIndex], Quaternion.identity);
+        TransitionEnemyController enemy = Instantiate(transitionEnemyPrefab, Vector3.zero, Quaternion.identity);
         // Instantiate(sparkEffect, enemy.transform.position, enemy.transform.rotation);
         enemy.topRail = topRail;
         enemy.middleRail = middleRail;
