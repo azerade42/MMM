@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Unity.VisualScripting;
 using UnityEngine;
+using System;
 
 using UnityEngine.InputSystem;
 
@@ -32,9 +33,25 @@ public class TransitionPlayerController : MonoBehaviour
     
     private bool inputDisabled;
 
+    public static Action OnHit;
+
+    private bool paused;
+
     void Awake()
     {
         Instance = this;
+    }
+
+    void OnEnable()
+    {
+        GameManager.Pause += () => paused = true;
+        GameManager.UnPause += () => paused = false;
+    }
+
+    void OnDisable()
+    {
+        GameManager.Pause -= () => paused = false;
+        GameManager.UnPause -= () => paused = false;
     }
 
     void Start()
@@ -56,6 +73,7 @@ public class TransitionPlayerController : MonoBehaviour
     void Update()
     {
         if (railPositions.Count <= 1) return;
+        if (paused) return;
 
         if (currentLerpPos == 0)
             railDistance = Vector3.Distance(railPositions[lastChildIndex], railPositions[lastChildIndex + 1]);
@@ -126,5 +144,11 @@ public class TransitionPlayerController : MonoBehaviour
         {
             // print("WRONG");
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.GetComponent<TransitionEnemyController>() != null)
+            OnHit?.Invoke();
     }
 }
