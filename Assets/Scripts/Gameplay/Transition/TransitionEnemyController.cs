@@ -8,73 +8,70 @@ public class TransitionEnemyController : MonoBehaviour
     public RailPath topRail;
     public RailPath middleRail;
     public RailPath bottomRail;
-
-    public int startIndex = 10;
-
     private RailPath currentRail;
     public List<Vector3> railPositions;
 
     private int lastChildIndex;
-
-    Vector3 currentRailPos;
-    Vector3 startPos;
-    float currentLerpPos;
-
-    public float backgroundSpeed;
-
+    private int railPointsCompleted;
     private float railDistance;
-
-    
-    private bool inputDisabled;
-
-    TransitionPlayerController pc;
+    private float currentLerpPos;
+    private float backgroundSpeed;
+    private TransitionPlayerController pc;
+    bool paused;
 
     void Start()
     {
         pc = TransitionPlayerController.Instance;
-        currentRail = topRail;
-        railPositions = currentRail.GetRailPath();
-        lastChildIndex = 0;
-        startPos = railPositions[lastChildIndex];
-        transform.position = startPos;
+        lastChildIndex = pc.lastChildIndex + 50;
+        backgroundSpeed = pc.backgroundSpeed;
 
         railPaths = new List<RailPath>();
         railPaths.Add(topRail);
         railPaths.Add(middleRail);
         railPaths.Add(bottomRail);
         SwitchRail();
+    }
 
-        //InvokeRepeating(nameof(SwitchRail), 0f, 1f);
+    void OnEnable()
+    {
+        if (pc != null)
+            lastChildIndex = pc.lastChildIndex + 50;
+
+        GameManager.Pause += () => paused = true;
+        GameManager.UnPause += () => paused = false;
+    }
+
+    void OnDisable()
+    {
+        GameManager.Pause -= () => paused = true;
+        GameManager.UnPause -= () => paused = false;
     }
 
     void Update()
     {
+        if (paused) return;
         if (railPositions.Count <= 1) return;
-
-        railDistance = Vector3.Distance(railPositions[lastChildIndex], railPositions[lastChildIndex + 1]);
-
-        currentLerpPos += Time.deltaTime * backgroundSpeed;
+        if (railPointsCompleted >= 100 || lastChildIndex <= 0) { railPointsCompleted = 0; TransitionEnemySpawner.Instance.objPool.Release(this); return; }
+        
         Vector3 lastRailPos = railPositions[lastChildIndex];
 
-        if (currentLerpPos < railDistance && lastChildIndex < railPositions.Count - 1)
+        railDistance = Vector3.Distance(lastRailPos, railPositions[lastChildIndex - 1]);
+        railPositions = currentRail.GetRailPath();
+
+        currentLerpPos += Time.deltaTime * backgroundSpeed;
+
+        if (currentLerpPos < railDistance && lastChildIndex > 0)
         {
-            Vector3 nextRailPos = railPositions[lastChildIndex + 1];
+            Vector3 nextRailPos = railPositions[lastChildIndex - 1];
         
-            currentRailPos = Vector3.Lerp(lastRailPos, nextRailPos, currentLerpPos / railDistance);
+            Vector3 currentRailPos = Vector3.Lerp(lastRailPos, nextRailPos, currentLerpPos / railDistance);
             transform.position = currentRailPos;
         }
         else if (currentLerpPos >= 1)
         {
-            lastChildIndex++;
+            lastChildIndex--;
+            railPointsCompleted++;
             currentLerpPos = 0;
-        }
-
-        if (lastChildIndex >= railPositions.Count - 1)
-        {
-            Destroy(gameObject);
-            // lastChildIndex = 0;
-            // transform.position = startPos;
-            // swap to next rail
         }
     }
 
@@ -88,5 +85,4 @@ public class TransitionEnemyController : MonoBehaviour
         currentRail = railPaths[railIndex];
         railPositions = currentRail.GetRailPath();
     }
-
 }
