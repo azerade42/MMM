@@ -5,9 +5,9 @@ using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
-public class TransitionScoreTracker : MonoBehaviour
+public class TransitionScoreTracker : Singleton<TransitionScoreTracker>
 {
-    private int score;
+    public int score;
 
     [SerializeField] private TextMeshProUGUI scoreText;
 
