@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,8 +7,9 @@ using UnityEngine.UI;
 public class TransitionHealthBar : MonoBehaviour
 {
     public Slider slider;
-
     public float health;
+
+    [SerializeField] private EndScreen endScreen;
 
     private void OnEnable()
     {
@@ -27,7 +29,9 @@ public class TransitionHealthBar : MonoBehaviour
 
         if (newValue <= 0f)
         {
+            endScreen.SetScreenActive();
             GameManager.TriggerGameOver();
+            // endScreen.gameObject.SetActive(true);
         }
     }
 }
