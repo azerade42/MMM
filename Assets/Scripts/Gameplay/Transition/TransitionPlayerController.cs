@@ -46,16 +46,12 @@ public class TransitionPlayerController : MonoBehaviour
     {
         GameManager.Pause += () => paused = true;
         GameManager.UnPause += () => paused = false;
-        GameManager.GameOver += () => paused = true;
-        GameManager.SongOver += () => paused = true;
     }
 
     void OnDisable()
     {
         GameManager.Pause -= () => paused = false;
         GameManager.UnPause -= () => paused = false;
-        GameManager.GameOver -= () => paused = true;
-        GameManager.SongOver -= () => paused = true;
     }
 
     void Start()
