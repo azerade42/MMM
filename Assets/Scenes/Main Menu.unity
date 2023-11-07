@@ -3844,7 +3844,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -14855,6 +14855,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1764835225383394713, guid: 36bdfa37b5bb68447adfe4f14390c3bb,
+        type: 3}
+      propertyPath: musicSounds.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1764835225383394713, guid: 36bdfa37b5bb68447adfe4f14390c3bb,
+        type: 3}
+      propertyPath: musicSounds.Array.data[4].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 509c12ab366f60646b493deff2dc360d, type: 3}
+    - target: {fileID: 1764835225383394713, guid: 36bdfa37b5bb68447adfe4f14390c3bb,
+        type: 3}
+      propertyPath: musicSounds.Array.data[4].name
+      value: Level3Music
+      objectReference: {fileID: 0}
     - target: {fileID: 1771707431967313226, guid: 36bdfa37b5bb68447adfe4f14390c3bb,
         type: 3}
       propertyPath: m_RootOrder

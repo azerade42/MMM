@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TransitionLevel.unity
     guid: 97c64ca8c963cb6408ad8926f420ebc0
+  - enabled: 1
+    path: Assets/Scenes/BillboardLevel.unity
+    guid: 39d8c00c5b747a94a9382add8771bf2b
   m_configObjects: {}
