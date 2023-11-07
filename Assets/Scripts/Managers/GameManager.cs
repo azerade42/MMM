@@ -15,7 +15,8 @@ public class GameManager : Singleton<GameManager>
         GameOver?.Invoke();
         Time.timeScale = 0f;
         AudioManager.Instance.musicSource.Stop();
-        PlayerInput.Instance.DisableInput();
+        if (PlayerInput.Instance != null)
+            PlayerInput.Instance.DisableInput();
     }
 
     public static void TriggerSongOver()
@@ -23,7 +24,8 @@ public class GameManager : Singleton<GameManager>
         SongOver?.Invoke();
         Time.timeScale = 0f;
         AudioManager.Instance.musicSource.Stop();
-        PlayerInput.Instance.DisableInput();
+        if (PlayerInput.Instance != null)
+            PlayerInput.Instance.DisableInput();
     }
 
     public static void TriggerPause()
