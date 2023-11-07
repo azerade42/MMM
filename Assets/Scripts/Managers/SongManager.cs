@@ -108,6 +108,9 @@ public class SongManager : Singleton<SongManager>
             case 2:
                 AudioManager.Instance.PlayMusic("Level2Music");
                 break;
+            case 3:
+                AudioManager.Instance.PlayMusic("Level3Music");
+                break;
         }
 
         songPlaying = true;
