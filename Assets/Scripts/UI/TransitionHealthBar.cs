@@ -30,7 +30,7 @@ public class TransitionHealthBar : MonoBehaviour
         if (newValue <= 0f)
         {
             endScreen.SetScreenActive();
-            GameManager.TriggerGameOver();
+            GameManager.TriggerSongOver();
             // endScreen.gameObject.SetActive(true);
         }
     }
