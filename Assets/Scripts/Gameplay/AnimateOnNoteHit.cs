@@ -1,3 +1,58 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:f24d0a16a41b93ceafe15d90478e636a09378c18acf900fcd49162db543d9765
-size 1379
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+enum Lane
+{
+    Top,
+    Middle,
+    Bottom
+}
+
+[RequireComponent(typeof(Animator))]
+public class AnimateOnNoteHit : MonoBehaviour
+{
+    [SerializeField] private Lane laneHitToAnimate;
+
+    private void OnEnable()
+    {
+        switch (laneHitToAnimate)
+        {
+            case Lane.Top:
+                LaneManager.AnimateAllTopLanes += AnimateObject;
+                break;
+            case Lane.Middle:
+                LaneManager.AnimateAllMiddleLanes += AnimateObject;
+                break;
+            case Lane.Bottom:
+                LaneManager.AnimateAllBottomLanes += AnimateObject;
+                break;
+        }
+    }
+
+    private void OnDisable()
+    {
+        switch (laneHitToAnimate)
+        {
+            case Lane.Top:
+                LaneManager.AnimateAllTopLanes -= AnimateObject;
+                break;
+            case Lane.Middle:
+                LaneManager.AnimateAllMiddleLanes -= AnimateObject;
+                break;
+            case Lane.Bottom:
+                LaneManager.AnimateAllBottomLanes -= AnimateObject;
+                break;
+        }
+    }
+
+    private void AnimateObject()
+    {
+        GetComponent<Animator>().SetTrigger("Animate");
+    }
+
+    public void ResetAnimTrigger()
+    {
+        GetComponent<Animator>().ResetTrigger("Animate");
+    }
+}

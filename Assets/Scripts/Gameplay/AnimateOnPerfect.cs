@@ -1,3 +1,27 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:1e372c9b9141f466b7beb9efe7c4b2a3b52c66ccfecf5ef027ef5cd4cf89dfb0
-size 555
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[RequireComponent(typeof(Animator))]
+public class AnimateOnPerfect : MonoBehaviour
+{
+    private void OnEnable()
+    {
+        LaneManager.HitPerfect += AnimateObject;
+    }
+
+    private void OnDisable()
+    {
+        LaneManager.HitPerfect -= AnimateObject;
+    }
+
+    private void AnimateObject()
+    {
+        GetComponent<Animator>().SetTrigger("Animate");
+    }
+
+    public void ResetAnimTrigger()
+    {
+        GetComponent<Animator>().ResetTrigger("Animate");
+    }
+}

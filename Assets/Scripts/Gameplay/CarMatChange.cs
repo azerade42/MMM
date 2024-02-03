@@ -1,3 +1,15 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:0cd84b2c3d92f6a1a222c9086728f87ec664ef187b4dead9cda82daae087c98f
-size 399
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CarMatChange : MonoBehaviour
+{
+    public Material[] randomColorMats;
+    void Start()
+    {
+        Material[] materials = GetComponent<Renderer>().materials;
+        materials[1] = randomColorMats[Random.Range(0, randomColorMats.Length)];
+        GetComponent<Renderer>().materials = materials;
+    }
+
+}

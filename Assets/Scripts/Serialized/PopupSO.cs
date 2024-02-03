@@ -1,3 +1,17 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:1b85ccc0cbc096d4aaf76cb86e20e191338f9d3da278f3106dcdaf280d7a746f
-size 323
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public enum PopupType
+{
+    WidescreenVideo,
+    SquareVideo,
+}
+
+[CreateAssetMenu(menuName = "PopupSO", order = 2)]
+public class PopupSO : ScriptableObject
+{
+    public PopupType type;
+    public Texture texture;
+    public float scale = 1;
+}

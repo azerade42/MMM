@@ -1,3 +1,17 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:b1d486535eb0fd7e4b0c0d28bd52fc4c272b9d5c5c6a093a6c7b8b7cbeb5a963
-size 508
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1963cd607607cae41845f6af64c00c13, type: 3}
+  m_Name: CritErrorPopup
+  m_EditorClassIdentifier: 
+  type: 0
+  texture: {fileID: 2800000, guid: fa7e4fe43daf4d14c9adfd28c2a4317c, type: 3}
+  scale: 0.64644

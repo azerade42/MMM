@@ -1,3 +1,44 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:d5d802b718a7de91eb722af0c5af79d881795fba01170ede6875ed62999007e0
-size 1103
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class GameManager : Singleton<GameManager>
+{
+    public static Action GameOver;
+    public static Action SongOver;
+    public static Action Pause;
+    public static Action UnPause;
+
+    public static void TriggerGameOver()
+    {
+        GameOver?.Invoke();
+        Time.timeScale = 0f;
+        AudioManager.Instance.musicSource.Stop();
+        if (PlayerInput.Instance != null)
+            PlayerInput.Instance.DisableInput();
+    }
+
+    public static void TriggerSongOver()
+    {
+        SongOver?.Invoke();
+        Time.timeScale = 0f;
+        AudioManager.Instance.musicSource.Stop();
+        if (PlayerInput.Instance != null)
+            PlayerInput.Instance.DisableInput();
+    }
+
+    public static void TriggerPause()
+    {
+        Time.timeScale = 0f;
+        Pause?.Invoke();
+        AudioManager.Instance.musicSource.Pause();
+    }
+
+    public static void TriggerUnPause()
+    {
+        Time.timeScale = 1f;
+        UnPause?.Invoke();
+        AudioManager.Instance.musicSource.Play();
+    }
+}

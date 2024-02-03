@@ -1,3 +1,21 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:7d5e784558b262ea3ebaccdc866bffacbdc1762a3799066a3a544520e1f1ebd2
-size 520
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class EndScreenController : MonoBehaviour
+{
+    public EndScreen endScreen;
+    public LoseScreen loseScreen;
+
+    private void OnEnable()
+    {
+        GameManager.SongOver += endScreen.SetScreenActive;
+        GameManager.GameOver += loseScreen.SetScreenActive;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.SongOver -= endScreen.SetScreenActive;
+        GameManager.GameOver -= loseScreen.SetScreenActive;
+    }
+}

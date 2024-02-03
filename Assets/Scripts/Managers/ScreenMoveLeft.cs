@@ -1,3 +1,24 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:553b26b0ac2b9d454bf1b4dd8515c0e7fbacccf3478e294db9ea49c3f8e1f760
-size 579
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ScreenMoveLeft : MonoBehaviour
+{
+    // Start is called before the first frame update
+    // [SerializeField] private float backgroundSpeed;
+    public Vector3 startPos;
+    public float repeatWidth;
+
+    void Start()
+    {
+        startPos = transform.position;
+        repeatWidth = GetComponent<BoxCollider2D>().size.x/2;
+    }
+    void Update()
+    {
+        if(transform.position.x < startPos.x - repeatWidth)
+        {
+            transform.position = startPos;
+        }
+    }
+}

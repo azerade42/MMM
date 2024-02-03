@@ -1,3 +1,103 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:3fb2f8a154c3960cf64bbe697c90a007054a378840385eefc4fd87094e86bcf6
-size 2002
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System;
+
+public class AudioManager : MonoBehaviour
+{
+    public static AudioManager Instance;
+
+    public Sound[] musicSounds, sfxSounds, worldSounds;
+    public AudioSource masterSource, musicSource, sfxSource, worldSource;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void Start()
+    {
+        // PlayMusic("MenuMusic");
+    }
+
+    public void PlayMusic(string name) 
+    {
+        Sound s = Array.Find(musicSounds, x => x.name == name);
+
+        if (s == null)
+        {
+            Debug.Log("Sound Not Found");
+        }
+        else
+        {
+            musicSource.clip = s.clip;
+            musicSource.Play();
+        }
+    }
+
+    public void PlaySFX(string name)
+    {
+        Sound s = Array.Find(sfxSounds, x => x.name == name);
+
+        if (s == null)
+        {
+            Debug.Log("Sound Not Found");
+        }
+        else
+        {
+            sfxSource.PlayOneShot(s.clip);
+        }
+    }
+
+    public void PlayWorld (string name)
+    {
+        Sound s = Array.Find(worldSounds, x => x.name == name);
+
+        if (s == null)
+        {
+            Debug.Log("Sound Not Found");
+        }
+        else
+        {
+            worldSource.PlayOneShot(s.clip);
+        }
+    }
+
+    public void ToggleMusic()
+    {
+        musicSource.mute = !musicSource.mute;
+    }
+
+    public void ToggleSFX()
+    {
+        sfxSource.mute = !sfxSource.mute;
+    }
+
+    public void ToggleWorld()
+    {
+        sfxSource.mute = !sfxSource.mute;
+    }
+
+    public void MusicVolume(float volume)
+    {
+        musicSource.volume = volume;
+    }
+
+    public void SFXVolume(float volume)
+    {
+        sfxSource.volume = volume;
+    }
+
+    public void WorldVolume(float volume)
+    {
+        worldSource.volume = volume;
+    }
+}

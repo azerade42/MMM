@@ -1,3 +1,59 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:62f36c5b71c4559676d920c6f2cc9f6638b9e669ce11533171d7ce80ecebcc00
-size 1800
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Audio;
+using TMPro;
+
+public class OptionsController : MonoBehaviour
+{
+    [SerializeField]
+    private Slider _masterSlider, _musicSlider, _sfxSlider;
+    [SerializeField]
+    private TextMeshProUGUI masterPercent, musicPercent, sfxPercent;
+
+    [SerializeField]
+    private GameObject fullScreenToggle;
+
+    [SerializeField]
+    private AudioMixer mixer;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        _masterSlider.value = SaveValues.masterVolume;
+        _musicSlider.value = SaveValues.musicVolume;
+        _sfxSlider.value = SaveValues.sfxVolume;
+
+        fullScreenToggle.GetComponent<Toggle>().isOn = SaveValues.isFullscreen;
+    }
+    
+    public void MasterVolume()
+    {
+        masterPercent.text = Mathf.RoundToInt(_masterSlider.value * 100) + "%";
+        mixer.SetFloat ("MasterVol", Mathf.Log10 (_masterSlider.value) * 20);
+        //AudioManager.Instance.MasterVolume(_masterSlider.value);
+        SaveValues.masterVolume = _masterSlider.value;
+
+    }
+
+    public void MusicVolume()
+    {
+        musicPercent.text = Mathf.RoundToInt(_musicSlider.value * 100) + "%";
+        AudioManager.Instance.MusicVolume(_musicSlider.value);
+        SaveValues.musicVolume = _musicSlider.value;
+    }
+    public void SFXVolume()
+    {
+        sfxPercent.text = Mathf.RoundToInt(_sfxSlider.value * 100) + "%";
+        AudioManager.Instance.SFXVolume(_sfxSlider.value); 
+        AudioManager.Instance.WorldVolume(_sfxSlider.value);
+        SaveValues.sfxVolume = _sfxSlider.value;
+    }
+
+    public void SetFullScreen(bool isFullscreen)
+    {
+        Screen.fullScreen = isFullscreen;
+        SaveValues.isFullscreen = isFullscreen;
+    }
+}

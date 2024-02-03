@@ -1,3 +1,27 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:9a20439268ae3e2803d9ac98a903aaa5b9141cc614598f1d8a11bf0920563b91
-size 574
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class WindowManager : MonoBehaviour
+{
+    public Vector3 shrinkScale;
+    public Vector3 moveScale;
+    bool shrinkTrigger = false;
+    bool moveTrigger = false;
+    void Update()
+    {
+        if(shrinkTrigger)
+            transform.localScale += shrinkScale;
+        if(moveTrigger)
+            transform.position += moveScale;
+    }
+    public void Shrink()
+    {
+        shrinkTrigger = !shrinkTrigger;
+    }
+    public void Move()
+    {
+        moveTrigger = !moveTrigger;
+    }
+
+}

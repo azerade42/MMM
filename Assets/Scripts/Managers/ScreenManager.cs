@@ -1,3 +1,95 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:ed8b3f8875c4fa23cab1f4617d08df5ad3f37fc2f73a6a9e4b0a55a1b7bad60e
-size 3068
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class ScreenManager : Singleton<ScreenManager>
+{
+    [HideInInspector] public bool EndSession; // ????
+
+    [Header("Screen")]
+    [SerializeField] private Vector2 _referenceResolution;
+    [SerializeField] private RectMask2D _gameplayWindowBorder;
+    [SerializeField] public Transform _bottomLeftScreen;
+    [SerializeField] private Transform _bottomRightScreen;
+    [SerializeField] public Transform _topLeftScreen;
+
+    [Header("Camera")]
+    [SerializeField] private Transform _outsideCamera;
+
+    public GameObject testcube;
+
+    private Vector2 _screenBounds;
+    public Vector2 ScreenBounds
+    {
+        get { return _screenBounds; }
+    }
+
+    private Vector2 _insideScreenSize;
+    public Vector2 InsideScreenSize
+    {
+        get { return _insideScreenSize; }
+    }
+
+    private Vector3 _bottomLeftScreenPos;
+    public Vector3 BottomLeftScreenPos
+    {
+        get { return _bottomLeftScreenPos; }
+    }
+
+    private List<float> _insideLanesYPositions;
+
+    public List<float> InsideLanesYPositions
+    {
+        get { return _insideLanesYPositions; }
+    }
+
+    private Vector2 _outsideScreenBounds;
+    public Vector2 OutsideScreenBounds
+    {
+        get { return _outsideScreenBounds; }
+    }
+
+    protected override void Init()
+    {
+        float xScreenBounds = _referenceResolution.x;
+        float yScreenBounds = _referenceResolution.y;
+        _screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(xScreenBounds, yScreenBounds, Camera.main.transform.position.z));
+        Instantiate(testcube, _screenBounds, Quaternion.identity);
+
+        _bottomLeftScreenPos = _outsideCamera.GetComponent<Camera>().WorldToScreenPoint(_bottomLeftScreen.position);
+        Vector3 bottomRightScreenPos = _outsideCamera.GetComponent<Camera>().WorldToScreenPoint(_bottomRightScreen.position);
+        Vector3 topLeftScreenPos = _outsideCamera.GetComponent<Camera>().WorldToScreenPoint(_topLeftScreen.position);
+
+        _insideScreenSize.x = bottomRightScreenPos.x - _bottomLeftScreenPos.x;
+        _insideScreenSize.y = topLeftScreenPos.y - _bottomLeftScreenPos.y;
+
+        _insideLanesYPositions = CalculateYPosLanes(3);
+        _outsideScreenBounds = CalculateOutsideScreenBounds();
+    }
+
+    private List<float> CalculateYPosLanes(int numLanes)
+    {
+        List<float> lanes = new List<float>();
+        float yScreenSize = Mathf.Abs(ScreenBounds.y);
+        float spacing = yScreenSize / numLanes;
+        
+        for (int i = 0; i < numLanes; i++)
+        {
+            float pos = spacing * 0.5f + spacing * i - yScreenSize * 0.5f;
+            lanes.Add(pos);
+        }
+
+        return lanes;
+    }
+
+    private Vector2 CalculateOutsideScreenBounds()
+    {
+        float outsideX = _bottomRightScreen.position.x - _bottomLeftScreen.position.x;
+        float outsideY = _topLeftScreen.position.y - _bottomLeftScreen.position.y;
+        return new Vector2(outsideX, outsideY);
+    }
+    
+}

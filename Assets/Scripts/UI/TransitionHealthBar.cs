@@ -1,3 +1,36 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:969ea65201fa99c6a97ab298bae35c1fa9e80227b0467bb454e567676e1f2458
-size 795
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class TransitionHealthBar : MonoBehaviour
+{
+    public Slider slider;
+
+    [SerializeField] private EndScreen endScreen;
+
+    private void OnEnable()
+    {
+        TransitionPlayerController.OnHit += TakeDamage;
+    }
+
+    private void OnDisable()
+    {
+        TransitionPlayerController.OnHit -= TakeDamage;
+    }
+
+    private void TakeDamage()
+    {
+        float newValue = slider.value - 1f;
+        slider.value = Mathf.Clamp(newValue, slider.minValue, slider.maxValue);
+
+
+        if (newValue <= 0f)
+        {
+            endScreen.SetScreenActive();
+            GameManager.TriggerSongOver();
+            // endScreen.gameObject.SetActive(true);
+        }
+    }
+}

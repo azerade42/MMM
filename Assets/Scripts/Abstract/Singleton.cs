@@ -1,3 +1,28 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:acc02222f6b451ac5d71f1b2104dbbdcf416d96eb13fd29821d717ac8ce57123
-size 681
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public abstract class Singleton<T> : MonoBehaviour where T : Singleton<T>
+    {
+        private static T _instance;
+ 
+        public static T Instance
+        {
+            get { return _instance; }
+        }
+ 
+        private void Awake()
+        {
+            if (_instance != null)
+            {
+                Debug.LogWarning("Second instance of " + typeof(T) + " created. Automatic self-destruct triggered.");
+                Destroy(this.gameObject);
+            }
+            
+            _instance = this as T;
+
+            Init();
+        }
+
+        protected virtual void Init() { }
+    }

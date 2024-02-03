@@ -1,3 +1,128 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:20494a09fdb5aae2a4553f627ea91b2dbede824b029ffca0c50a5655ed0c082a
-size 4075
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Pool;
+using TMPro;
+
+public class NoteManager : Singleton<NoteManager>
+{
+    // private ObjectPool<SafeNote> _safeTextPool;
+    // private ObjectPool<MalwareNote> _malwareTextPool;
+    // [SerializeField] private SafeNote _safePrefab;
+    [SerializeField] private RectTransform malwareCanvas;
+
+    private float _initalXPos;
+
+    public List<float> _lanesList; // make private later once lane is combined with this
+
+    public float LastNoteWidth;
+
+    private int _poolInitCount;
+
+    protected override void Init()
+    {
+        // _lanesList = CalculateYPosLanes(3);
+
+        // _safeTextPool = new ObjectPool<SafeNote>(() => {
+        //     return Instantiate(_safePrefab, malwareCanvas.transform);
+        // }, note => {
+        //     note.gameObject.SetActive(true);
+        // }, note => {
+        //     note.gameObject.SetActive(false);
+        // }, note => {
+        //     Destroy(note.gameObject);
+        // }, false,
+        // 4,
+        // 10
+        // );
+
+        // _malwareTextPool = new ObjectPool<MalwareNote>(() => {
+        //     return Instantiate(_malwarePrefab, malwareCanvas.transform);
+        // }, note => {
+        //     note.gameObject.SetActive(true);
+        // }, note => {
+        //     note.gameObject.SetActive(false);
+        // }, note => {
+        //     Destroy(note.gameObject);
+        // }, false,
+        // 50
+        // );
+        // InvokeRepeating(nameof(SpawnNote), 60f/130f, 60f/130f);
+
+    }
+
+    private void OnEnable()
+    {
+        // ActionManager.Instance.DeleteSafeNote += ReleaseSafeNote;
+        // ActionManager.Instance.DeleteMalwareNote += ReleaseMalwareNote;
+    }
+
+    private void OnDisable()
+    {
+        // ActionManager.Instance.DeleteSafeNote -= ReleaseSafeNote;
+        // ActionManager.Instance.DeleteMalwareNote -= ReleaseMalwareNote;
+    }
+
+    // private void ReleaseSafeNote(SafeNote note)
+    // {
+    //     //_safeTextPool.Release(note);
+    // }
+
+    // private void ReleaseMalwareNote(MalwareNote note)
+    // {
+    //     _malwareTextPool.Release(note);
+    // }
+
+
+    // private List<float> CalculateYPosLanes(int numLanes)
+    // {
+    //     List<float> lanes = new List<float>();
+
+    //     float spacing = malwareCanvas.rect.height / numLanes;
+        
+    //     for (int i = 0; i < numLanes; i++)
+    //     {
+    //         float pos = spacing * 0.5f + spacing * i - malwareCanvas.rect.height * 0.5f;
+    //         lanes.Add(pos);
+    //     }
+
+    //     return lanes;
+    // }
+
+    // private void SpawnNote()
+    // {
+    //     int randomLane = Random.Range(0,_lanesList.Count);
+    //     for (int i = 2; i < _lanesList.Count; i++)
+    //     {
+    //         SafeNote note;
+            
+    //         // if (i == randomLane)
+    //         // {
+    //         //     note = _malwareTextPool.Get();
+    //         //     TextMeshProUGUI noteTMP = note.gameObject.GetComponent<TextMeshProUGUI>();
+    //         //     // noteTMP.text = "EVIL";
+                
+    //         //     LastNoteWidth = noteTMP.preferredWidth;
+    //         // }
+            
+    //         {
+    //             note = _safeTextPool.Get();
+                
+    //             TextMeshProUGUI noteTMP = note.gameObject.GetComponent<TextMeshProUGUI>();
+    //             // while (noteTMP.preferredWidth < LastNoteWidth)
+    //             //     noteTMP.text += Random.Range(0,2);
+                
+    //             LastNoteWidth = noteTMP.preferredWidth;
+                
+    //         }
+    //         //Note note = _safeTextPool.Get();
+    //         Vector2 screenBounds = ScreenManager.Instance.ScreenBounds;
+            
+    //         float xPos = Mathf.Abs(screenBounds.x) * 2 + PlayerInput.Instance.transform.position.x + 0.175f;
+    //         float YPos = Mathf.Abs(screenBounds.y) * 2 * (_lanesList[i] / malwareCanvas.rect.height);
+    //         note.transform.position = new Vector3(xPos, YPos, 0);
+            
+    //         //print(LastNoteWidth);
+    //     }
+    // }
+}

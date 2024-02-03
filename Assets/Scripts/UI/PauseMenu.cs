@@ -1,3 +1,33 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:f781bdaadedda1798676bff3d13cef29aa4de855a932dd1f1aa51883508389e6
-size 706
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class PauseMenu : MonoBehaviour
+{
+    private TransitionManager transitionLevel;
+
+    private void Awake()
+    {
+        transitionLevel = FindObjectOfType<TransitionManager>();
+    }
+    public void PauseGame()
+    {
+        GameManager.TriggerPause();
+    }
+
+    public void ResumeGame()
+    {
+        GameManager.TriggerUnPause();
+    }
+    public void ToMainMenu(int sceneID)
+    {
+        Time.timeScale = 1f;
+        transitionLevel.StartLoad(sceneID);
+        AudioManager.Instance.musicSource.Stop();
+    }
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+}

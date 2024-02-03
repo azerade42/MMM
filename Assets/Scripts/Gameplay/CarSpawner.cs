@@ -1,3 +1,23 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:c7dd2491104262d0410e7d419252159000b249fc5e9036404512a0f8da3b57fe
-size 612
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[RequireComponent(typeof(RailPath))]
+public class CarSpawner : MonoBehaviour
+{
+    int railStartIndex = 0;
+    List<Vector3> carPositions;
+
+    [SerializeField] private CarController carPrefab;
+
+    private void Start()
+    {
+        carPositions = GetComponent<RailPath>().GetRailPath();
+
+        for (int i = 0; i < carPositions.Count; i++)
+        {
+            CarController car = Instantiate(carPrefab, carPositions[railStartIndex], Quaternion.identity);
+            car.Init(railStartIndex++, carPositions);
+        }
+    }
+}

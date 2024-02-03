@@ -1,3 +1,17 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:57c1e5dabd061a66e924e78b574aaf50b9c925ca2a43195f04eb9ec1b4c573a7
-size 510
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1963cd607607cae41845f6af64c00c13, type: 3}
+  m_Name: CarWarrantyPopup
+  m_EditorClassIdentifier: 
+  type: 0
+  texture: {fileID: 2800000, guid: 275f5e7eae656dd40b79283874126f79, type: 3}
+  scale: 0.64644
